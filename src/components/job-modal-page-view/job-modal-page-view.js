@@ -5,8 +5,8 @@ import RoutesPath from "../../routes/routes";
 import logoBlue from "../images/logo-blue.svg";
 import dropDown from "../../img/drop-down.svg";
 import userPic from "../../img/user-picture.png";
-import "./job-modal-page-view.scss"
 import UserSelector from "../user-selector/user-selector";
+import "./job-modal-page-view.scss"
 
 function JobModalPageView() {
   const navigate = useNavigate();

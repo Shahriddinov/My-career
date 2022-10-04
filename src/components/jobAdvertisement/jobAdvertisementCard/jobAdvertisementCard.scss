@@ -1,0 +1,132 @@
+.job-advertisement__card {
+  padding: 20px 30px;
+  background: #ffffff;
+  border-radius: 12px;
+
+  & * {
+    margin: 0;
+    padding: 0;
+  }
+
+  & &-head {
+    padding-bottom: 22px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(205, 205, 205, 0.5);
+
+    &--right {
+      column-gap: 20px;
+    }
+  }
+
+  & &-title {
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 30px;
+    color: #323232;
+  }
+
+  & &-text {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #808080;
+
+    &--span {
+      color: #323232;
+    }
+  }
+
+  & &-head--right {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  & &-paragraph {
+    padding: 0 17px;
+    padding-top: 18px;
+    padding-bottom: 30px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.05em;
+    color: #000000;
+  }
+
+  & &-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &--right {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      column-gap: 10px;
+    }
+
+    &--list {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      list-style-type: none;
+    }
+
+    &--item {
+      display: flex;
+      flex-direction: column;
+      row-gap: 6px;
+      padding: 0 20px;
+      border-left: 1px solid #cdcdcd80;
+
+      &:first-child {
+        padding-left: 0;
+        border-left: none;
+      }
+
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+
+    &--span {
+      font-weight: 600;
+      font-size: 23px;
+      line-height: 28px;
+      text-align: center;
+      color: #323232;
+    }
+
+    &--indicator {
+      color: green;
+    }
+
+    &--subtitle {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 20px;
+      text-align: center;
+      color: #808080;
+    }
+
+    &--button {
+      padding: 10px 20px;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 22px;
+      border: 1px solid #1D71B8;
+      border-radius: 8px;
+    }
+
+    & .clicked {
+      color: #ffffff;
+      background: #1d71b8;
+    }
+  }
+}

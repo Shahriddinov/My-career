@@ -2,7 +2,6 @@ import './job-modal.scss';
 import ModalCloseBtn from '../../modal-close-btn/modal-close-btn';
 import JobModalPage from '../../job-modal-page/job-modal-page';
 import JobModalSidebar from '../../job-modal-sidebar/job-modal-sidebar';
-import {Col} from "react-bootstrap";
 import React, {useEffect} from "react";
 import AOS from "aos";
 

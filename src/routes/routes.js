@@ -28,6 +28,7 @@ const RoutesPath = {
   companyCom:"/companyCom",
   jobModalPageView:"jobModalPageView",
   jobAdvertisement: "/jobAdvertisement",
+  chat: "/chat",
 };
 
 export default RoutesPath

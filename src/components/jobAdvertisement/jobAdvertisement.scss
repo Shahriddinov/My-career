@@ -1,0 +1,43 @@
+.job-advertisement {
+  & .navbar-home {
+    padding-top: 90px;
+  }
+
+  & .job-advertisement__title {
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 37px;
+    color: #323232;
+  }
+  & .job-advertisement__container {
+    width: 1430px;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+
+  & .page__navbar {
+    width: fit-content;
+
+    & .page__navbar-list {
+      width: 100%;
+
+      & .page__navbar-list--item {
+        width: fit-content;
+      }
+    }
+  }
+
+  // page section style
+
+  .job-advertisement__card-list {
+    margin: 0;
+    padding: 0;
+    padding-bottom: 229px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    list-style-type: none;
+  }
+}
