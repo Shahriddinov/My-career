@@ -74,11 +74,6 @@ function JobModalPageView() {
                 </li>
               </ul>
               <div className="logged-talents__user-informations">
-                {/* <div className="logged-talents__user">
-                  <img src={userPic} width="36" height="36" />
-                  <span className="logged-talents__user-name">Michel R</span>
-                  <img src={dropDown} width="13" height="7" />
-                </div> */}
                 <UserSelector/>
                 <div className="logged-talents__language">
                   <span className="logged-talents__language-text">En</span>

@@ -1,0 +1,42 @@
+.chat-search__wrapper {
+    max-width: 540px;
+    max-height: 54px;
+    position: relative;
+
+    .chat-search {
+        width: 540px;
+        height: 54px;
+        padding: 15px 20px;
+        background: #FFFFFF;
+        border: 1px solid #1D71B8;
+        border-radius: 8px;
+
+        &::placeholder {
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 24px;
+            color: #808080;
+        }
+    }
+
+    .chat-search__button {
+        width: 90px;
+        height: 56px;
+        padding: 15px 33px;
+        background: #1D71B8;
+        border: 1px solid #1D71B8;
+        border-radius: 8px;
+        background-image: url("../../images/search.svg");
+        background-repeat: no-repeat;
+        background-size: 24px 24px;
+        background-position: center;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    & * {
+        margin: 0;
+        padding: 0;
+    }
+}

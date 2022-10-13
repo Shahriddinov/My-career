@@ -2,10 +2,9 @@ import starIcon from "../../img/star-icon.svg";
 import dropDown from "../../img/drop-down.svg";
 import likeIcon from "../../img/like.svg";
 import userPic from "../../img/jobs-image.svg";
-import "./job-card.scss";
 import { useState } from "react";
 import JobModal from "../modals/jobs-modal/job-modal";
-import Chat from "../modals/chat/chat";
+import "./job-card.scss";
 
 function JobCard() {
   const [isModalOpened, setModalOpened] = useState(false);
@@ -92,10 +91,7 @@ function JobCard() {
           <p className="job-card__time">Posted 1 day ago</p>
         </div>
       </li>
-      {/* {isModalOpened && <JobModal className={isModalOpened ? "job-modal" : "closed"} isModalOpened={isModalOpened} closeModal={closeModal} />} */}
-      {isModalOpened && (
-        <Chat isModalOpened={isModalOpened} closeModal={closeModal} />
-      )}
+      {isModalOpened && <JobModal className={isModalOpened ? "job-modal" : "closed"} isModalOpened={isModalOpened} closeModal={closeModal} />}
     </>
   );
 }

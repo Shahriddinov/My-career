@@ -1,0 +1,238 @@
+#message {
+  width: 100%;
+  height: 100%;
+  padding: 15px 20px;
+  border: none;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  color: #808080;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    color: #808080;
+  }
+}
+
+#file {
+  display: none;
+}
+
+.chat-page__messaging {
+  width: 795px;
+  height: 701px;
+  background: linear-gradient(
+      101.5deg,
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(29, 113, 184, 0.2) 100%
+    ),
+    #ffffff;
+  border: 1px solid #1d71b8;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.chat-page__messages {
+  width: 100%;
+  height: 647px;
+}
+
+.chat-page__messaging-control--bar {
+  width: 100%;
+  height: 54px;
+  background: #ffffff;
+  border: 1px solid #1d71b8;
+  border-radius: 8px 8px 12px 12px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
+
+.chat-page__file-icon {
+  margin-right: 140px !important;
+}
+
+.chat-page__messaging-button {
+  padding: 14px 32px !important;
+  color: #ffffff;
+  background: #1d71b8;
+  border: 1px solid #1d71b8;
+  border-radius: 8px 8px 12px 8px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.paperClip {
+  cursor: pointer;
+
+  & svg {
+    width: 26px;
+    height: 30px;
+    fill: #1d71b8;
+  }
+}
+
+.chat-page__back-btn {
+  margin-bottom: 15px !important;
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 30px;
+  text-align: right;
+  color: #323232;
+}
+
+// Media Page Style
+
+.chat-page__window {
+  height: 700px;
+  overflow-y: scroll;
+}
+
+.chat-page__media-wrapper {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.chat-page__media-item {
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+// Files Page Style
+
+.chat-page__files-wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+}
+
+.chat-page__file {
+  padding: 15px !important;
+  background-color: #ffffff;
+  display: flex;
+  column-gap: 15px;
+  cursor: pointer;
+}
+
+.chat-page__file-embed {
+  width: 130px;
+  height: 130px;
+  padding: 40px 30px !important;
+  background: linear-gradient(
+      101.5deg,
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(29, 113, 184, 0.2) 100%
+    ),
+    #ffffff;
+  border: 1px solid #1d71b8;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 49px;
+  text-align: center;
+  color: #1d71b8;
+}
+
+.chat-page__file-embed--picture {
+  background: url("../../images/user-picture.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.chat-page__file-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.chat-page__file-name {
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 30px;
+  color: #323232;
+}
+
+.chat-page__file-size {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  color: #323232;
+}
+
+.chat-page__file-date {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: #cdcdcd;
+}
+
+// Links Page Style
+
+.chat-page__links-wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+}
+
+.chat-page__link {
+  padding: 15px !important;
+  background-color: #ffffff;
+  display: flex;
+  column-gap: 15px;
+  cursor: pointer;
+}
+
+.chat-page__link-embed {
+  width: 130px;
+  height: 130px;
+  padding: 40px 30px !important;
+  background: linear-gradient(
+      101.5deg,
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(29, 113, 184, 0.2) 100%
+    ),
+    #ffffff;
+  border: 1px solid #1d71b8;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 49px;
+  text-align: center;
+  color: #1d71b8;
+}
+
+.chat-page__link-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.chat-page__link-name {
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 30px;
+  color: #323232;
+}
+
+.chat-page__link-date {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: #cdcdcd;
+}

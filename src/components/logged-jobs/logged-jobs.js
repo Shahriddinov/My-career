@@ -6,7 +6,9 @@ import logoBlue from "../images/logo-blue.svg";
 import JobCard from "../job-card/job-card";
 import dropDown from "../../img/drop-down.svg";
 import userPic from "../../img/user-picture.png";
+import UserSelector from "../user-selector/user-selector";
 import "./logged-jobs.scss";
+import Chat from "../modals/chat/chat";
 
 function LoggedJobs() {
     const navigate = useNavigate();
@@ -51,11 +53,7 @@ function LoggedJobs() {
                                 </li>
                             </ul>
                             <div className="logged-talents__user-informations">
-                                <div className="logged-talents__user">
-                                    <img src={userPic} width="36" height="36" />
-                                    <span className="logged-talents__user-name">Michel R</span>
-                                    <img src={dropDown} width="13" height="7" />
-                                </div>
+                                <UserSelector userPicture={userPic}/>
                                 <div className="logged-talents__language">
                                     <span className="logged-talents__language-text">En</span>
                                     <img src={dropDown} width="13" height="7" />
@@ -111,6 +109,7 @@ function LoggedJobs() {
                 <img src="./images/white-ell4.svg" alt="pattern" />
                 <img src="./images/white-ell5.svg" alt="pattern" />
             </div>
+
         </div>
     )
 }
