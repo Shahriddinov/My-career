@@ -108,13 +108,14 @@ $mainColor: #1d71b8;
 .logged-talents__language {
   width: 90px;
   height: 44px;
-  padding: 8px 18px;
+  padding: 8px 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background: #f5f5f7;
   box-shadow: 0px 0px 5px #1d71b8;
   border-radius: 5px;
+  font-size: 23px
 }
 
 .logged-talents__language-text {
