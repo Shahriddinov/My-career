@@ -47,10 +47,12 @@ function JobModalSidebar({isLinkNeed = true}) {
             />
           </div>
           <div className='user__text-wrapper'>
-            <h2 className='user__name'>
-              Umid
-              <br /> Abdusattorov
-            </h2>
+            <a href="/jobAdvertisement" target='_blank'>
+              <h2 className='user__name'>
+                Umid
+                <br /> Abdusattorov
+              </h2>
+            </a>
             <p className='user__job'>CEO</p>
             <a className='user__company-link' href='/' target='_blank'>
               Napa Automotive

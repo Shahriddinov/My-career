@@ -1,0 +1,48 @@
+import create from 'zustand'
+
+const useStore = create((set) => ({
+ FreelancFirstName: "",
+ FreelancLastName: "",
+ FreelancEmail: "",
+ FreelancPhone: "",
+ FreelancLivingAddress: "",
+ FreelancRegion: "",
+ FreelancStreet: "",
+ FreelancPositions: "",
+ FreelancDateOfBirth: "",
+ FreelancSkills: "",
+ FreelancHobbies: "",
+ FreelancDeskYourself: "",
+ FreelancLanguage: "",
+ FreelancLanguageDegree: "",
+ FreelancDescrobe: "",
+ FreelancWebsite: "",
+ FreelancDataList: [],
+ FreelancDataListJob: [],
+ tags: [],
+ hobs: [],
+ inputList: [[{language:"", level:""}]],
+ FreelancFirstNameHendler: (FreelancFirstName) => set({ FreelancFirstName }),
+ FreelancLastNameHendler: (FreelancLastName) => set({ FreelancLastName }),
+ FreelancEmailHendler: (FreelancEmail) => set({ FreelancEmail }),
+ FreelancPhoneHendler: (FreelancPhone) => set({ FreelancPhone }),
+ FreelancLivingAddressHendler: (FreelancLivingAddress) => set({ FreelancLivingAddress }),
+ FreelancRegionHendler: (FreelancRegion) => set({ FreelancRegion }),
+ FreelancStreetHendler: (FreelancStreet) => set({ FreelancStreet }),
+ FreelancPositionsHendler: (FreelancPositions) => set({ FreelancPositions }),
+ FreelancDateOfBirthHendler: (FreelancDateOfBirth) => set({ FreelancDateOfBirth }),
+ FreelancSkillsHendler: (FreelancSkills) => set({ FreelancSkills }),
+ FreelancDescrobeHendler: (FreelancDescrobe) => set({ FreelancDescrobe }),
+ FreelancWebsiteHendler: (FreelancWebsite) => set({ FreelancWebsite }),
+ FreelancDataListHendler: (FreelancDataList) => set({ FreelancDataList }),
+ FreelancDataListJobHendler: (FreelancDataListJob) => set({ FreelancDataListJob }),
+
+ TagsHendler: (tags) => set({ tags }),
+ HobsHenedler: (hobs) => set({ hobs }),
+ setInputListLang: () => set((state) => ({ inputList: state.language})),
+ setInputListLevel: () => set((state) => ({ inputList: state.level})),
+
+//  AddressHendler: (address) => set({ address }),
+}))
+
+export default useStore

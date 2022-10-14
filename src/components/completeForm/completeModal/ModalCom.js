@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
+import useStore from '../../../StoreZustand/StoreZustand';
 import "./modal.scss"
 
 function ModalCom(props) {
 
+    const { FreelancDataListJobHendler } = useStore()
     const [modal, setModal] = useState(false);
-
 
     const toggle = () => {
         setModal(!modal)
@@ -32,6 +33,7 @@ const [dataList, setDataList] = useState([]);
                 let id = Date.now();
                 newTask.push({id:id, company,job,isComplete,start,end,tagName});
                 setDataList(newTask);
+                FreelancDataListJobHendler(newTask)
                 setCompany(""); setTagName(""); setEnd(""); setStart(""); setJob("")
             }
             else {
@@ -45,6 +47,7 @@ const [dataList, setDataList] = useState([]);
             const myData = [...dataList];
             myData.splice(index,1);
             setDataList(myData)
+            FreelancDataListJobHendler(myData)
         };
 
     return (
@@ -79,7 +82,7 @@ const [dataList, setDataList] = useState([]);
 
 
             <Modal isOpen={modal} toggle={toggle}>
-                <ModalHeader toggle={toggle}>Add Education History</ModalHeader>
+                <ModalHeader toggle={toggle}>Add Work Experience</ModalHeader>
                 <ModalBody>
                     <input onChange={(e) => setCompany(e.target.value)} placeholder="Company name"
                            type="text" className="form-control mt-4 inputs-all1"/>

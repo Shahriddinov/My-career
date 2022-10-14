@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import "./education.scss"
-import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
+import {Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
+import useStore from '../../../StoreZustand/StoreZustand';
 
-function ComEducat(props) {
+function ComEducat({dataList1,setDataList1, setSchool, school , degree, setDegree, isComplete, setIsComplete, studyType, setStudyType, lacation, setLacation, start, setStart, end, setEnd}) {
 
     const [modal, setModal] = useState(false);
 
@@ -10,16 +11,16 @@ function ComEducat(props) {
         setModal(!modal)
     };
 
-    const [school, setSchool] = useState("");
-    const [degree, setDegree] = useState("");
-    const [isComplete, setIsComplete] = useState("");
-    const [studyType, setStudyType] = useState("");
-    const [lacation, setLacation] = useState("");
-    const [start, setStart] = useState("");
-    const [end, setEnd] = useState("");
+    const { FreelancDataListHendler } = useStore()
 
-
-    const [dataList1, setDataList1] = useState([]);
+    // const [school, setSchool] = useState("");
+    // const [degree, setDegree] = useState("");
+    // const [isComplete, setIsComplete] = useState("");
+    // const [studyType, setStudyType] = useState("");
+    // const [lacation, setLacation] = useState("");
+    // const [start, setStart] = useState("");
+    // const [end, setEnd] = useState("");
+    // const [dataList1, setDataList1] = useState([]);
 
     const addTask = () =>{
         if (school.trim().length > 0, degree.trim().length > 0, isComplete !== false, start !== "дд.мм.гггг", end !== "дд.мм.гггг",
@@ -29,6 +30,7 @@ function ComEducat(props) {
             let id = Date.now();
             newTask.push({id:id, school,degree,isComplete,start,end,studyType,lacation});
             setDataList1(newTask)
+            FreelancDataListHendler(newTask)
             setSchool(""); setEnd(""); setStart(""); setDegree("");setStudyType("");
             setLacation("")
         }
@@ -43,8 +45,8 @@ function ComEducat(props) {
         const myData = [...dataList1];
         myData.splice(index,1);
         setDataList1(myData)
+        FreelancDataListHendler(myData)
     };
-
 
     return (
         <>
@@ -56,7 +58,7 @@ function ComEducat(props) {
             </p>
             {
                 dataList1.map((item, index)=>(
-                    <div className="map-modal mt-2">
+                    <div className="map-modal mt-2" key={index + 1}>
                         <div className="w-75">
                             <p className="comName">{item.school}</p>
                             <div className="d-flex">
@@ -107,7 +109,7 @@ function ComEducat(props) {
                 </ModalBody>
                 <ModalFooter className="modal-footer1">
                     <div className="checkbox-in-m1">
-                        <input onChange={(e) => setIsComplete( e.target.value)} className="checkbox-in-m mt-4"
+                        <input onChange={(e) => setIsComplete(e.target.value)} className="checkbox-in-m mt-4"
                                type="checkbox"/>
                         <span className="select-curr1">I am currently working in this role</span>
                     </div>

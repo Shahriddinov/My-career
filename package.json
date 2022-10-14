@@ -5,6 +5,7 @@
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@emotion/css": "^11.7.1",
+    "@mui/material": "^5.10.7",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
@@ -13,6 +14,8 @@
     "axios": "^0.26.0",
     "bootstrap": "^5.1.3",
     "formik": "^2.2.9",
+    "i18n-react": "^0.7.0",
+    "i18next": "^21.9.2",
     "moment": "^2.29.1",
     "path-params": "^0.1.0",
     "qs": "^6.10.2",
@@ -21,6 +24,8 @@
     "react-datepicker": "^4.6.0",
     "react-dom": "^17.0.2",
     "react-elastic-carousel": "^0.11.5",
+    "react-i18next": "^11.18.6",
+    "react-icons": "^4.4.0",
     "react-paginate": "^8.1.2",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.1",
@@ -39,7 +44,8 @@
     "sass-loader": "^10.2.0",
     "slick-carousel": "^1.8.1",
     "uuid": "^8.3.2",
-    "web-vitals": "^2.1.3"
+    "web-vitals": "^2.1.3",
+    "zustand": "^4.1.1"
   },
   "scripts": {
     "start": "react-scripts start",

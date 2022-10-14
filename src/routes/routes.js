@@ -27,8 +27,8 @@ const RoutesPath = {
   complete:"/complete",
   companyCom:"/companyCom",
   jobModalPageView:"jobModalPageView",
-  jobAdvertisement: "/jobAdvertisement",
-  chat: "/chat",
+  jobAdvertisement:"jobAdvertisement",
+  completeResume:"completeResume",
 };
 
 export default RoutesPath

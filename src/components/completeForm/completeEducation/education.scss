@@ -1,9 +1,16 @@
 .checkbox-in-m{
- height: 20px;
+  height: 20px;
   display: flex;
   align-items: center;
+  margin: 0 !important;
 }
 .modal-footer1{
+  width: 100% !important;
   display: flex!important;
   justify-content: space-between!important;
+  margin: 0 !important;
+}
+
+.modal-footer {
+  margin: 0 !important;
 }
