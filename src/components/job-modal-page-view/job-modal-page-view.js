@@ -6,7 +6,7 @@ import logoBlue from "../images/logo-blue.svg";
 import dropDown from "../../img/drop-down.svg";
 import userPic from "../../img/user-picture.png";
 import UserSelector from "../user-selector/user-selector";
-import "./job-modal-page-view.scss"
+import "./job-modal-page-view.scss";
 
 function JobModalPageView() {
   const navigate = useNavigate();
@@ -70,11 +70,11 @@ function JobModalPageView() {
                 <li className="nav-item">
                   <div className="nav-link" data-bs-toggle="tab">
                     Contact us
-                 </div>
+                  </div>
                 </li>
               </ul>
               <div className="logged-talents__user-informations">
-                <UserSelector/>
+                <UserSelector userPicture={userPic} />
                 <div className="logged-talents__language">
                   <span className="logged-talents__language-text">En</span>
                   <img src={dropDown} width="13" height="7" />
@@ -87,7 +87,7 @@ function JobModalPageView() {
 
       <div className="job-modal__page-view--wrapper">
         <JobModalPage />
-        <JobModalSidebar isLinkNeed={false}/>
+        <JobModalSidebar isLinkNeed={false} />
       </div>
     </div>
   );

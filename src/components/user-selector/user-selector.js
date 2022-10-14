@@ -14,16 +14,20 @@ function UserSelector({ userPicture, props }) {
   ];
   const [activeValue, setActiveValue] = useState(options[0].label);
   const [isUserSelectOpen, setUserSelectOpen] = useState(false);
+  const [chatStatus, setChatStatus] = useState(activeValue == "chats" ? true : false);
 
   function handleSelectorClicked(evt) {
     let evtValue = evt.target.dataset.value;
 
     setActiveValue(evtValue);
     setUserSelectOpen(!isUserSelectOpen);
+    if(evtValue == "chats") {
+      setChatStatus(true);
+    }
   }
 
   return (
-    <>
+    <div className="user-selector__window">
       <div className="user-selector">
         <button
           onClick={() => setUserSelectOpen(!isUserSelectOpen)}
@@ -52,7 +56,9 @@ function UserSelector({ userPicture, props }) {
           })}
         </ul>
       </div>
-    </>
+
+        {chatStatus ? <Chat isModalOpened={chatStatus} closeModal={setChatStatus} /> : null}
+    </div>
   );
 }
 
