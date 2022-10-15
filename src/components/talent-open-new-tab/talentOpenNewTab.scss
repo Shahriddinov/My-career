@@ -1,0 +1,19 @@
+.talentOpenNewTabBtn{
+    padding: 0 200px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.talent-modal__page-view--wrapper {
+    display: flex;
+    width: fit-content;
+    margin: 0 auto;
+  
+    .talent-sidebar-left-user-info {
+      padding-left: 0;
+    }
+  
+    & .talent-modal__sidebar-user {
+      margin-top: 0;
+    }
+  }

@@ -4,10 +4,22 @@ import locationIcon from "../../img/location-icon.svg";
 import userPic from "../../img/user-picture.png";
 import starIcon from "../../img/star-icon.svg";
 import "./talent-card.scss";
+import { useState } from "react";
+import TalentSidebar from "../talent-sidebar/talent-sidebar";
+
 
 function TalentCard() {
+
+  const [isOpen, setIsOpen] = useState(false)
+
+  function closeSidebar() {
+    setIsOpen(!isOpen)
+  }
+
+
   return (
-    <li className="talent-card">
+    <>
+    <li className="talent-card" onClick={() => setIsOpen(!isOpen)}>
       <div className="talent-card__head">
         <div className="talent-card__user">
           <img
@@ -104,6 +116,9 @@ function TalentCard() {
         </div>
       </div>
     </li>
+    
+    {isOpen && <TalentSidebar closeSidebar={closeSidebar} isOpen={isOpen}/>}
+    </>
   );
 }
 
