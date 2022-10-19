@@ -40,7 +40,6 @@ function ComplateResume({user, resumeActive,inputList}) {
                 <p className='resume2_1-head-name'>{FreelancFirstName} {FreelancLastName}</p>
                 <p className='resume2_1-head-job'>{FreelancPositions}</p>
         </div>
-
         <div className='resume2_1-body'>
             <div className='resume2_1-left'>
                 <div className='resume2_1-left-img'>
