@@ -35,6 +35,7 @@ import ProfilPage from "./components/profil/profilPage";
 import Jops from "./components/postJop/Jops";
 import NewJobs from "./components/postJop/NewJobs";
 import JobModalPageView from './components/job-modal-page-view/job-modal-page-view';
+import TalentModalPageView from './components/talent-modal-page-view/talent-modal-page-view';
 import Jobadvertisement from './components/job-advertisement/Job-advertisement';
 import ComplateResume from './components/completeForm/ComplateResume';
 
@@ -92,6 +93,7 @@ const App = props => {
                 <Route path={RoutesPath.Saved} element={<Saved/>}/>
                 <Route path={RoutesPath.signUpPage} element={<SignUpPage/>}/>
                 <Route path={RoutesPath.jobModalPageView} element={<JobModalPageView/>}/>
+                <Route path={RoutesPath.talentModalPageView} element={<TalentModalPageView/>}/>
                 <Route path={RoutesPath.jobAdvertisement} element={<Jobadvertisement/>}/>
                 <Route path={RoutesPath.completeResume} element={<ComplateResume user={user} resumeActive={resumeActive} inputList={inputList}/>} />
             </Routes>

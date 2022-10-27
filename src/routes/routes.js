@@ -27,6 +27,7 @@ const RoutesPath = {
   complete:"/complete",
   companyCom:"/companyCom",
   jobModalPageView:"jobModalPageView",
+  talentModalPageView:"talentModalPageView",
   jobAdvertisement:"jobAdvertisement",
   completeResume:"completeResume",
 };
