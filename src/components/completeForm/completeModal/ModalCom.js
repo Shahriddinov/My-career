@@ -7,7 +7,7 @@ function ModalCom(props) {
 
     const { FreelancDataListJobHendler } = useStore()
     const [modal, setModal] = useState(false);
-
+ 
     const toggle = () => {
         setModal(!modal)
     };

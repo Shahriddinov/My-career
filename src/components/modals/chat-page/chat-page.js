@@ -1,12 +1,14 @@
 import { useState } from "react";
 import userPicture from "../../../img/user-picture.png";
+import useStore from "../../../StoreZustand/StoreZustand";
 import ChattingWindow from "../chatting-window/chatting-window";
 import "./chat-page.scss";
 
-function ChatPage({ user }) {
+function ChatPage({ user , closeFunction }) {
     const [isSettingsClicked, setSettingsClicked] = useState(false);
     const [clickedSetting, setClickedSetting] = useState(null);
-
+    const {contract,contractHendler} = useStore()
+    console.log(contract);
     const settingsList = [
       "Media",
       "Files",
@@ -58,6 +60,11 @@ function ChatPage({ user }) {
         setSettingsClicked(!isSettingsClicked);
     }
 
+    function closeHend () {
+      contractHendler(true)
+      closeFunction()
+    }
+
     return (
       <div className="chat-page">
         <div className="chat-page__header">
@@ -80,29 +87,32 @@ function ChatPage({ user }) {
               </div>
             </div>
           </div>
-          <div
-            className="chat-page__user-settings--wrapper"
-            onClick={handleClick}
-          >
-            <span className="chat-page__user-settings--btn"></span>
-            <ul
-              className={
-                isSettingsClicked
-                  ? "chat-page__user-settings chat-page__user-settings--opened"
-                  : "chat-page__user-settings chat-page__user-settings--closed"
-              }
-            >
-              {settingsList.map((setting) => {
-                return (
-                  <li
-                    className="chat-page__user-setting"
-                    onClick={() => setClickedSetting(setting)}
-                  >
-                    {setting}
-                  </li>
-                );
-              })}
-            </ul>
+          <div className="chatchat-page__user-info">
+            <button className="chat-contract-btn" onClick={closeHend}>Contract</button>
+            <div
+              className="chat-page__user-settings--wrapper"
+              onClick={handleClick}
+              >
+              <span className="chat-page__user-settings--btn"></span>
+              <ul
+                className={
+                  isSettingsClicked
+                    ? "chat-page__user-settings chat-page__user-settings--opened"
+                    : "chat-page__user-settings chat-page__user-settings--closed"
+                }
+              >
+                {settingsList.map((setting) => {
+                  return (
+                    <li
+                      className="chat-page__user-setting"
+                      onClick={() => setClickedSetting(setting)}
+                    >
+                      {setting}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
           </div>
         </div>
 

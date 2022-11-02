@@ -134,7 +134,8 @@ function Chat(props) {
         closeFunction={closeFunction}
       />
       <ChatSidebar users={users}/>
-      <ChatPage user={users[0]}/>
+      <ChatPage user={users[0]} 
+      closeFunction={closeFunction}/>
     </div>
   );
 }

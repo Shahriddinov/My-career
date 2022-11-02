@@ -10,6 +10,7 @@ import 'bootstrap/dist/js/bootstrap.bundle'
 import "aos/dist/aos.css";
 import RoutesPath from "../routes/routes";
 import {useNavigate} from "react-router";
+import GET from '../API/GET';
 
 const enhancer = connect((
     {
@@ -72,6 +73,23 @@ const Home = () => {
         }, 300)
 
     };
+
+    const [UserRest, setUserRest] = useState([]);
+    const [CompanyRest, setCompanyRest] = useState([]);
+    const fetchData = async () => {
+      try {
+        const UserRest = await GET.USERS()  
+        const CompanyRest = await GET.COMPANY()      
+        setUserRest(UserRest.data.data)
+        setCompanyRest(CompanyRest.data.data)
+    } catch (error) {}
+    };
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    console.log(UserRest);
+    console.log(CompanyRest);
 
   return (
         <div className="home-wrapper" id="overflow-y-scroll" onWheel={onScroll}>

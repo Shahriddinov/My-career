@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {Button, Card, Form} from "react-bootstrap";
 import { useNavigate} from "react-router-dom";
 import RoutesPath from "../routes/routes";
 import {setAuthEmailValue, setAuthPasswordValue} from "../actions/authAction";
 import {connect, useDispatch} from "react-redux";
-
-
+import logger from '../../src/middlewares/loggerMiddleware'
+import POST from '../API/POST';
+import useStore from '../StoreZustand/StoreZustand';
+import '../../src/components/Alll.scss'
 
 const enhancer = connect(({size: {size}, auth: {authEmailInitialValue, authPasswordInitialValue}}) => ({
     size,
@@ -25,6 +27,54 @@ function LoginCard(props) {
         dispatch(setAuthPasswordValue(event.target.value))
     };
 
+    const { loginHendler, login } = useStore() 
+    useEffect(() => {
+        loginHendler({
+            email: props.authEmailInitialValue,
+            password: props.authPasswordInitialValue
+        })
+    },[]);
+    let [LoginParams, setLoginParams] = useState({
+        email: props.authEmailInitialValue,
+        password: props.authPasswordInitialValue
+    })
+    // console.log(login);
+
+
+    // let [emailpost, setemailpost] = useState("")
+    // let [passwordpost, setpasswordpost] = useState("")
+    // const emailhendler = (event) => {
+    //     setemailpost(event);
+    //     setLoginParams({...{
+    //         email: emailpost,
+    //         password: passwordpost,
+    //     },  email: emailpost,})                        
+    // }
+    // const passwordhendler = (event) => {
+    //     setpasswordpost(event);
+    //     setLoginParams({...{
+    //         email: emailpost,
+    //         password: passwordpost,
+    //     },  password: passwordpost,})
+    // }
+
+   const PostData = async () => {
+      try {
+        const PostRest = await POST.login({
+            email: props.authEmailInitialValue,
+            password: props.authPasswordInitialValue
+        })   
+        localStorage.setItem("login", JSON.stringify(PostRest.data.token));   
+        console.log(PostRest);
+     } catch (error) {
+         alert(error)
+     }
+     };
+
+    const LoginHendler = () => {
+         navigate(RoutesPath.signUpPage)
+         PostData()
+    }
     return (
             <Card>
                 <Card.Body>
@@ -35,28 +85,43 @@ function LoginCard(props) {
                     <Form>
                         <Form.Group className="form-shell">
                             <Form.Control
+                                className='form-control'
                                 type="email"
                                 id="authEmail"
                                 placeholder="Email"
                                 onChange={handleEmailValue}
                                 value={props.authEmailInitialValue}
                             />
+                             {/* <Form.Control
+                                type="email"
+                                id="authEmail"
+                                placeholder="Email"
+                                onChange={(e)=>emailhendler(e.target.value)}
+                            /> */}
                         </Form.Group>
                         <Form.Group className="form-shell">
                             <Form.Control
+                                className="form-control"
                                 type="password"
                                 id="authPassword"
                                 placeholder="Password"
                                 onChange={handlePasswordValue}
                                 value={props.authPasswordInitialValue}
                             />
+                             {/* <Form.Control
+                                type="password"
+                                id="authPassword"
+                                placeholder="Password"
+                                onChange={(e) => passwordhendler(e.target.value)}
+                            /> */}
                         </Form.Group>
                     </Form>
 
                     <div className="bottom-fields">
-                        <Button className="custom-btn1" onClick={() => {
+                        {/* <Button className="custom-btn1" onClick={() => {
                             navigate(RoutesPath.signUpPage)
-                        }}>Continue</Button>
+                        }}>Continue</Button> */}
+                         <Button className="custom-btn1" onClick={() => LoginHendler()}>Continue</Button>
                     </div>
                     <div className="bottom-title">Or continue with</div>
                     <div className="bottom-icons">

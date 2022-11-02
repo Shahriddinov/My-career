@@ -29,6 +29,7 @@ const RoutesPath = {
   jobModalPageView:"jobModalPageView",
   jobAdvertisement:"jobAdvertisement",
   completeResume:"completeResume",
+  contract:"contract",
 };
 
 export default RoutesPath
