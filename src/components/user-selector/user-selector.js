@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import dropDown from "../../img/drop-down.svg";
+import useStore from "../../StoreZustand/StoreZustand";
+import Contract from "../modals/contract/Contract";
 import Chat from "../modals/chat/chat";
 import "./user-selector.scss";
 
@@ -25,6 +27,7 @@ function UserSelector({ userPicture, props }) {
       setChatStatus(true);
     }
   }
+  const {contract,contractHendler} = useStore()
 
   return (
     <div className="user-selector__window">
@@ -58,6 +61,7 @@ function UserSelector({ userPicture, props }) {
       </div>
 
         {chatStatus ? <Chat isModalOpened={chatStatus} closeModal={setChatStatus} /> : null}
+        {contract ? <Contract isModalOpened={chatStatus} closeModal={setChatStatus}/> : null}
     </div>
   );
 }

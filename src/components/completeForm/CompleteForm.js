@@ -35,6 +35,9 @@ import ComplateResume from '../../components/completeForm/ComplateResume';
 import { AiOutlineUser , AiFillCaretRight} from 'react-icons/ai';
 import { ImHome } from 'react-icons/im';
 import resumeLang from '../../img/resumeLang.png'
+import logo from '../../img/logo.svg'
+import GET from '../../API/GET';
+import POST from '../../API/POST';
 
 function progressfirst(){
     var firstCard = document.getElementById("first-card");
@@ -52,7 +55,7 @@ function progressfirst(){
     secondCard.style.bottom = "20%";
     two.style.top = "68%";
     two.style.backgroundColor = "#FFFFFF";
-    two.style.border = "7px solid #4169E1"
+    two.style.border = "7px solid #1D71B8"
 }
 function progresssecond(){
     var secondCard = document.getElementById("second-card");
@@ -70,7 +73,7 @@ function progresssecond(){
     thirdCard.style.bottom = "10%"
     three.style.top = "68%"
     three.style.backgroundColor = "#FFFFFF"
-    three.style.border = "7px solid #4169E1"
+    three.style.border = "7px solid #1D71B8"
 }
 function progressthird(){
     var fourthCard = document.getElementById("fourth-card");
@@ -88,7 +91,7 @@ function progressthird(){
     fourthCard.style.bottom = "20%";
     four.style.top = "68%"
     four.style.backgroundColor = "#FFFFFF"
-    four.style.border = "7px solid #4169E1"
+    four.style.border = "7px solid #1D71B8"
 }
 function progressfourth(){
     var fourthCard = document.getElementById("fourth-card");
@@ -106,7 +109,7 @@ function progressfourth(){
     fifthCard.style.bottom = "25%";
     five.style.top = "68%"
     five.style.backgroundColor = "#FFFFFF"
-    five.style.border = "7px solid #4169E1"
+    five.style.border = "7px solid #1D71B8"
 }
 function progressfifth(){
     var sixthCard = document.getElementById("sixth-card");
@@ -124,7 +127,7 @@ function progressfifth(){
     sixthCard.style.bottom = "25%";
     six.style.top = "68%"
     six.style.backgroundColor = "#FFFFFF"
-    six.style.border = "7px solid #4169E1"
+    six.style.border = "7px solid #1D71B8"
 }
 function progresssixth(){
     var sixthCard = document.getElementById("sixth-card");
@@ -142,7 +145,7 @@ function progresssixth(){
     sixthCard.style.bottom = "110%";
     seven.style.top = "68%"
     seven.style.backgroundColor = "#FFFFFF"
-    seven.style.border = "7px solid #4169E1"
+    seven.style.border = "7px solid #1D71B8"
 }
 function progressseventh(){
     var eighthCard = document.getElementById("eighth-card");
@@ -162,7 +165,7 @@ function progressseventh(){
     seventhCard.style.bottom = "110%";
     eight.style.top = "68%"
     eight.style.backgroundColor = "#FFFFFF"
-    eight.style.border = "7px solid #4169E1"
+    eight.style.border = "7px solid #1D71B8"
 }
 function progresssecondback(){
     var firstCard = document.getElementById("first-card");
@@ -175,7 +178,7 @@ function progresssecondback(){
     text2.style.opacity = "0";
     one.style.top = "60%";
     one.style.backgroundColor = "#FFFFFF";
-    one.style.border = "7px solid #4169E1";
+    one.style.border = "7px solid #1D71B8";
     firstCard.style.bottom = "17%";
     secondCard.style.bottom = "-75%";
     two.style.top = "97%";
@@ -193,7 +196,7 @@ function progressthirdback(){
     text3.style.opacity = "0";
     two.style.top = "68%";
     two.style.backgroundColor = "#FFFFFF"
-    two.style.border = "7px solid #4169E1"
+    two.style.border = "7px solid #1D71B8"
     secondCard.style.bottom = "20%"
     thirdCard.style.bottom = "-90%"
     three.style.top = "100%"
@@ -211,7 +214,7 @@ function progressfourthback(){
     text3.style.opacity = "1";
     three.style.top = "68%";
     three.style.backgroundColor = "#FFFFFF"
-    three.style.border = "7px solid #4169E1"
+    three.style.border = "7px solid #1D71B8"
     thirdCard.style.bottom = "10%";
     fourthCard.style.bottom = "-75%"
     four.style.top = "103%"
@@ -229,7 +232,7 @@ function progressfifthback(){
     text5.style.opacity = "0";
     four.style.top = "68%";
     four.style.backgroundColor = "#FFFFFF"
-    four.style.border = "7px solid #4169E1"
+    four.style.border = "7px solid #1D71B8"
     fourthCard.style.bottom = "20%"
     fifthCard.style.bottom = "-75%"
     five.style.top = "106%"
@@ -247,7 +250,7 @@ function progresssixthback(){
     text5.style.opacity = "1";
     five.style.top = "68%";
     five.style.backgroundColor = "#FFFFFF"
-    five.style.border = "7px solid #4169E1"
+    five.style.border = "7px solid #1D71B8"
     fifthCard.style.bottom = "20%"
     sixthCard.style.bottom = "-75%"
     six.style.top = "109%"
@@ -265,7 +268,7 @@ function progressseventhback(){
     text7.style.opacity = "0";
     six.style.top = "68%";
     six.style.backgroundColor = "#FFFFFF";
-    six.style.border = "7px solid #4169E1"
+    six.style.border = "7px solid #1D71B8"
     sixthCard.style.bottom = "20%"
     seventhCard.style.bottom = "-90%"
     seven.style.top = "112%"
@@ -1414,7 +1417,7 @@ function CompleteForm({setUser, user, resumeActive, setResumeActive,inputList,se
                 <div className="container-circle-all">
                     <div className="container">
                         <div className="career">
-                            <p className="my-career-text">My Career</p>
+                            <img src={logo} alt="logo" />
                         </div>
                         <div className="one dot" id="one"></div>
                         <div className="two dot" id="two"></div>

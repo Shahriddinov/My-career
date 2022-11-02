@@ -1,9 +1,14 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import image from "../completeForm/image/image.png"
 import ModalCom from "../completeForm/completeModal/ModalCom";
 import ComEducat from "../completeForm/completeEducation/ComEducat";
 import VebsiteCom from "../completeForm/completeWeb/VebsiteCom";
+import VebsiteCompany from "../completeForm/completeWebCompany/VebsiteCom";
 import CompRezume from "../completeForm/RezueComple/CompRezume";
+import logo from '../../img/logo.svg'
+import POST from '../../API/POST';
+import GET from '../../API/GET';
+import useStore from '../../StoreZustand/StoreZustand';
 
 
 function progressfirst(){
@@ -22,7 +27,7 @@ function progressfirst(){
     secondCard.style.bottom = "20%";
     two1.style.top = "68%";
     two1.style.backgroundColor = "#FFFFFF";
-    two1.style.border = "7px solid #4169E1"
+    two1.style.border = "7px solid #1D71B8"
 }
 function progresssecond(){
     var secondCard = document.getElementById("second-card");
@@ -40,7 +45,7 @@ function progresssecond(){
     thirdCard.style.bottom = "10%"
     three1.style.top = "68%"
     three1.style.backgroundColor = "#FFFFFF"
-    three1.style.border = "7px solid #4169E1"
+    three1.style.border = "7px solid #1D71B8"
 }
 function progressthird(){
     var fourthCard = document.getElementById("fourth-card");
@@ -59,7 +64,7 @@ function progressthird(){
     fourthCard.style.bottom = "20%";
     four.style.top = "68%"
     four.style.backgroundColor = "#FFFFFF"
-    four.style.border = "7px solid #4169E1"
+    four.style.border = "7px solid #1D71B8"
     secondline.style.opacity = "0";
 }
 function progresssecondback(){
@@ -73,7 +78,7 @@ function progresssecondback(){
     text2.style.opacity = "0";
     one.style.top = "68%";
     one.style.backgroundColor = "#FFFFFF";
-    one.style.border = "7px solid #4169E1";
+    one.style.border = "7px solid #1D71B8";
     firstCard.style.bottom = "17%";
     secondCard.style.bottom = "-75%";
     two.style.top = "109%";
@@ -91,7 +96,7 @@ function progressthirdback(){
     text3.style.opacity = "0";
     two.style.top = "68%";
     two.style.backgroundColor = "#FFFFFF"
-    two.style.border = "7px solid #4169E1"
+    two.style.border = "7px solid #1D71B8"
     secondCard.style.bottom = "20%"
     thirdCard.style.bottom = "-90%"
     three.style.top = "112%"
@@ -110,7 +115,7 @@ function progressfourthback(){
     text3.style.opacity = "1";
     three.style.top = "68%";
     three.style.backgroundColor = "#FFFFFF"
-    three.style.border = "7px solid #4169E1"
+    three.style.border = "7px solid #1D71B8"
     thirdCard.style.bottom = "10%";
     fourthCard.style.bottom = "-75%"
     four.style.top = "115%"
@@ -213,6 +218,7 @@ function progressfourthback(){
 
 
 function CompleteCompany(props) {
+    const {CompanyHendler,Company,CompanyFirstName,CompanyLastName,CompanyEmail,CompanyNumber,CompanyCompany,CompanyCompanyNum,CompanyImage,CompanyLocation,CompanyDescription,CompanyWebsite,CompanyWhatsapp,CompanyFacebook,CompanyInstagram,CompanyTelegram,CompanyGithub,CompanyTwitter,CompanyFirstNameHendler,CompanyLastNameHendler,CompanyEmailHendler,CompanyNumberHendler,CompanyImageHendler,CompanyCompanyHendler,CompanyCompanyNumHendler,CompanyLocationHendler,CompanyDescriptionHendler,CompanyWebsiteHendler,CompanyWhatsappHendler,CompanyFacebookHendler,CompanyInstagramHendler,CompanyTelegramHendler,CompanyGithubHendler,CompanyTwitterHendler} = useStore()
 
     const [inputList, setInputList] = useState([{language:"", level:""}]);
 
@@ -244,6 +250,7 @@ function CompleteCompany(props) {
                 ...user,
                 image: e.target.result,
             });
+            CompanyImageHendler(e.target.result)
         }
         setIcon(true)
     }
@@ -288,6 +295,64 @@ function CompleteCompany(props) {
         descrobe:"",
     });
 
+    let [CompanyParams, setCompanyParams] = useState({
+        name: CompanyFirstName,
+        lastname: CompanyLastName,
+        email: CompanyEmail,
+        number: CompanyNumber,
+        image: CompanyImage,
+        company: CompanyCompany,
+        company_num: CompanyCompanyNum,
+        lacation: [CompanyLocation],
+        description:CompanyDescription,
+        website_link: CompanyWebsite,
+        whats_app_link: CompanyWhatsapp,
+        facebook_link: CompanyFacebook,
+        instagram_link: CompanyInstagram,
+        telegram_link: CompanyTelegram,
+        github_link: CompanyGithub,
+        twitter_link: CompanyTwitter,
+    })
+
+    // website_link: CompanyWebsite,
+    // whats_app_link: CompanyWhatsapp,
+    // facebook_link: CompanyFacebook,
+    // instagram_link: CompanyInstagram,
+    // telegram_link: CompanyTelegram,
+    // github_link: CompanyGithub,
+    // twitter_link: CompanyTwitter,
+
+    const PostDataCompany = async () => {
+        try {
+          const PostRest = await POST.companyadd({
+            company_id: 1,
+            firstname: CompanyFirstName,
+            lastname: CompanyLastName,
+            email: CompanyEmail,
+            phone: CompanyNumber,
+            image: CompanyImage,
+            company_name: CompanyCompany,
+            company_phone: CompanyCompanyNum,
+            location: [CompanyLocation],
+            description:CompanyDescription,
+            web_link: CompanyWebsite,
+            whatsapp_link: CompanyWhatsapp,
+            facebook_link: CompanyFacebook,
+            instagram_link: CompanyInstagram,
+            telegram_link: CompanyTelegram,
+            github_link: CompanyGithub,
+            twitter_link: CompanyTwitter,
+        })   
+        console.log(PostRest);
+       } catch (error) {
+           console.log(error)
+       }
+    };
+
+    // useEffect(() => {
+        // PostData()
+    //   },[]);
+
     return (
         <>
             <div className="animations-image-all">
@@ -314,21 +379,25 @@ function CompleteCompany(props) {
                             <div className="right-input">
                                 <div>
                                     <label className="mt-4 label-style" htmlFor="">Firstname</label>
-                                    <input onChange={(e)=>setUser({...user, firstName: e.target.value})} className="form-control inputs-all" type="text" placeholder="Firstname"/>
+                                    {/* <input onChange={(e)=>setUser({...user, firstName: e.target.value})} className="form-control inputs-all" type="text" placeholder="Firstname"/> */}
+                                    <input onChange={(e)=>CompanyFirstNameHendler(e.target.value)} className="form-control inputs-all" type="text" placeholder="Firstname"/>
                                 </div>
                                 <div>
                                     <label className="mt-4 label-style" htmlFor="">E-mail</label>
-                                    <input onChange={(e)=>setUser({...user, email: e.target.value})} className="form-control inputs-all" type="e-mail" placeholder="E-mail"/>
+                                    {/* <input onChange={(e)=>setUser({...user, email: e.target.value})} className="form-control inputs-all" type="e-mail" placeholder="E-mail"/> */}
+                                    <input onChange={(e)=>CompanyEmailHendler(e.target.value)} className="form-control inputs-all" type="e-mail" placeholder="E-mail"/>
                                 </div>
                             </div>
                             <div className="left-input">
                                 <div>
                                     <label className="mt-4 label-style" htmlFor="">Lastname</label>
-                                    <input  onChange={(e)=>setUser({...user, lastName: e.target.value})} className="form-control inputs-all" type="text" placeholder="Lastname"/>
+                                    {/* <input  onChange={(e)=>setUser({...user, lastName: e.target.value})} className="form-control inputs-all" type="text" placeholder="Lastname"/> */}
+                                    <input  onChange={(e)=>CompanyLastNameHendler(e.target.value)} className="form-control inputs-all" type="text" placeholder="Lastname"/>
                                 </div>
                                 <div>
                                     <label className="mt-4 label-style" htmlFor="">Phone number</label>
-                                    <input onChange={(e)=>setUser({...user, numbers:e.target.value})} className="form-control inputs-all" type="number" placeholder="+xxx (xx) xxx- xx-xx"/>
+                                    {/* <input onChange={(e)=>setUser({...user, numbers:e.target.value})} className="form-control inputs-all" type="number" placeholder="+xxx (xx) xxx- xx-xx"/> */}
+                                    <input onChange={(e)=>CompanyNumberHendler(e.target.value)} className="form-control inputs-all" type="number" placeholder="+xxx (xx) xxx- xx-xx"/>
                                     <button className="btn btn-next-to1 mt-3" onClick={progressfirst}>Next</button>
                                 </div>
                             </div>
@@ -348,11 +417,13 @@ function CompleteCompany(props) {
 
                         <div>
                             <label className="mt-4 label-style" htmlFor="">Company name</label>
-                            <input onChange={(e)=>setUser({...user, StreetApp:e.target.value})} placeholder="Company name" className="form-control inputs-all1" type="text"/>
+                            {/* <input onChange={(e)=>setUser({...user, StreetApp:e.target.value})} placeholder="Company name" className="form-control inputs-all1" type="text"/> */}
+                            <input onChange={(e)=>CompanyCompanyHendler(e.target.value)} placeholder="Company name" className="form-control inputs-all1" type="text"/>
                         </div>
                         <div>
                             <label className="mt-4 label-style" htmlFor="">number</label>
-                            <input onChange={(e)=>setUser({...user, StreetApp:e.target.value})} placeholder="number" className="form-control inputs-all1" type="text"/>
+                            {/* <input onChange={(e)=>setUser({...user, StreetApp:e.target.value})} placeholder="number" className="form-control inputs-all1" type="text"/> */}
+                            <input onChange={(e)=>CompanyCompanyNumHendler(e.target.value)} placeholder="number" className="form-control inputs-all1" type="text"/>
                         </div>
                         <div className="all-btn-d-flex">
                             <button className="btn btn-next-to-bac" onClick={progresssecondback}>Back</button>
@@ -368,11 +439,12 @@ function CompleteCompany(props) {
                         </p>
                         <div>
                             <label className="label-style mt-4" htmlFor="">Location</label>
-                            <input type="text" className="form-control inputs-all1"/>
+                            <input onChange={(e) => CompanyLocationHendler(e.target.value)} type="text" className="form-control inputs-all1"/>
                         </div>
                         <div>
                             <label className="label-style mt-4" htmlFor="">Descriptions</label>
-                            <textarea onChange={(e)=>setUser({...user, descrobe:e.target.value})} className="form-control " placeholder="Describe yourself to buyers" name="" id="" cols="30" rows="6"></textarea>
+                            {/* <textarea onChange={(e)=>setUser({...user, descrobe:e.target.value})} className="form-control " placeholder="Describe yourself to buyers" name="" id="" cols="30" rows="6"></textarea> */}
+                            <textarea onChange={(e)=>CompanyDescriptionHendler(e.target.value)} className="form-control " placeholder="Describe yourself to buyers" name="" id="" cols="30" rows="6"></textarea>
                         </div>
                         <div className="all-btn-d-flex">
                             <button className="btn btn-next-to-bac" onClick={progressthirdback}>Back</button>
@@ -380,10 +452,11 @@ function CompleteCompany(props) {
                         </div>
                     </div>
                     <div className="fourth-card card1" id="fourth-card">
-                        <VebsiteCom/>
+                        {/* <VebsiteCom/> */}
+                        <VebsiteCompany />
                         <div className="all-btn-d-flex">
                             <button className="btn btn-next-to-bac" onClick={progressfourthback}>Back</button>
-                            <button className="btn btn-next-to">Next</button>
+                            <button className="btn btn-next-to" onClick={()=>PostDataCompany()}>Next</button>
                         </div>
 
                     </div>
@@ -391,7 +464,8 @@ function CompleteCompany(props) {
                 <div className="container-circle-all">
                     <div className="container">
                         <div className="career">
-                            <p className="my-career-text">My Career</p>
+                            {/* <p className="my-career-text">My Career</p> */}
+                            <img src={logo} alt="logo" />
                         </div>
                         <div className="one1 dot1" id="one1"></div>
                         <div className="two1 dot1" id="two1"></div>
