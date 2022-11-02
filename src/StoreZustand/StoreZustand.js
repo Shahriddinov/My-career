@@ -51,7 +51,7 @@ const useStore = create((set) => ({
  contractInnBank: "",
  contractTranzit: "",
  contractMfo: "",
-
+ loginToken: "",
 
  FreelancFirstNameHendler: (FreelancFirstName) => set({ FreelancFirstName }),
  FreelancLastNameHendler: (FreelancLastName) => set({ FreelancLastName }),
@@ -102,6 +102,7 @@ const useStore = create((set) => ({
  ContractInnBankHendler: (contractInnBank) => set({ contractInnBank }),
  ContractTranzitHendler: (contractTranzit) => set({ contractTranzit }),
  ContractMfoHendler: (contractMfo) => set({ contractMfo }),
+ loginTokenHendler: (loginToken) => set({ loginToken }),
 
 }))
 

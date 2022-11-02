@@ -27,7 +27,7 @@ function LoginCard(props) {
         dispatch(setAuthPasswordValue(event.target.value))
     };
 
-    const { loginHendler, login } = useStore() 
+    const { loginHendler, login, loginToken, loginTokenHendler} = useStore() 
     useEffect(() => {
         loginHendler({
             email: props.authEmailInitialValue,
@@ -38,8 +38,6 @@ function LoginCard(props) {
         email: props.authEmailInitialValue,
         password: props.authPasswordInitialValue
     })
-    // console.log(login);
-
 
     // let [emailpost, setemailpost] = useState("")
     // let [passwordpost, setpasswordpost] = useState("")
@@ -57,15 +55,14 @@ function LoginCard(props) {
     //         password: passwordpost,
     //     },  password: passwordpost,})
     // }
-
+   const [save, setsave] = useState("")
    const PostData = async () => {
       try {
         const PostRest = await POST.login({
             email: props.authEmailInitialValue,
             password: props.authPasswordInitialValue
-        })   
-        localStorage.setItem("login", JSON.stringify(PostRest.data.token));   
-        console.log(PostRest);
+        })
+        localStorage.setItem("token", JSON.stringify(PostRest.data.token)); 
      } catch (error) {
          alert(error)
      }

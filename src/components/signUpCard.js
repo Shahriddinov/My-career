@@ -44,7 +44,7 @@ function SignUpCard(props) {
     let [params, setparams] = useState({
         email: props.authEmailInitialValue,
         password: props.authPasswordInitialValue,
-        c_password: ConfirmPasswordPost
+        password_confirmation: ConfirmPasswordPost
     })
     // let emailhendler = (event) => {
     //     setEmailPost(event);
@@ -68,8 +68,8 @@ function SignUpCard(props) {
         setparams({...{
             email: props.authEmailInitialValue,
             password: props.authPasswordInitialValue,
-            c_password: ConfirmPasswordPost
-        },  c_password: ConfirmPasswordPost,})
+            password_confirmation: ConfirmPasswordPost
+        },  password_confirmation: ConfirmPasswordPost,})
     }
 
     const PostData = async () => {
