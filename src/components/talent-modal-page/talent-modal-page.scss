@@ -1,0 +1,291 @@
+
+
+.talent-modal__page {
+    width: 930px;
+    padding: 30px 50px;
+    border-right: 1px solid #cdcdcd;
+
+  }
+
+  .talent-modal-main-title{
+    margin-top: 10px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 37px;
+    color: #323232;
+    text-transform: capitalize;
+  }
+  
+  .talent-modal__head {
+    display: flex;
+    // justify-content: space-around;
+    padding-bottom: 20px;
+  }
+  
+  .talent-modal__user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .talent-modal__user-info {
+    margin-left: 15px;
+  }
+  
+  .talent-modal__user-title {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 4px;
+    color: #323232;
+    display: flex;
+    align-items: center;
+  }
+  
+  .talent-modal__user-name {
+    margin-right: 12px;
+    font-weight: 600;
+    font-size: 23px;
+    line-height: 28px;
+  }
+  
+  .talent-modal__user-subtitle {
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    margin-left: 10px;
+  }
+  
+  .talent-modal__job {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+  }
+  
+  .talent-modal__job-success {
+    padding: 0 20px;
+  }
+  
+  .talent-modal__job-percent {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    color: #323232;
+  }
+  
+  .talent-modal__job-percent--line {
+    display: flex;
+    width: 100px;
+    height: 3px;
+    background: #cdcdcd;
+    border-radius: 2px;
+  }
+  
+  .talent-modal__percent-line {
+    display: inline-block;
+    height: 3px;
+    background: #1d71b8;
+    border-radius: 2px;
+  }
+  
+  .talent-modal__percent-line--80 {
+    width: 80%;
+  }
+  
+  .talent-modal__percent-line--60 {
+    width: 80%;
+  }
+  
+  .talent-modal__percent-line--40 {
+    width: 80%;
+  }
+  
+  .talent-modal__percent-line--20 {
+    width: 80%;
+  }
+  
+  .talent-modal__job-text {
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    color: #808080;
+  }
+  
+  .talent-modal__job-payment {
+    margin: 0;
+    padding: 0;
+    padding: 0 20px;
+  }
+  
+  .talent-modal__job-payment--amount {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 6px;
+    display: block;
+    font-weight: 600;
+    font-size: 23px;
+    line-height: 28px;
+    text-align: center;
+    color: #323232;
+  }
+  
+  .talent-modal__job-payment--text {
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    color: #808080;
+  }
+  
+  
+  .talent-modal__post{
+    width: 100%;
+    padding-bottom: 20px;
+    border-bottom: 1px solid gray;
+
+    .talent-modal__post--text{
+      font-family: 'Montserrat';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 34px;
+      text-align: justify;
+      letter-spacing: 0.05em;  
+      color: #000000;
+    }
+
+    .talent-modal__post--video{
+      margin-top: 15px;
+    }
+  }
+
+  .talent-modal__portfolio{
+    width: 100%;
+    padding: 20px 0;
+    border-bottom: 1px solid gray;
+
+    .talent-modal__portfolio--box{
+      padding: 10px 0;
+      width: 100%;
+      height: 700px;
+      margin-top: 20px;
+      overflow-x: hidden;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .talent-modal__portfolio--box-card{
+        margin-top: 10px;
+        width: 48%;
+        height: 330px;
+        border-radius: 12px;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
+
+        .portfolio--box-card-img{
+          width: 100%;
+          height: 230px;
+
+          img{
+            width: 100%;
+            height: 100%;
+          }
+        }
+        .portfolio--box-card-text{
+          background-color: white;
+          padding: 10px 20px;
+          font-family: 'Montserrat';
+          font-style: normal;
+          p{
+            font-weight: 600;
+            font-size: 25px;
+            line-height: 30px;
+            color: #323232;
+          }
+
+          span{
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 24px;
+            color: #808080;
+          }
+        }
+      }
+    }
+
+  }
+
+  .btn_see-more{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 23px;
+    line-height: 28px;
+    text-align: center;
+    color: #1D71B8;
+    background-color: transparent;
+  }
+
+  //NAvbar
+  
+  .tm__navbar {
+    width: 400px;
+    position: relative;
+    z-index: 1;
+    padding-bottom: 20px;
+  }
+  
+  .tm__navbar-list {
+    width: fit-content;
+    margin: 0;
+    padding: 0;
+    padding-top: 30px;
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+  }
+  
+  .list__stroke {
+    display: block;
+    background-color: #ffffffff;
+    width: 100%;
+    height: 5px;
+    border-radius: 5px;
+  }
+  
+  .tm__navbar-list--item {
+    padding-right: 30px;
+    padding-bottom: 3px;
+    font-weight: 500;
+    font-size: 23px;
+    line-height: 28px;
+    color: #1d71b8;
+    position: relative;
+    cursor: pointer;
+  
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+  
+  .list__item-stroke {
+    width: 100%;
+    height: 5px;
+    display: block;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    background-color: #1d71b8;
+    border-radius: 5px;
+  }
