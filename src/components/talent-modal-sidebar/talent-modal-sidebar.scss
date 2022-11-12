@@ -1,0 +1,101 @@
+.talent-modal__sidebar {
+    width: 480px;
+    height: fit-content;
+    margin: 40px 0;
+    padding: 0 30px;
+    text-align: center;
+
+  }
+  
+  .talent-modal__sidebar-box{
+    padding: 15px 0;
+    font-family: 'Montserrat';
+    font-style: normal;
+    color: #323232;
+    text-align: left;
+    border-bottom: 1px solid #cccccc;
+
+    .talent-modal__sidebar-box-title{
+      margin-bottom: 15px;
+      font-weight: 600;
+      font-size: 25px;
+      line-height: 30px;
+    }
+
+    .talent-modal__sidebar-box-subtitle{
+      margin-bottom: 15px;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 24px;
+    }
+
+  }
+
+  .mstg{
+    color:#929292
+  }
+
+.talent-modal__sidebar-box-btn{
+  background-color: white;
+  color: #1d71b8;
+  padding: 8px;
+  text-transform: capitalize;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+  margin-left: 10px;
+}
+  .talent-modal__sidebar-link {
+    margin-left: 15px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 30px;
+    color: #1d71b8;
+  }
+  
+  .talent-modal__sidebar-user {
+    margin-top: 50px;
+  }
+  
+  .user__talent-history {
+    width: fit-content;
+    margin: 0 auto;
+    padding: 0 56px;
+    display: flex;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #cdcdcd;
+  }
+  
+  .user__talent-payment--number {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 6px;
+    padding: 0 24px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 30px;
+    text-align: center;
+    color: #323232;
+  }
+  
+  .stripe {
+    border-right: 1px solid #cdcdcd;
+  }
+  
+  .user__talent-payment--text {
+    margin: 0;
+    padding: 0;
+    padding: 0 24px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    color: #808080;
+  }
+  
+  

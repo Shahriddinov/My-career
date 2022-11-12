@@ -4,10 +4,19 @@ import locationIcon from "../../img/location-icon.svg";
 import userPic from "../../img/user-picture.png";
 import starIcon from "../../img/star-icon.svg";
 import "./talent-card.scss";
+import { useState } from "react";
+import TalentModal from "../talent-modal/talent-modal";
 
 function TalentCard() {
+
+  const [isModalOpened, setModalOpened] = useState(false);
+
+  function closeModal(value) {
+      setModalOpened(value)
+  }
   return (
-    <li className="talent-card">
+    <>
+      <li className="talent-card" onClick={() => setModalOpened(!isModalOpened)}>
       <div className="talent-card__head">
         <div className="talent-card__user">
           <img
@@ -104,6 +113,8 @@ function TalentCard() {
         </div>
       </div>
     </li>
+    {isModalOpened && <TalentModal className={isModalOpened ? "job-modal" : "closed"} isModalOpened={isModalOpened} closeModal={closeModal} />}
+    </>
   );
 }
 

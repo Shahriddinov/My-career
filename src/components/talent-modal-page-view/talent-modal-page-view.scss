@@ -1,0 +1,24 @@
+.talent-modal__page-view {
+    & .navbar-home {
+      height: 170px;
+      padding-bottom: 0;
+
+      .homeNavbar{
+        display: flex;
+      }
+    }
+  }
+  
+  .talent-modal__page-view--wrapper {
+    display: flex;
+    width: fit-content;
+    margin: 0 auto;
+  
+    .talent-modal__page {
+      padding-left: 0;
+    }
+  
+    & .talent-modal__sidebar-user {
+      margin-top: 0;
+    }
+  }
