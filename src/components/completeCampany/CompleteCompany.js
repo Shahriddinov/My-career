@@ -123,98 +123,7 @@ function progressfourthback(){
     four.style.border = "3px solid #FFFFFF"
     secondline.style.opacity = "1";
 }
-// function progressfourth(){
-//     var fourthCard = document.getElementById("fourth-card");
-//     var fifthCard = document.getElementById("fifth-card");
-//     var four = document.getElementById("four");
-//     var five = document.getElementById("five");
-//     var text4 = document.getElementById("progress-text4");
-//     var text5 = document.getElementById("progress-text5");
-//     text5.style.opacity = "1";
-//     text4.style.opacity = "0";
-//     four.style.top = "43%"
-//     four.style.backgroundColor = "#1D71B8"
-//     four.style.border = "3px solid #FFFFFF"
-//     fourthCard.style.bottom = "110%";
-//     fifthCard.style.bottom = "25%";
-//     five.style.top = "68%"
-//     five.style.backgroundColor = "#FFFFFF"
-//     five.style.border = "7px solid #4169E1"
-// }
-// function progressfifthback(){
-//     var fourthCard = document.getElementById("fourth-card");
-//     var fifthCard = document.getElementById("fifth-card");
-//     var four = document.getElementById("four");
-//     var five = document.getElementById("five");
-//     var text4 = document.getElementById("progress-text4");
-//     var text5 = document.getElementById("progress-text5");
-//     text4.style.opacity = "1";
-//     text5.style.opacity = "0";
-//     four.style.top = "68%";
-//     four.style.backgroundColor = "#FFFFFF"
-//     four.style.border = "7px solid #4169E1"
-//     fourthCard.style.bottom = "20%"
-//     fifthCard.style.bottom = "-75%"
-//     five.style.top = "106%"
-//     five.style.backgroundColor = "#1D71B8"
-//     five.style.border = "3px solid #FFFFFF"
-// }
-// function progresssixthback(){
-//     var sixthCard = document.getElementById("sixth-card");
-//     var fifthCard = document.getElementById("fifth-card");
-//     var six = document.getElementById("six");
-//     var five = document.getElementById("five");
-//     var text6 = document.getElementById("progress-text6");
-//     var text5 = document.getElementById("progress-text5");
-//     text6.style.opacity = "0";
-//     text5.style.opacity = "1";
-//     five.style.top = "68%";
-//     five.style.backgroundColor = "#FFFFFF"
-//     five.style.border = "7px solid #4169E1"
-//     fifthCard.style.bottom = "20%"
-//     sixthCard.style.bottom = "-75%"
-//     six.style.top = "109%"
-//     six.style.backgroundColor = "#1D71B8"
-//     six.style.border = "3px solid #FFFFFF"
-// }
-// function progressseventhback(){
-//     var sixthCard = document.getElementById("sixth-card");
-//     var seventhCard = document.getElementById("seventh-card");
-//     var six = document.getElementById("six");
-//     var seven = document.getElementById("seven");
-//     var text6 = document.getElementById("progress-text6");
-//     var text7 = document.getElementById("progress-text7");
-//     text6.style.opacity = "1";
-//     text7.style.opacity = "0";
-//     six.style.top = "68%";
-//     six.style.backgroundColor = "#FFFFFF";
-//     six.style.border = "7px solid #4169E1"
-//     sixthCard.style.bottom = "20%"
-//     seventhCard.style.bottom = "-90%"
-//     seven.style.top = "112%"
-//     seven.style.backgroundColor = "#1D71B8"
-//     seven.style.border = "3px solid #FFFFFF"
-// }
-// function progresseighthback(){
-//     var eighthCard = document.getElementById("eighth-card");
-//     var seventhCard = document.getElementById("seventh-card");
-//     var eight = document.getElementById("eight");
-//     var seven = document.getElementById("seven");
-//     var text8 = document.getElementById("progress-text8");
-//     var text7 = document.getElementById("progress-text7");
-//     var secondline = document.getElementById("secondline");
-//     secondline.style.opacity = "1";
-//     text8.style.opacity = "0";
-//     text7.style.opacity = "1";
-//     seven.style.top = "68%";
-//     seven.style.backgroundColor = "#FFFFFF"
-//     seven.style.border = "7px solid #1D71B8"
-//     seventhCard.style.bottom = "10%"
-//     eighthCard.style.bottom = "-95%"
-//     eight.style.top = "115%"
-//     eight.style.backgroundColor = "#1D71B8"
-//     eight.style.border = "3px solid #FFFFFF"
-// }
+
 
 
 function CompleteCompany(props) {
@@ -314,13 +223,6 @@ function CompleteCompany(props) {
         twitter_link: CompanyTwitter,
     })
 
-    // website_link: CompanyWebsite,
-    // whats_app_link: CompanyWhatsapp,
-    // facebook_link: CompanyFacebook,
-    // instagram_link: CompanyInstagram,
-    // telegram_link: CompanyTelegram,
-    // github_link: CompanyGithub,
-    // twitter_link: CompanyTwitter,
 
     const PostDataCompany = async () => {
         try {
@@ -349,9 +251,6 @@ function CompleteCompany(props) {
        }
     };
 
-    // useEffect(() => {
-        // PostData()
-    //   },[]);
 
     return (
         <>
@@ -379,24 +278,23 @@ function CompleteCompany(props) {
                             <div className="right-input">
                                 <div>
                                     <label className="mt-4 label-style" htmlFor="">Firstname</label>
-                                    {/* <input onChange={(e)=>setUser({...user, firstName: e.target.value})} className="form-control inputs-all" type="text" placeholder="Firstname"/> */}
                                     <input onChange={(e)=>CompanyFirstNameHendler(e.target.value)} className="form-control inputs-all" type="text" placeholder="Firstname"/>
                                 </div>
                                 <div>
                                     <label className="mt-4 label-style" htmlFor="">E-mail</label>
-                                    {/* <input onChange={(e)=>setUser({...user, email: e.target.value})} className="form-control inputs-all" type="e-mail" placeholder="E-mail"/> */}
+
                                     <input onChange={(e)=>CompanyEmailHendler(e.target.value)} className="form-control inputs-all" type="e-mail" placeholder="E-mail"/>
                                 </div>
                             </div>
                             <div className="left-input">
                                 <div>
                                     <label className="mt-4 label-style" htmlFor="">Lastname</label>
-                                    {/* <input  onChange={(e)=>setUser({...user, lastName: e.target.value})} className="form-control inputs-all" type="text" placeholder="Lastname"/> */}
+
                                     <input  onChange={(e)=>CompanyLastNameHendler(e.target.value)} className="form-control inputs-all" type="text" placeholder="Lastname"/>
                                 </div>
                                 <div>
                                     <label className="mt-4 label-style" htmlFor="">Phone number</label>
-                                    {/* <input onChange={(e)=>setUser({...user, numbers:e.target.value})} className="form-control inputs-all" type="number" placeholder="+xxx (xx) xxx- xx-xx"/> */}
+
                                     <input onChange={(e)=>CompanyNumberHendler(e.target.value)} className="form-control inputs-all" type="number" placeholder="+xxx (xx) xxx- xx-xx"/>
                                     <button className="btn btn-next-to1 mt-3" onClick={progressfirst}>Next</button>
                                 </div>
@@ -417,12 +315,12 @@ function CompleteCompany(props) {
 
                         <div>
                             <label className="mt-4 label-style" htmlFor="">Company name</label>
-                            {/* <input onChange={(e)=>setUser({...user, StreetApp:e.target.value})} placeholder="Company name" className="form-control inputs-all1" type="text"/> */}
+
                             <input onChange={(e)=>CompanyCompanyHendler(e.target.value)} placeholder="Company name" className="form-control inputs-all1" type="text"/>
                         </div>
                         <div>
                             <label className="mt-4 label-style" htmlFor="">number</label>
-                            {/* <input onChange={(e)=>setUser({...user, StreetApp:e.target.value})} placeholder="number" className="form-control inputs-all1" type="text"/> */}
+
                             <input onChange={(e)=>CompanyCompanyNumHendler(e.target.value)} placeholder="number" className="form-control inputs-all1" type="text"/>
                         </div>
                         <div className="all-btn-d-flex">
@@ -443,7 +341,7 @@ function CompleteCompany(props) {
                         </div>
                         <div>
                             <label className="label-style mt-4" htmlFor="">Descriptions</label>
-                            {/* <textarea onChange={(e)=>setUser({...user, descrobe:e.target.value})} className="form-control " placeholder="Describe yourself to buyers" name="" id="" cols="30" rows="6"></textarea> */}
+
                             <textarea onChange={(e)=>CompanyDescriptionHendler(e.target.value)} className="form-control " placeholder="Describe yourself to buyers" name="" id="" cols="30" rows="6"></textarea>
                         </div>
                         <div className="all-btn-d-flex">
@@ -452,7 +350,7 @@ function CompleteCompany(props) {
                         </div>
                     </div>
                     <div className="fourth-card card1" id="fourth-card">
-                        {/* <VebsiteCom/> */}
+
                         <VebsiteCompany />
                         <div className="all-btn-d-flex">
                             <button className="btn btn-next-to-bac" onClick={progressfourthback}>Back</button>
@@ -464,7 +362,7 @@ function CompleteCompany(props) {
                 <div className="container-circle-all">
                     <div className="container">
                         <div className="career">
-                            {/* <p className="my-career-text">My Career</p> */}
+
                             <img src={logo} alt="logo" />
                         </div>
                         <div className="one1 dot1" id="one1"></div>
