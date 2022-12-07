@@ -31,6 +31,8 @@ const RoutesPath = {
   jobAdvertisement:"jobAdvertisement",
   completeResume:"completeResume",
   contract:"contract",
+  companyPostJob:"companyPostJob",
+
 };
 
 export default RoutesPath

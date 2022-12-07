@@ -1,0 +1,652 @@
+.first-card{
+    height: 514px;
+    margin-left: 10%;
+    bottom:25%;
+    min-height: 100px;
+    padding: 0 20px;
+  }
+  .first-card1{
+    height: 444px;
+    margin-left: 10%;
+    bottom:17%;
+    min-height: 100px;
+    padding: 20px;
+  }
+  
+  .one{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 67.5%;
+    transition: .5s linear;
+    background-color: #FFFFFF;
+    border: 7px solid #1D71B8;
+  }
+  .one1{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 67.5%;
+    transition: .5s linear;
+    background-color: #FFFFFF;
+    border: 7px solid #1D71B8;
+  }
+  .container-circle-all{
+    margin-left: 62.5%;
+    position: fixed;
+    margin-top: 4.5%;
+    display: flex;
+    align-items: center;
+    .container {
+      height: 650px;
+      position: relative;
+      .career{
+        background: #1D71B8;
+        width: 210px;
+        height: 210px;
+        border-radius: 50%;
+        margin: 2% auto;
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        text-transform: uppercase;
+        .my-career-text{
+          font-family: 'Montserrat';
+          font-style: normal;
+          font-weight: 700;
+          font-size: 24px;
+          line-height: 29px;
+          display: flex;
+          align-items: center;
+          text-align: center;
+          color: #FFFFFF;
+        }
+      }
+    }
+  }
+  .two {
+     position: absolute;
+     left: 50%;
+     transform: translateX(-50%);
+     top: 95%;
+     transition: .5s linear;
+     background: #1D71B8;
+     border: 3px solid #FFFFFF;
+   }
+  .two1 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 109%;
+    transition: .5s linear;
+    background: #1D71B8;
+    border: 3px solid #FFFFFF;
+  }
+  .three {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top:98%;
+    transition: .5s linear;
+    background: #1D71B8;
+    border: 3px solid #FFFFFF;
+  }
+  .three1{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top:112%;
+    transition: .5s linear;
+    background: #1D71B8;
+    border: 3px solid #FFFFFF;
+  }
+  .four {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top:101%;
+    transition: .5s linear;
+    background: #1D71B8;
+    border: 3px solid #FFFFFF;
+  }
+  .four1{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top:115%;
+    transition: .5s linear;
+    background: #1D71B8;
+    border: 3px solid #FFFFFF;
+  }
+  .five {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top:104%;
+    transition: .5s linear;
+    background: #1D71B8;
+    border: 3px solid #FFFFFF;
+    width: 30px!important;
+    height: 30px!important;
+  }
+  .five1{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top:118%;
+    transition: .5s linear;
+    background: #1D71B8;
+    border: 3px solid #FFFFFF;
+    width: 30px!important;
+    height: 30px!important;
+  }
+  .six {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top:107%;
+    transition: .5s linear;
+    background: #1D71B8;
+    border: 3px solid #FFFFFF;
+  }
+  .seven {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top:110%;
+    transition: .5s linear;
+    background: #1D71B8;
+    border: 3px solid #FFFFFF;
+  }
+  .eight {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top:113%;
+    transition: .5s linear;
+    background: #1D71B8;
+    border: 3px solid #FFFFFF;
+  }
+  .dot{
+    width: 30px!important;
+    height: 30px!important;
+    border-radius: 50%;
+    z-index: 2;
+  }
+  .dot1{
+    width: 30px!important;
+    height: 30px!important;
+    border-radius: 50%;
+    z-index: 2;
+  }
+  .main-content {
+    background-color: transparent;
+    width: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center!important;
+    overflow: hidden !important;
+    position: relative;
+  }
+  ::-webkit-scrollbar{
+    width: 0;
+  }
+  .card1{
+    width: 750px!important;
+    padding: 40px;
+    margin-left: 0%;
+    position: absolute;
+    margin-top: -100px;
+    background-color: white;
+    border-radius: 10px;
+    transition: .5s linear;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
+  
+  .btn-next-to1{
+    margin-top: 3%;
+    width: 88px;
+    height: 44px;
+    border: 1px solid #1D71B8 !important;
+    border-radius: 8px !important;
+    box-shadow: none!important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    float: right;  
+  }
+  .btn-next-to{
+    margin-top: 3%;
+    width: 88px;
+    height: 44px;
+    border: 1px solid #1D71B8 !important;
+    border-radius: 8px !important;
+    box-shadow: none!important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5%;
+  }
+  .all-btn-d-flex{
+    display: flex;
+    margin-left: 72%;
+    margin-top: 2%;
+  }
+  .btn-next-to-bac{
+    margin-top: 3%;
+    width: 88px;
+    height: 44px;
+    box-shadow: none!important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover{
+      border: 1px solid #1D71B8;
+      border-radius: 8px;
+    }
+  }
+  .label-style{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    color: #323232; 
+  }
+  .post-job-option-cl{
+    text-transform: capitalize;
+    font-family: 'Montserrat';
+    font-size: 18px;
+    font-weight: 500;
+    
+  }
+  .upload-image{
+    overflow: hidden;
+    margin: 5% auto 0;
+    background: #F5F5F7;
+    border: 1px solid #CDCDCD;
+    width:120px;
+    height: 120px;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1px!important;
+  }
+  .add-your-prifile{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    color: #808080;
+  }
+  .img-in-upload1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+  }
+  .img-in-upload{
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .img-file-up{
+    border-radius: 50%;
+    box-sizing: border-box;
+    opacity: 0;
+    width:100px;
+    height: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: white!important;
+  }
+  
+  .all-r-l-input{
+    display: flex;
+    justify-content: space-between;
+    border: 1 px solid #1D71B8;
+    .company-inputs{
+      width: 100%;
+    }
+  }
+  .name-top-input{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 37px;
+  }
+  .second-card{
+    height: 433px;
+  }
+  .second-card1{
+    height: 553px;
+    .name-top-input{
+      font-family: 'Montserrat';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 30px;
+      line-height: 37px;
+    }
+   .company-textarea{
+    height: 120px;
+    font-size: 20px;
+    font-weight: 500;
+   }
+   .company-choose-img{
+    padding: 40px;
+    text-align: center;
+    border: 3px solid rgba(29, 113, 184, 1);
+    border-style: dashed;
+     a{
+      color:#1D71B8
+     }
+   }
+
+  }
+  .second-card, .fourth-card, .fifth-card, .sixth-card, .seventh-card{
+    bottom: -79%;
+  }
+  .second-card1, .fourth-card1, .fifth-card, .sixth-card, .seventh-card{
+    bottom: -79%;
+  }
+  .eighth-card{
+    overflow-x:scroll;
+    height: 741px;
+    bottom: -90%;
+  }
+  .seventh-card{
+    overflow-y: auto;
+    max-height: 627px;
+  }
+  
+  .fifth-card{
+    max-height:670px;
+    overflow-y: auto;
+  
+  }
+  
+  
+  .third-card{
+    overflow: auto;
+    height: 553px;
+    bottom: -70%;
+  }
+  
+  .complete-your{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 22px;
+    color: #808080;;
+  }
+  
+  .company-choosing-freelancer-cl{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  
+  .company-choosing-freelancer{
+    width: 32%;
+    outline: none;
+    padding: 40px 0;
+    text-align: center;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    text-transform: capitalize;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 600;
+    &:hover{
+      background-color: #1D71B8;
+      color: white;
+    }
+  
+  }
+  .post-job-comp-add-skills{
+    padding: 10px 5px;
+  
+    .post-job-comp-input{
+      padding: 12px;
+      font-size: 18px;
+      margin-top: 5px;
+      position: relative;
+    }
+  
+  }
+  .post-job-skills{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    li{
+      background-color: #1D71B8;
+      color: white;
+      text-decoration: none;
+      padding: 5px;
+      margin-right: 6px;
+      border-radius: 8px;
+      font-size: 18px;
+      text-transform: capitalize;
+      margin-top: 5px;
+      i{
+        margin-left: 8px;
+        background-color: white;
+        border-radius: 15px;
+        text-decoration: none;
+        color:#1D71B8;
+        padding: 0 4px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+    }
+  }
+  .ul-css{
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+
+
+  .addRecSkills{
+    display: none;
+    flex-wrap: wrap;
+    align-items: center;  
+    list-style-type: none;
+    margin: 0;
+    padding: 5px;
+    border: 1px solid #1D71B8;
+    border-top: none;
+    position: absolute;
+    height: 100px;
+    max-height: auto;
+    background-color: white;
+    width: 656px;
+    z-index: 999;
+    li{
+      background-color: white;
+      color: #1D71B8;
+      border: 1px solid #1D71B8;
+      text-decoration: none;
+      padding: 5px;
+      margin-right: 6px;
+      border-radius: 8px;
+      font-size: 18px;
+      text-transform: capitalize;
+      margin-top: 5px;
+      cursor: pointer;
+      &:hover{
+        background-color: #1D71B8;
+        color: #FFFFFF;
+      }
+
+      i{
+        margin-left: 8px;
+        border-radius: 15px;
+        text-decoration: none;
+        padding: 0 4px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .job-file-input{
+    opacity: 0;
+  }
+   
+  .fourth-card{
+    min-height:400px;
+    max-height: 580px;
+    overflow: auto;
+    .btn-success1{
+      width: 100%;
+      height: 39px;
+      background: #FFFFFF;
+      border: 1px solid #1D71B8;
+      border-radius: 8px;
+      color:#1D71B8 ;
+    }
+    .company-tems-input{
+      margin-top: 10px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      
+      .company-tems-input-num{
+        width: 48%;
+        outline: none;
+        padding-left: 10px;
+      }
+      .company-tems-input-slc{
+          width: 48%;
+          outline: none;
+          padding-left: 10px;
+      }
+    }
+    .company-tems-radio{
+      margin-top: 10px;
+      
+      .company-tems-radio-item{
+        margin-left: 10px;
+        padding:3px
+      }
+      .company-tems-radio-label{
+        margin-left: 5px;
+      }
+    }
+  }
+  .write-about{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 37px;
+    color: #323232;
+  
+  }
+  .progress-text {
+    position: absolute;
+    background-color: transparent;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+    top:75%;
+    transition: .5s linear;
+    z-index: 2;
+    font-weight: 700;
+  }
+  .progress-text2,
+  .progress-text3,
+  .progress-text4,
+  .progress-text5,
+  .progress-text6,
+  .progress-text7,
+  .progress-text8 {
+    opacity: 0;
+  }
+  .progress-text22,
+  .progress-text33,
+  .progress-text44,
+  .progress-text55{
+    opacity: 0;
+  }
+  .firstline {
+    width:10px;
+    background: #1D71B8;
+    height:250px;
+    z-index: 1;
+    position: absolute;
+    left: 50%;
+    margin-top: -1.8%;
+    transform: translateX(-50%);
+  }
+  .secondline{
+    width: 10px;
+    background: #EDEDED;
+    height: 300px;
+    top: 71%;
+    z-index: 1;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: .5s linear;
+  }
+  .remove-btn{
+    height: 37px;
+    display: flex;
+    align-items: center;
+    margin-top: 1.5%;
+    width: 40px;
+    border-radius: 7px;
+    border: 1px solid red;
+    justify-content: center;
+    font-size: 35px;
+    background-color: white;
+    margin-left: 2.5%;
+  }
+
+
+.third-card::-webkit-scrollbar{
+  width: 12px;
+  background: white;
+}
+
+.third-card::-webkit-scrollbar-thumb{
+  background: #1D71B8;
+  border-radius: 15px;
+}
+
+
+.fifth-card::-webkit-scrollbar{
+  width: 12px;
+  background: white;
+}
+
+.fifth-card::-webkit-scrollbar-thumb{
+  background: #1D71B8;
+  border-radius: 15px;
+}

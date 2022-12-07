@@ -270,7 +270,7 @@ const Home = () => {
                                 deserunt eligendi officia modi consectetur.
                             </div>
                             <div className="post-job">
-                                <Button className="custom-btn">Post job</Button>
+                                <Button onClick={() =>{navigate(RoutesPath.companyPostJob)}} className="custom-btn"> Post job </Button>
                             </div>
                         </div>
 
