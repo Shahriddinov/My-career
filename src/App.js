@@ -39,6 +39,8 @@ import TalentModalPageView from './components/talent-modal-page-view/talent-moda
 import Jobadvertisement from './components/job-advertisement/Job-advertisement';
 import ComplateResume from './components/completeForm/ComplateResume';
 import ContractWiev from './components/contractWiev/ContractWiev'
+import CompanyPostJob from './components/company-post-job/company-post-job';
+
 const enhancer = connect(
     ({resumes: {doneResumes}}) =>
         ({doneResumes}), null);
@@ -97,6 +99,7 @@ const App = props => {
                 <Route path={RoutesPath.jobAdvertisement} element={<Jobadvertisement/>}/>
                 <Route path={RoutesPath.completeResume} element={<ComplateResume user={user} resumeActive={resumeActive} inputList={inputList}/>} />
                 <Route path={RoutesPath.contract} element={<ContractWiev/>} />
+                <Route path={RoutesPath.companyPostJob} element={<CompanyPostJob/>} />
             </Routes>
             <ToastContainer/>
         </div>

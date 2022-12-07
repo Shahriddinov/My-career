@@ -13,14 +13,6 @@ function ComEducat({dataList1,setDataList1, setSchool, school , degree, setDegre
 
     const { FreelancDataListHendler } = useStore()
 
-    // const [school, setSchool] = useState("");
-    // const [degree, setDegree] = useState("");
-    // const [isComplete, setIsComplete] = useState("");
-    // const [studyType, setStudyType] = useState("");
-    // const [lacation, setLacation] = useState("");
-    // const [start, setStart] = useState("");
-    // const [end, setEnd] = useState("");
-    // const [dataList1, setDataList1] = useState([]);
 
     const addTask = () =>{
         if (school.trim().length > 0, degree.trim().length > 0, isComplete !== false, start !== "дд.мм.гггг", end !== "дд.мм.гггг",
