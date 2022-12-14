@@ -62,7 +62,7 @@ function LoginCard(props) {
             email: props.authEmailInitialValue,
             password: props.authPasswordInitialValue
         })
-        localStorage.setItem("token", JSON.stringify(PostRest.data.token)); 
+        // localStorage.setItem("token", JSON.stringify(PostRest.data.token)); 
      } catch (error) {
          alert(error)
      }

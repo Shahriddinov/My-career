@@ -147,26 +147,6 @@ function progresssixth(){
     seven.style.backgroundColor = "#FFFFFF"
     seven.style.border = "7px solid #1D71B8"
 }
-function progressseventh(){
-    var eighthCard = document.getElementById("eighth-card");
-    var seventhCard = document.getElementById("seventh-card");
-    var eight = document.getElementById("eight");
-    var seven = document.getElementById("seven");
-    var text8 = document.getElementById("progress-text8");
-    var text7 = document.getElementById("progress-text7");
-    var secondline = document.getElementById("secondline");
-    secondline.style.opacity = "0";
-    text7.style.opacity = "0";
-    text8.style.opacity = "1";
-    seven.style.top = "52%"
-    seven.style.backgroundColor = "#1D71B8"
-    seven.style.border = "3px solid #FFFFFF"
-    eighthCard.style.bottom = "4%";
-    seventhCard.style.bottom = "110%";
-    eight.style.top = "68%"
-    eight.style.backgroundColor = "#FFFFFF"
-    eight.style.border = "7px solid #1D71B8"
-}
 function progresssecondback(){
     var firstCard = document.getElementById("first-card");
     var secondCard = document.getElementById("second-card");
@@ -298,7 +278,77 @@ function progresseighthback(){
 
 
 function CompleteForm({setUser, user, resumeActive, setResumeActive,inputList,setInputList}) {
-    const {TagsHendler,tags,HobsHenedler,hobs,FreelancDataList,FreelancDataListJob, FreelancFirstNameHendler, FreelancFirstName, FreelancLastNameHendler, FreelancLastName, FreelancEmailHendler, FreelancEmail,FreelancPhoneHendler, FreelancPhone, FreelancLivingAddressHendler, FreelancLivingAddress,FreelancRegionHendler, FreelancRegion,FreelancStreetHendler, FreelancStreet,FreelancPositionsHendler, FreelancPositions,FreelancDateOfBirthHendler, FreelancDateOfBirth ,FreelancDescrobeHendler, FreelancDescrobe, FreelancWebsite} = useStore()
+    const {TagsHendler,tags,HobsHenedler,hobs,FreelancSkills,FreelancLanguageDegree,FreelancLanguage,FreelancDeskYourself,FreelancHobbies,FreelancDataList,FreelancDataListJob, FreelancFirstNameHendler, FreelancFirstName, FreelancLastNameHendler, FreelancLastName, FreelancEmailHendler, FreelancEmail,FreelancPhoneHendler, FreelancPhone, FreelancLivingAddressHendler, FreelancLivingAddress,FreelancRegionHendler, FreelancRegion,FreelancStreetHendler, FreelancStreet,FreelancPositionsHendler, FreelancPositions,FreelancDateOfBirthHendler, FreelancDateOfBirth ,FreelancDescrobeHendler, FreelancDescrobe, FreelancWebsite} = useStore()
+
+    const PostData = async () => {
+        try {
+          const PostRest = await POST.freelanceradd({
+              firstname: FreelancFirstName,
+              lastname: FreelancLastName,
+              email: FreelancEmail,
+              phone: FreelancPhone,
+              image: user.image,
+              region: FreelancRegion,
+              street: FreelancLivingAddress,
+              position: FreelancPositions,
+              birth: FreelancDateOfBirth,
+              skills: [FreelancSkills],
+              hobbies: [FreelancHobbies],
+              describe: FreelancDeskYourself,
+              language: FreelancLanguage,
+              level_language: FreelancLanguageDegree,
+              company_name: "",
+              job: FreelancDataList,
+              current_moment_work: FreelancDataListJob,
+              date_from_work: hobs,
+              to_date_work: "",
+              description_work: FreelancDescrobe,
+              school_name: tags,
+              school_degree: "",
+              type_of_study: "",
+              location_school: "",
+              from_date_school: "",
+              to_date_school: "",
+              current_moment_school: "",
+              web_link: FreelancWebsite,
+              whatsapp_link: "",
+              facebook_link: "",
+              instagram_link: "",
+              telegram_link: "",
+              github_link: "",
+              twitter_link: "",
+              user_id: "",
+          })
+          console.log(PostRest);
+       } catch (error) {
+           alert(error)
+       }
+       };
+    
+      const FreelansAddHendler = () => {
+           PostData()
+
+           function progressseventh(){
+            var eighthCard = document.getElementById("eighth-card");
+            var seventhCard = document.getElementById("seventh-card");
+            var eight = document.getElementById("eight");
+            var seven = document.getElementById("seven");
+            var text8 = document.getElementById("progress-text8");
+            var text7 = document.getElementById("progress-text7");
+            var secondline = document.getElementById("secondline");
+            secondline.style.opacity = "0";
+            text7.style.opacity = "0";
+            text8.style.opacity = "1";
+            seven.style.top = "52%"
+            seven.style.backgroundColor = "#1D71B8"
+            seven.style.border = "3px solid #FFFFFF"
+            eighthCard.style.bottom = "4%";
+            seventhCard.style.bottom = "110%";
+            eight.style.top = "68%"
+            eight.style.backgroundColor = "#FFFFFF"
+            eight.style.border = "7px solid #1D71B8"
+        }
+      }
 
     function handleClikMore() {
         setInputList([...inputList, {language:"", level:""}])
@@ -332,14 +382,10 @@ function CompleteForm({setUser, user, resumeActive, setResumeActive,inputList,se
         setIcon(true)
     }
 
-    // const [tags, setTags] = useState([]);
-    // const [hobs, setHobs] = useState([]);
-
     function handleKeyDown(e) {
         if (e.key !== 'Enter')return;
         const value = e.target.value;
         if (!value.trim())return;
-        // setTags([...tags, value]);
         TagsHendler([...tags, value]);
         e.target.value = ""
     }
@@ -348,17 +394,14 @@ function CompleteForm({setUser, user, resumeActive, setResumeActive,inputList,se
         if (e.key !== 'Enter')return;
         const value = e.target.value;
         if (!value.trim())return;
-        // setHobs([...hobs, value]);
         HobsHenedler([...hobs, value]);
         e.target.value = ""
     }
 
     function removeTag(index) {
-        // setTags(tags.filter((el, i) => i !== index))
         TagsHendler(tags.filter((el, i) => i !== index))
     }
     function removeHop(index) {
-        // setHobs(hobs.filter((el, i) => i !== index))
         HobsHenedler(hobs.filter((el, i) => i !== index))
     }
 
@@ -674,7 +717,7 @@ function CompleteForm({setUser, user, resumeActive, setResumeActive,inputList,se
                         <VebsiteCom/>
                         <div className="all-btn-d-flex">
                             <button className="btn btn-next-to-bac" onClick={progressseventhback}>Back</button>
-                            <button className="btn btn-next-to" onClick={progressseventh}>Next</button>
+                            <button className="btn btn-next-to" onClick={() => FreelansAddHendler()}>Next</button>
                         </div>
                     </div>
                     <div className="eighth-card card1 eight-card-resume" id="eighth-card">

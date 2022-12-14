@@ -314,14 +314,6 @@ function CompleteCompany(props) {
         twitter_link: CompanyTwitter,
     })
 
-    // website_link: CompanyWebsite,
-    // whats_app_link: CompanyWhatsapp,
-    // facebook_link: CompanyFacebook,
-    // instagram_link: CompanyInstagram,
-    // telegram_link: CompanyTelegram,
-    // github_link: CompanyGithub,
-    // twitter_link: CompanyTwitter,
-
     const PostDataCompany = async () => {
         try {
           const PostRest = await POST.companyadd({
@@ -439,7 +431,7 @@ function CompleteCompany(props) {
                         </p>
                         <div>
                             <label className="label-style mt-4" htmlFor="">Location</label>
-                            <input onChange={(e) => CompanyLocationHendler(e.target.value)} type="text" className="form-control inputs-all1"/>
+                            <input  name="location[]" onChange={(e) => CompanyLocationHendler(e.target.value)} type="text" className="form-control inputs-all1"/>
                         </div>
                         <div>
                             <label className="label-style mt-4" htmlFor="">Descriptions</label>

@@ -80,16 +80,19 @@ const Home = () => {
       try {
         const UserRest = await GET.USERS()  
         const CompanyRest = await GET.COMPANY()      
-        setUserRest(UserRest.data.data)
-        setCompanyRest(CompanyRest.data.data)
-    } catch (error) {}
+        setUserRest(UserRest)
+        setCompanyRest(CompanyRest)
+    } catch (error) {
+        console.log(error);
+    }
     };
+
     useEffect(() => {
         fetchData();
     }, []);
 
     console.log(UserRest);
-    console.log(CompanyRest);
+    // console.log(CompanyRest);
 
   return (
         <div className="home-wrapper" id="overflow-y-scroll" onWheel={onScroll}>

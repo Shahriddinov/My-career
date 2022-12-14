@@ -44,7 +44,7 @@ function SignUpCard(props) {
     let [params, setparams] = useState({
         email: props.authEmailInitialValue,
         password: props.authPasswordInitialValue,
-        password_confirmation: ConfirmPasswordPost
+        confirmPassword: ConfirmPasswordPost
     })
     // let emailhendler = (event) => {
     //     setEmailPost(event);
