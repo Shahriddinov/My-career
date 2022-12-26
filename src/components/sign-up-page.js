@@ -11,9 +11,7 @@ const SignUpPage = () => {
         <div className="main_jop h-100">
             <div className="logoBg">
                 <img src="./images/Napa_logo_white.svg" alt=""
-                     onClick={() => {
-                         navigate(RoutesPath.home)
-                     }}/>
+                     onClick={() => {navigate(RoutesPath.home)}}/>
             </div>
             <div className="container-fluid">
                 <Link to={RoutesPath.home} className="w-100 d-flex justify-content-end post_back">

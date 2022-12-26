@@ -35,8 +35,7 @@ const PostJop3 = (props) => {
             },
 
             onSubmit: (values) => {
-                console.log("Skills");
-                console.log(values);
+
                 dispatch(jobSkillsValues({...values}));
             },
 
@@ -56,7 +55,6 @@ const PostJop3 = (props) => {
                             isMulti
                             onChange={(x) => {
                                 formik.setFieldValue("skill", x);
-                                console.log(x)
                             }}
                             options={options}
                             placeholder="Skills"

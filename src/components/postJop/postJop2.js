@@ -18,11 +18,11 @@ const PostJop2 = (props) => {
     dispatch(displayCircle());
 
     const changePrice = (e) => {
-        console.log(e.target.value);
+  
         props.updateState({price: e.target.value})
     };
     const changeDescription = (e) => {
-        console.log(e.target.value);
+
         props.updateState({description: e.target.value})
     };
 

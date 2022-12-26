@@ -24,7 +24,7 @@ const PostJop1 = (props) => {
         },
 
         onSubmit: values => {
-            console.log(values);
+   
             dispatch(jobInitialValues({...values}))
         }
     });

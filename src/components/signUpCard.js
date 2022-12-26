@@ -37,56 +37,37 @@ function SignUpCard(props) {
 
 
 
-
-    // let [EmailPost, setEmailPost] = useState("")
-    // let [PasswordPost, setPasswordPost] = useState("")
     let [ConfirmPasswordPost, setConfirmPasswordPost] = useState("")
-    let [params, setparams] = useState({
-        email: props.authEmailInitialValue,
-        password: props.authPasswordInitialValue,
-        password_confirmation: ConfirmPasswordPost
-    })
-    // let emailhendler = (event) => {
-    //     setEmailPost(event);
-    //     setparams({...{
-    //         email: EmailPost,
-    //         password: PasswordPost,
-    //         c_password: ConfirmPasswordPost
-    //     },  email: EmailPost,})
-    // }
+    // let [params, setparams] = useState({
+    //     email: props.authEmailInitialValue,
+    //     password: props.authPasswordInitialValue,
+    //     password_confirmation: ConfirmPasswordPost
+    // })
 
-    // let passwordhendler = (event) => {
-    //     setPasswordPost(event);
+    // let confirmPasswordHendler = (event) => {
+    //     setConfirmPasswordPost(event);
     //     setparams({...{
-    //         email: EmailPost,
-    //         password: PasswordPost,
-    //         c_password: ConfirmPasswordPost
-    //     },  password: PasswordPost,})
+    //         email: props.authEmailInitialValue,
+    //         password: props.authPasswordInitialValue,
+    //         password_confirmation: ConfirmPasswordPost
+    //     }, 
+    //     password_confirmation: ConfirmPasswordPost,})
     // }
-    let confirmPasswordHendler = (event) => {
-        setConfirmPasswordPost(event);
-        setparams({...{
-            email: props.authEmailInitialValue,
-            password: props.authPasswordInitialValue,
-            password_confirmation: ConfirmPasswordPost
-        },  password_confirmation: ConfirmPasswordPost,})
-    }
 
     const PostData = async () => {
       try {
-        const PostRest = await POST.register(params) 
+        const PostRest = await POST.register(
+            {
+                email: props.authEmailInitialValue,
+                password: props.authPasswordInitialValue,
+                confirmPassword: ConfirmPasswordPost
+            }
+        ) 
      } catch (error) {
-         console.log(error);
+
      }
      };
 
-    //  useEffect(() => {
-    //     setparams ({
-    //         email: EmailPost,
-    //         password: PasswordPost,
-    //         c_password: ConfirmPasswordPost
-    //     })
-    //  }, []);
 
     const SignUpHendler = () => {
         setEmail(true)
@@ -126,37 +107,26 @@ function SignUpCard(props) {
                                     placeholder="Email"
                                     onChange={handleEmailValue}
                                     value={props.authEmailInitialValue}/>
-                                    {/* <Form.Control
-                                    type="email"
-                                    placeholder="Email"
-                                    onChange={ (e)=>emailhendler(e.target.value)}
-                                    /> */}
                             </Form.Group>
+
                             <Form.Group className="form-shell">
                                 <Form.Control
                                     type="password"
                                     placeholder="Password"
                                     onChange={handlePasswordValue}
                                     value={props.authPasswordInitialValue}/>
-                                    {/* <Form.Control
-                                    type="password"
-                                    placeholder="Password"
-                                    onChange={(e)=>passwordhendler(e.target.value)}
-                                    /> */}
                             </Form.Group>
+
                             <Form.Group className="form-shell">
                                 <Form.Control
                                     type="password"
                                     id="authPassword"
                                     placeholder="Confirm password"
-                                    // onChange={(e)=>SignUpConfirmPassordHendler(e.target.value)}
-                                    onChange={(e)=>confirmPasswordHendler(e.target.value)}
-                                    />
+                                    onChange={(e)=>setConfirmPasswordPost(e.target.value)}/>
                             </Form.Group>
                         </Form>
 
                         <div className="bottom-fields">
-                            {/* <Button className="custom-btn1" onClick={()=>setEmail(true)}>Continue</Button> */}
                             <Button className="custom-btn1" onClick={SignUpHendler}>Continue</Button>
                         </div>
                         <div className="bottom-title">Or continue with</div>

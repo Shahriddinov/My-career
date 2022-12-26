@@ -4,7 +4,7 @@ import RoutesPath from "../../routes/routes";
 import {connect} from "react-redux";
 
 const Jops = (props) => {
-    console.log(props);
+
 
     return (
         <div className="post-jop-wrapper" id="overflow-y-scroll">

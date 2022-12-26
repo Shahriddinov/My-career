@@ -18,7 +18,7 @@ const ContactsFormCard = props => {
   const formik = useFormik({
     initialValues: {},
     onSubmit: values => {
-      console.log(values);
+
     },
   });
   return (

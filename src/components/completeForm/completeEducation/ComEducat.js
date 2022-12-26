@@ -1,10 +1,22 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import "./education.scss"
 import {Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 import useStore from '../../../StoreZustand/StoreZustand';
+import GET from '../../../API/GET';
+import { BaseUrl, token } from '../../../API/POST';
+import axios from 'axios';
 
-function ComEducat({dataList1,setDataList1, setSchool, school , degree, setDegree, isComplete, setIsComplete, studyType, setStudyType, lacation, setLacation, start, setStart, end, setEnd}) {
 
+function ComEducat({FrlEduSchoolName,FrlEduSchoolNameHandler, FrlEduDegree,FrlEduDegreeHandler,FrlEduCurrStudy,FrlEduCurrStudyHandler,FrlEduStudyType,FrlEduStudyTypeHandler,FrlEduLocation,FrlEduLocationHandler, start, setStart, end, setEnd}) {
+
+    const [edu, setEdu] = useState([]);
+
+    const getEdu= async ()=>{
+        await GET.Edu().then((res)=>{
+            setEdu(res.data.data)
+
+        })
+    }
     const [modal, setModal] = useState(false);
 
     const toggle = () => {
@@ -14,32 +26,44 @@ function ComEducat({dataList1,setDataList1, setSchool, school , degree, setDegre
     const { FreelancDataListHendler } = useStore()
 
 
-    const addTask = () =>{
-        if (school.trim().length > 0, degree.trim().length > 0, isComplete !== false, start !== "дд.мм.гггг", end !== "дд.мм.гггг",
-        studyType.trim().length>0,lacation.trim().length>0){
-            setModal(false);
-            const newTask = dataList1;
-            let id = Date.now();
-            newTask.push({id:id, school,degree,isComplete,start,end,studyType,lacation});
-            setDataList1(newTask)
-            FreelancDataListHendler(newTask)
-            setSchool(""); setEnd(""); setStart(""); setDegree("");setStudyType("");
-            setLacation("")
+    const addTask = async() =>{
+       
+        const formData = new FormData()
+        formData.append('SchoolName', FrlEduSchoolName)
+        formData.append('EducationDegree', FrlEduDegree)
+        formData.append('TypeStudy', FrlEduStudyType )
+        formData.append('Location', FrlEduLocation)
+        formData.append('CurrentStudy', FrlEduCurrStudy)
+        try {
+                await axios({
+                method:'post',
+                url: `${BaseUrl}api/FreelancerExperience`,
+                data:formData,
+                headers:{
+                    "Content-Type" : "multipart/form-data",
+                    "Authorization" : `Bearer ${token}`
+                }
+
+            })
+
+        } catch (error) {
+            console.log(error);
         }
-        else {
-            alert("Fo'rmani to'ldiring !!!")
-        }
+        setModal(!modal)
     };
 
 
-    const deleteTask = (id)=>{
-        const index = dataList1.findIndex(item=> item.id == id);
-        const myData = [...dataList1];
-        myData.splice(index,1);
-        setDataList1(myData)
-        FreelancDataListHendler(myData)
+    const deleteTask = async(id)=>{
+        try {
+            await axios.delete(`${BaseUrl}api/FreelancerEducation/${id}`)
+        } catch (error) {
+            console.log(error);
+        }
     };
 
+    useEffect(()=>{
+        getEdu()
+    },[],[edu])
     return (
         <>
             <p className="write-about">Educations</p>
@@ -49,13 +73,13 @@ function ComEducat({dataList1,setDataList1, setSchool, school , degree, setDegre
                 Just head on to the next page.
             </p>
             {
-                dataList1.map((item, index)=>(
-                    <div className="map-modal mt-2" key={index + 1}>
+                edu.map((item)=>(
+                    <div className="map-modal mt-2" key={item.id}>
                         <div className="w-75">
-                            <p className="comName">{item.school}</p>
+                            <p className="comName">{item.schoolName}</p>
                             <div className="d-flex">
-                                <p className="tagName">{item.degree}</p>
-                                <p className="tagName1">{item.studyType}</p>
+                                <p className="tagName">{item.educationDegree}</p>
+                                <p className="tagName1">{item.typeStudy}</p>
                             </div>
                         </div>
                         <div className="modal-image-e-d">
@@ -74,16 +98,16 @@ function ComEducat({dataList1,setDataList1, setSchool, school , degree, setDegre
 
                 <ModalHeader toggle={toggle}>Add Education History</ModalHeader>
                 <ModalBody>
-                    <input onChange={(e) => setSchool(e.target.value)} placeholder="School name"
+                    <input onChange={(e) => FrlEduSchoolNameHandler(e.target.value)} placeholder="School name"
                            type="text" className="form-control inputs-all1 "/>
-                    <select onClick={(e) => setDegree( e.target.value)} className="form-select inputs-all1 mt-3" >
+                    <select onClick={(e) => FrlEduDegreeHandler( e.target.value)} className="form-select inputs-all1 mt-3" >
                         <option value="Bachelor">Bachelor</option>
                         <option value="magister">magister</option>
                         <option value="magister">magister</option>
                     </select>
-                    <input onChange={(e) => setStudyType(e.target.value)} placeholder="Type of study"
+                    <input onChange={(e) => FrlEduStudyTypeHandler(e.target.value)} placeholder="Type of study"
                     type="text" className="form-control inputs-all1 mt-4"/>
-                    <input onChange={(e) => setLacation(e.target.value)} placeholder="Location of school"
+                    <input onChange={(e) => FrlEduLocationHandler(e.target.value)} placeholder="Location of school"
                            type="text" className="form-control inputs-all1 mt-4"/>
                     <div className="all-r-l-input">
                         <div className="right-input">
@@ -99,15 +123,17 @@ function ComEducat({dataList1,setDataList1, setSchool, school , degree, setDegre
                     </div>
 
                 </ModalBody>
-                <ModalFooter className="modal-footer1">
-                    <div className="checkbox-in-m1">
-                        <input onChange={(e) => setIsComplete(e.target.value)} className="checkbox-in-m mt-4"
-                               type="checkbox"/>
-                        <span className="select-curr1">I am currently working in this role</span>
-                    </div>
-                    <div className="all-btn-d-flex">
-                        <button className="btn btn-next-to-bac" onClick={toggle}>Cancel</button>
-                        <button className="btn btn-next-to" onClick={addTask}>Save</button>
+                <ModalFooter >
+                    <div className="modal-footer1">
+                        <div className="checkbox-in-m1">
+                            <input onChange={(e) => FrlEduCurrStudy(e.target.value)} className="checkbox-in-m mt-4"
+                                type="checkbox"/>
+                            <span className="select-curr1">I am currently working in this role</span>
+                        </div>
+                        <div className="all-btn-d-flex">
+                            <button className="btn btn-next-to-bac" onClick={toggle}>Cancel</button>
+                            <button className="btn btn-next-to" onClick={addTask}>Save</button>
+                        </div>
                     </div>
                 </ModalFooter>
             </Modal>

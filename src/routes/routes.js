@@ -32,6 +32,7 @@ const RoutesPath = {
   completeResume:"completeResume",
   contract:"contract",
   companyPostJob:"companyPostJob",
+  myProfile:"myProfile",
 
 };
 

@@ -52,7 +52,7 @@ const Home = () => {
             id: uuidv4()
         },
         onSubmit: values => {
-            console.log('job-value', values);
+
         },
     });
 
@@ -88,8 +88,6 @@ const Home = () => {
         fetchData();
     }, []);
 
-    console.log(UserRest);
-    console.log(CompanyRest);
 
   return (
         <div className="home-wrapper" id="overflow-y-scroll" onWheel={onScroll}>
