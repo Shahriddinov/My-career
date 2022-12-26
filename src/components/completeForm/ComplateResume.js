@@ -337,12 +337,6 @@ function ComplateResume({user, resumeActive,inputList}) {
                          })
                      }
 
-                    {/* <div className='resume2_3-right-bottom-sm'>
-                    <p>Find me on social media</p>
-                    <span>f</span>
-                    <span>in</span>
-                    <span>t</span>
-                    </div> */}
                 </div>
                 </div>
             </div>

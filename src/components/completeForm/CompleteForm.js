@@ -468,24 +468,24 @@ function CompleteForm({setUser, user, resumeActive, setResumeActive,inputList,se
                             <div className="right-input">
                                 <div>
                                     <label className="mt-4 label-style" htmlFor="">Firstname</label>
-                                    {/* <input onChange={(e)=>setUser({...user, firstName: e.target.value})} className="form-control inputs-all" type="text" placeholder="Firstname"/> */}
+
                                     <input onChange={(e)=>FreelancFirstNameHendler(e.target.value)} className="form-control inputs-all" type="text" placeholder="Firstname"/>
                                 </div>
                                 <div>
                                     <label className="mt-4 label-style" htmlFor="">E-mail</label>
-                                    {/* <input onChange={(e)=>setUser({...user, email: e.target.value})} className="form-control inputs-all" type="e-mail" placeholder="E-mail"/> */}
+
                                     <input onChange={(e)=>FreelancEmailHendler(e.target.value)} className="form-control inputs-all" type="e-mail" placeholder="E-mail"/>
                                 </div>
                             </div>
                             <div className="left-input">
                                 <div>
                                     <label className="mt-4 label-style" htmlFor="">Lastname</label>
-                                    {/* <input  onChange={(e)=>setUser({...user, lastName: e.target.value})} className="form-control inputs-all" type="text" placeholder="Lastname"/> */}
+
                                     <input  onChange={(e)=>FreelancLastNameHendler(e.target.value)} className="form-control inputs-all" type="text" placeholder="Lastname"/>
                                 </div>
                                 <div>
                                     <label className="mt-4 label-style" htmlFor="">Phone number</label>
-                                    {/* <input onChange={(e)=>setUser({...user, numbers:e.target.value})} className="form-control inputs-all" type="number" placeholder="+xxx (xx) xxx- xx-xx"/> */}
+
                                     <input onChange={(e)=>FreelancPhoneHendler(e.target.value)} className="form-control inputs-all" type="number" placeholder="+xxx (xx) xxx- xx-xx"/>
                                     <button className="btn btn-next-to1 mt-3" onClick={progressfirst}>Next</button>
                                 </div>
@@ -502,11 +502,7 @@ function CompleteForm({setUser, user, resumeActive, setResumeActive,inputList,se
                         <div className="all-r-l-input">
                             <div className="right-input">
                                 <label className="mt-4 label-style" htmlFor="">Living address</label>
-                                {/* <select onChange={(e)=>setUser({...user, countrySelect: e.target.value})} className="form-select  form-control inputs-all" name="" id="">
-                                    <option value="Uzbekistan">Uzbekistan</option>
-                                    <option value="USA">USA</option>
-                                    <option value="Russia">Russia</option>
-                                </select> */}
+ 
                                 <select onChange={(e)=>FreelancLivingAddressHendler(e.target.value)} className="form-select  form-control inputs-all" name="" id="">
                                     <option value="Uzbekistan">Uzbekistan</option>
                                     <option value="USA">USA</option>
@@ -516,11 +512,7 @@ function CompleteForm({setUser, user, resumeActive, setResumeActive,inputList,se
                             <div className="left-input">
                                 <div>
                                     <label className="mt-4 label-style" htmlFor="">Region</label>
-                                    {/* <select onChange={(e)=>setUser({...user, regionSelect: e.target.value})} className="form-select form-control inputs-all" name="" id="">
-                                        <option value="Toshken">Toshken</option>
-                                        <option value="Andijon">Andijon</option>
-                                        <option value="Fargona">Fargona</option>
-                                    </select> */}
+        
                                      <select onChange={(e)=>FreelancRegionHendler(e.target.value)} className="form-select form-control inputs-all" name="" id="">
                                         <option value="Toshken">Toshken</option>
                                         <option value="Andijon">Andijon</option>
@@ -531,7 +523,7 @@ function CompleteForm({setUser, user, resumeActive, setResumeActive,inputList,se
                         </div>
                         <div>
                             <label className="mt-4 label-style" htmlFor="">Street, apartment</label>
-                            {/* <input onChange={(e)=>setUser({...user, StreetApp:e.target.value})} placeholder="Street, apartment" className="form-control inputs-all1" type="text"/> */}
+
                             <input onChange={(e)=>FreelancStreetHendler(e.target.value)} placeholder="Street, apartment" className="form-control inputs-all1" type="text"/>
                         </div>
                         <div className="all-btn-d-flex">
@@ -546,11 +538,7 @@ function CompleteForm({setUser, user, resumeActive, setResumeActive,inputList,se
                         <div className="all-r-l-input">
                             <div className="right-input">
                                 <label className="mt-4 label-style" htmlFor="">Select your Positions</label>
-                                {/* <select onChange={(e)=>setUser({...user, dagreeLavel:e.target.value})} className="form-select form-control inputs-all" name="" id="">
-                                    <option value="Frontend">Frontend</option>
-                                    <option value="Backend">Backend</option>
-                                    <option value="Web designer">Web designer</option>
-                                </select> */}
+
                                 <select onChange={(e)=>FreelancPositionsHendler(e.target.value)} className="form-select form-control inputs-all" name="" id="">
                                     <option value="Frontend">Frontend</option>
                                     <option value="Backend">Backend</option>
@@ -560,7 +548,7 @@ function CompleteForm({setUser, user, resumeActive, setResumeActive,inputList,se
                             <div className="left-input">
                                 <div>
                                     <label className="mt-4 label-style" htmlFor="">Date of birth</label>
-                                    {/* <input onChange={(e)=>setUser({...user, dateBirth:e.target.value})} type="date" className="form-control inputs-all"/> */}
+
                                     <input onChange={(e)=>FreelancDateOfBirthHendler(e.target.value)} type="date" className="form-control inputs-all"/>
                                 </div>
                             </div>
@@ -599,7 +587,7 @@ function CompleteForm({setUser, user, resumeActive, setResumeActive,inputList,se
                             </div>
                         </div>
                         <div>
-                            {/* <textarea onChange={(e)=>setUser({...user, descrobe:e.target.value})} className="form-control mt-4 " placeholder="Describe yourself to buyers" name="" id="" cols="30" rows="6"></textarea> */}
+
                             <textarea onChange={(e)=>FreelancDescrobeHendler(e.target.value)} className="form-control mt-4 " placeholder="Describe yourself to buyers" name="" id="" cols="30" rows="6"></textarea>
                         </div>
                         <div className="all-btn-d-flex">
@@ -1249,7 +1237,7 @@ function CompleteForm({setUser, user, resumeActive, setResumeActive,inputList,se
                                             </div>
                                             <div className='resume-card-6__top-contact'>
                                                 <img className='resume-card-6__top-contact-icon' src={location} alt="location" />
-                                                {/* <p>{user.countrySelect} {user.regionSelect} {user.StreetApp}</p> */}
+
                                                 <p>{FreelancLivingAddress} {FreelancRegion} {FreelancStreet}</p>
                                             </div>
                                             <div className='resume-card-6__top-contact'>
@@ -1352,52 +1340,9 @@ function CompleteForm({setUser, user, resumeActive, setResumeActive,inputList,se
                         </div>
 
 
-                        {/*<Carousel*/}
-                        {/*    itemsToShow={2}>*/}
-                        {/*    <div className="image-carousel-rezume-select1" someProp="cool1">*/}
 
-                        {/*                <div>*/}
-                        {/*                    <p className="name-family">{user.firstName + " "+ user.lastName}</p>*/}
-                        {/*                    <p className="level-degree">{user.dagreeLavel}</p>*/}
-                        {/*                        <div className="d-flex">*/}
-                        {/*                            <div className="image-user">*/}
-                        {/*                                <img className="img-fluid" src={user.image} alt=""/>*/}
-                        {/*                            </div>*/}
-                        {/*                            <p className="personal-info">Personal info</p>*/}
-                        {/*                        </div>*/}
-                        {/*                    <div className="line-tag"></div>*/}
-                        {/*                    <div>*/}
-                        {/*                        <p className="text-phone">Phone</p>*/}
-                        {/*                        <p className="phone-number">{user.numbers}</p>*/}
-                        {/*                    </div>*/}
-                        {/*                    <div>*/}
-                        {/*                        <p className="text-phone1">E-mail</p>*/}
-                        {/*                        <p className="phone-number">{user.email}</p>*/}
-                        {/*                    </div>*/}
-                        {/*                </div>*/}
-
-                        {/*    </div>*/}
-                        {/*    <div className="image-carousel-rezume-select" someProp="cool1"><img className="img-fluid" src="image/image 9.png" alt=""/></div>*/}
-                        {/*    <div className="image-carousel-rezume-select" someProp="cool2"><img className="img-fluid" src="image/image 10.png" alt=""/></div>*/}
-                        {/*    <div className="image-carousel-rezume-select" someProp="cool3"><img className="img-fluid" src="image/image 11.png" alt=""/></div>*/}
-                        {/*    <div className="image-carousel-rezume-select" someProp="cool4"><img className="img-fluid" src="image/image 12.png" alt=""/></div>*/}
-                        {/*    <div className="image-carousel-rezume-select" someProp="cool5"><img className="img-fluid" src="image/image 13.png" alt=""/></div>*/}
-                        {/*    <div className="image-carousel-rezume-select" someProp="cool6"><img className="img-fluid" src="image/image 14.png" alt=""/></div>*/}
-                        {/* </Carousel> */}
                         <div>
-                            {/*<div className="slider-child">*/}
-                            {/*    <div className="card mt-0 card-resume">*/}
-                            {/*<img src="./images/sixth-resume.png" alt="sixth-resume"/>*/}
-                            {/*<FirstTemplateResume/>*/}
-                            {/*<div className="shadow-box">*/}
-                            {/*    <Button onClick={() => {*/}
-                            {/*        dispatch(setResumeNumber("sixth"));*/}
-                            {/*        dispatch(showTemplates());*/}
-                            {/*        dispatch(signedWizardNextSteps())*/}
-                            {/*    }}>Select Template</Button>*/}
-                            {/*</div>*/}
-                            {/*</div>*/}
-                            {/*</div>*/}
+
                         </div>
 
                         <div className='resume-card__bottom'>
@@ -1408,7 +1353,7 @@ function CompleteForm({setUser, user, resumeActive, setResumeActive,inputList,se
                             </div>
                             <div className="d-flex">
                                 <button className="btn btn-next-to-bac" onClick={progresseighthback}>Back</button>
-                                {/* <a href={`/${RoutesPath.completeResume}`}><button className="btn btn-next-to" >Next</button></a> */}
+
                                 <button disabled={resumeActive === 0 ? true : false}  className="btn btn-next-to" ><NavLink to={`/${RoutesPath.completeResume}`} >Next</NavLink></button>
                             </div>
                         </div>

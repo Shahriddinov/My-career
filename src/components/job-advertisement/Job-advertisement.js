@@ -77,15 +77,7 @@ function Jobadvertisement() {
                              <span className="logged-talents__user-name">Michel R</span>
                              <img src={dropDown} width="13" height="7" />
                             </div>
-                            {/* <select className='logged-talents__user' name="users" id="users"> 
-                                <option className='logged-talents__language-text' value="Michel R"><img src={userPic} width="36" height="36" /> Michel R</option>
-                                <option className='logged-talents__language-text' value="uz">Uz</option>
-                                <option className='logged-talents__language-text' value="ru">Ru</option>
-                            </select> */}
-                            {/* <div className="logged-talents__language">
-                              <span className="logged-talents__language-text">En</span>
-                              <img src={dropDown} width="13" height="7" />
-                             </div> */}
+
                              <Loggedlang />
                           </div>
                       </div>
@@ -188,16 +180,7 @@ function Jobadvertisement() {
               </div>
               <div className='user__company jobadvertisement__contact-changecolumn'>
                 <h2 className='user__company-title'>{t("About-company")}</h2>
-                {/* <p className='user__company-text'>
-                  The company offers services to improve the efficiency of other
-                  companies. With the help of our highly qualified specialists and
-                  modern technologies, we integrate our knowledge and skills to
-                  increase efficiency. <br /><br /> Sit lacinia feugiat commodo hac tristique.
-                  Non lobortis in eu a, mattis ullamcorper nullam. Facilisi ipsum
-                  mattis hac urna scelerisque nunc id. Aliquam nullam turpis magna
-                  placerat. Amet aliquam eget dignissim odio leo, in adipiscing.
-                  Aliquet mattis in tortor, eros.
-                </p> */}
+
               </div>
               <div className='user__employee jobadvertisement__contact-changecolumn'>
                 <h2 className='user__employee-title'>{t("The-number-of-employees")}</h2>

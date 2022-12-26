@@ -18,11 +18,7 @@ function ModalCom(props) {
     const [start, setStart] = useState("");
     const [end, setEnd] = useState("");
     const [tagName, setTagName] = useState("");
-    // const deleteJob = (index) => {
-    //     const deleteState = state.dataList;
-    //     deleteState.splice(index, 1);
-    //     setState([...deleteState])
-    // };
+
 const [dataList, setDataList] = useState([]);
 
         const addTask = () =>{
