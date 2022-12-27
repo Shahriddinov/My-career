@@ -17,7 +17,7 @@ import useStore from '../../StoreZustand/StoreZustand'
 import res6_rght from '../../img/resume6right.png'
 
 function ComplateResume({user, resumeActive,inputList}) {
-  const {tags,hobs,FreelancFirstName, FreelancLastName, FreelancEmail, FreelancPhone, FreelancLivingAddress, FreelancRegion, FreelancStreet, FreelancPositions,FreelancDateOfBirth,FreelancSkills,FreelancHobbies,FreelancDeskYourself,FreelancLanguage,FreelancLanguageDegree,FreelancDescrobe,FreelancWebsite,FreelancDataList,FreelancDataListJob} = useStore()
+  const {tags,hobs,FreelancFirstName, FreelancLastName, FreelancEmail, FreelancPhone, FreelancLivingAddress, FreelancRegion, FreelancStreet, FreelancPositions,FreelancDateOfBirth,FreelancSkills,FreelancHobbies,FreelancDeskYourself,FreelancLanguage,FreelancLanguageDegree,FreelancDescrobe,FreelancWebsite,FreelancDataList,FreelancDataListJob} = useStore();
 
   if (resumeActive === 1) {
     return (

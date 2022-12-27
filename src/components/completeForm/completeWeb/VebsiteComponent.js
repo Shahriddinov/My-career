@@ -11,4 +11,4 @@ function VebsiteComponent({setWatsapp,contactHendler1,item,watsapp,ValueHendler,
   )
 }
 
-export default VebsiteComponent
+export default VebsiteComponent;

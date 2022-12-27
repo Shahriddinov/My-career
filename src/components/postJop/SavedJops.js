@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 
 const SavedJops = (props) => {
     const history = useLocation();
-    console.log(history);
+
     return (
         <Jops history={history.pathname}>
             <div className="bestMatches">

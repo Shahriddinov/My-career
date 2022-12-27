@@ -24,7 +24,7 @@ const FormCarousel = (props) => {
   useEffect(() => {
     sliderRef.current.slickGoTo(location?.state?.step)
   }, [])
-  console.log("location ", location);
+
 
   const goToNextStep = (hasNext) => {
     sliderRef.current.slickGoTo(getStep(hasNext))

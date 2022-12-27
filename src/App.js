@@ -40,6 +40,8 @@ import Jobadvertisement from './components/job-advertisement/Job-advertisement';
 import ComplateResume from './components/completeForm/ComplateResume';
 import ContractWiev from './components/contractWiev/ContractWiev'
 import CompanyPostJob from './components/company-post-job/company-post-job';
+import FreelancerProfile from './components/freelancer profile/freelancerProfile';
+
 
 const enhancer = connect(
     ({resumes: {doneResumes}}) =>
@@ -57,15 +59,7 @@ const App = props => {
 
     return (
         <div className="app-wrapper">
-            {/*<PostJop1/>*/}
-            {/*<PostJop2/>*/}
-            {/*<PostJop3/>*/}
-            {/*<ProfilPage/>*/}
-            {/*<Jop/>*/}
-            {/*<Jops/>*/}
-            {/*<NewJops/>*/}
 
-            {/*<BestMatches/>*/}
             <Routes>
                 <Route path={RoutesPath.home} element={<Home/>}/>
                 <Route path={RoutesPath.login} element={<Login/>}/>
@@ -100,6 +94,7 @@ const App = props => {
                 <Route path={RoutesPath.completeResume} element={<ComplateResume user={user} resumeActive={resumeActive} inputList={inputList}/>} />
                 <Route path={RoutesPath.contract} element={<ContractWiev/>} />
                 <Route path={RoutesPath.companyPostJob} element={<CompanyPostJob/>} />
+                <Route path={RoutesPath.myProfile} element={<FreelancerProfile/>} />
             </Routes>
             <ToastContainer/>
         </div>

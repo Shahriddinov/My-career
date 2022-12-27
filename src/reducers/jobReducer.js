@@ -13,8 +13,7 @@ const initialState = {
 const jobReducer =  {
 
     [INITIAL_VALUE](state, {data}) {
-        console.log(state);
-        console.log(data);
+ 
         return {
             ...state,
             search: data.search,
