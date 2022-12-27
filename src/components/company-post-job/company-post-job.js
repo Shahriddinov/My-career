@@ -137,8 +137,6 @@ const CompanyPostJob = () => {
         four.style.border = "3px solid #FFFFFF"
         secondline.style.opacity = "0";
     }
-    
-    
     function progressfifthback(){
         var fourthCard = document.getElementById("fourth-card");
         var fifthCard = document.getElementById("fifth-card");
@@ -164,6 +162,7 @@ const CompanyPostJob = () => {
     const [jobCategory, setJobCategory] = useState('Web Designer')
     const [jobDescr, setJobDescr] = useState('')
     const [jobFile, setJobFile] = useState()
+    const [website, setWebsite] = useState('')
 
     const [freelancerLvl, setFreelancerLvl] = useState('')
     const [frlSkills, setFrlSkills] = useState([])
@@ -220,12 +219,12 @@ const CompanyPostJob = () => {
         }
 
 
-    },[jobName,jobCategory,jobDescr,jobFile, freelancerLvl,frlSkills,frlLang,jobMoney,currency,jobTime,jobDay,jobDeadline,recSkills])
+    },[jobName,jobCategory,jobDescr,jobFile, freelancerLvl,frlSkills,frlLang,jobMoney,currency,jobTime,jobDay,jobDeadline,recSkills,website])
 
 
     const addSkills =(event)=>{   
 
-        if(event.key=='Enter' && event.target.value !== ""){ 
+        if(event.key =='Enter' && event.target.value !== ""){ 
             setFrlSkills([...frlSkills, event.target.value])
             event.target.value = ""    
         }
@@ -256,7 +255,6 @@ const CompanyPostJob = () => {
 
         const delItem = recSkills.filter((v)=> v == idv)
         setFrlSkills([...frlSkills, delItem]) 
-        console.log(delItem);
 
         recSkillStyle.current.style.display = 'none'
     }
@@ -354,13 +352,13 @@ const CompanyPostJob = () => {
                                 <div>
                                     <label className="mt-4 label-style" htmlFor="">Category</label>
                                     <select className="form-control inputs-all" onChange={(e)=>{setJobCategory(e.target.value)}}>
-                                            <option value='Web Designer'>web designer</option>
-                                            <option value='Frontend developer'>frontend developer</option>
-                                            <option value='Backend developer'>backend developer</option>
-                                            <option value='DevOps'>devOps</option>
-                                            <option value='Technical Writing'>technical writing</option>
-                                            <option value='Mobile Developer'>mobile developer</option>
-                                            <option value='QA Developer'>QA developer</option>
+                                            <option value='1'>web designer</option>
+                                            <option value='2'>frontend developer</option>
+                                            <option value='3'>backend developer</option>
+                                            <option value='4'>devOps</option>
+                                            <option value='5'>technical writing</option>
+                                            <option value='6'>mobile developer</option>
+                                            <option value='7'>QA developer</option>
                                     </select>
 
                                     <button className="btn btn-next-to1 mt-3" onClick={progressfirst}>Next</button>
@@ -379,6 +377,8 @@ const CompanyPostJob = () => {
                                 <label className="mt-4 label-style" htmlFor="">Describe the job</label>
                                 <textarea placeholder="Describe" className="form-control company-textarea"
                                 onChange={(e)=>setJobDescr(e.target.value)}/>
+                                <label>http//</label>
+                                <input type={'text'} onChange={(e)=>setWebsite(e.target.value)} placeholder='www.website.com' className='company-website'/>
                             </div>
                             <div>
                                 <label className="mt-4 label-style">Upload the picture if necessary</label>
@@ -543,6 +543,7 @@ const CompanyPostJob = () => {
                             Describe the job
                         </p>
                         <p className='label-style'>{jobDescr}</p>
+                        <a href='https://{website}/'>{website}</a>
 
                         <div>
                             <label className='label-style'>Additional project files</label>

@@ -6,12 +6,15 @@ import VebsiteCom from "../completeForm/completeWeb/VebsiteCom";
 import VebsiteCompany from "../completeForm/completeWebCompany/VebsiteCom";
 import CompRezume from "../completeForm/RezueComple/CompRezume";
 import logo from '../../img/logo.svg'
-import POST from '../../API/POST';
+import POST, { BaseUrl, token } from '../../API/POST';
 import GET from '../../API/GET';
 import useStore from '../../StoreZustand/StoreZustand';
+import axios from 'axios';
 
 
-function progressfirst(){
+function CompleteCompany(props) {
+
+const progressfirst=()=>{
     var firstCard = document.getElementById("first-card");
     var secondCard = document.getElementById("second-card");
     var one1 = document.getElementById("one1");
@@ -28,9 +31,11 @@ function progressfirst(){
     two1.style.top = "68%";
     two1.style.backgroundColor = "#FFFFFF";
     two1.style.border = "7px solid #1D71B8"
+
+    
 }
-function progresssecond(){
-    var secondCard = document.getElementById("second-card");
+const progresssecond=()=>{
+  var secondCard = document.getElementById("second-card");
     var thirdCard = document.getElementById("third-card");
     var two1 = document.getElementById("two1");
     var three1 = document.getElementById("three1");
@@ -46,8 +51,9 @@ function progresssecond(){
     three1.style.top = "68%"
     three1.style.backgroundColor = "#FFFFFF"
     three1.style.border = "7px solid #1D71B8"
+
 }
-function progressthird(){
+const progressthird=()=>{
     var fourthCard = document.getElementById("fourth-card");
     var thirdCard = document.getElementById("third-card");
     var four = document.getElementById("four1");
@@ -66,8 +72,9 @@ function progressthird(){
     four.style.backgroundColor = "#FFFFFF"
     four.style.border = "7px solid #1D71B8"
     secondline.style.opacity = "0";
+
 }
-function progresssecondback(){
+const progresssecondback=()=>{
     var firstCard = document.getElementById("first-card");
     var secondCard = document.getElementById("second-card");
     var one = document.getElementById("one1");
@@ -85,7 +92,7 @@ function progresssecondback(){
     two.style.backgroundColor = "#1D71B8";
     two.style.border = "3px solid #FFFFFF"
 }
-function progressthirdback(){
+const progressthirdback=()=>{
     var secondCard = document.getElementById("second-card");
     var thirdCard = document.getElementById("third-card");
     var two = document.getElementById("two1");
@@ -103,7 +110,7 @@ function progressthirdback(){
     three.style.backgroundColor = "#1D71B8"
     three.style.border = "3px solid #FFFFFF"
 }
-function progressfourthback(){
+const progressfourthback=()=>{
     var fourthCard = document.getElementById("fourth-card");
     var thirdCard = document.getElementById("third-card");
     var four = document.getElementById("four1");
@@ -124,29 +131,7 @@ function progressfourthback(){
     secondline.style.opacity = "1";
 }
 
-
-
-function CompleteCompany(props) {
     const {CompanyHendler,Company,CompanyFirstName,CompanyLastName,CompanyEmail,CompanyNumber,CompanyCompany,CompanyCompanyNum,CompanyImage,CompanyLocation,CompanyDescription,CompanyWebsite,CompanyWhatsapp,CompanyFacebook,CompanyInstagram,CompanyTelegram,CompanyGithub,CompanyTwitter,CompanyFirstNameHendler,CompanyLastNameHendler,CompanyEmailHendler,CompanyNumberHendler,CompanyImageHendler,CompanyCompanyHendler,CompanyCompanyNumHendler,CompanyLocationHendler,CompanyDescriptionHendler,CompanyWebsiteHendler,CompanyWhatsappHendler,CompanyFacebookHendler,CompanyInstagramHendler,CompanyTelegramHendler,CompanyGithubHendler,CompanyTwitterHendler} = useStore()
-
-    const [inputList, setInputList] = useState([{language:"", level:""}]);
-
-    function handleClikMore() {
-        setInputList([...inputList, {language:"", level:""}])
-    }
-
-    const handleInputChange = (e, index) =>{
-        const {name,  value} = e.target;
-        const list = [...inputList];
-        list[index][name] = value;
-        setInputList(list)
-    };
-
-    const handleRemove = (index) =>{
-        const list=[...inputList];
-        list.splice(index,1);
-        setInputList(list)
-    };
 
     const [icon, setIcon] = useState(false);
 
@@ -164,93 +149,91 @@ function CompleteCompany(props) {
         setIcon(true)
     }
 
-    const [tags, setTags] = useState([]);
-    const [hobs, setHobs] = useState([]);
-
-    function handleKeyDown(e) {
-        if (e.key !== 'Enter')return;
-        const value = e.target.value;
-        if (!value.trim())return;
-        setTags([...tags, value]);
-        e.target.value = ""
-    }
-
-    function handleKeyHop(e) {
-        if (e.key !== 'Enter')return;
-        const value = e.target.value;
-        if (!value.trim())return;
-        setHobs([...hobs, value]);
-        e.target.value = ""
-    }
-
-    function removeTag(index) {
-        setTags(tags.filter((el, i) => i !== index))
-    }
-    function removeHop(index) {
-        setHobs(hobs.filter((el, i) => i !== index))
-    }
-    const [user, setUser] = useState({
-        firstName:"",
-        lastName:"",
-        email:"",
-        numbers:"",
-        image:"",
-        name:"",
-        countrySelect:"",
-        regionSelect:"",
-        StreetApp:"",
-        dagreeLavel:"",
-        dateBirth:"",
-        descrobe:"",
-    });
-
-    let [CompanyParams, setCompanyParams] = useState({
-        name: CompanyFirstName,
-        lastname: CompanyLastName,
-        email: CompanyEmail,
-        number: CompanyNumber,
-        image: CompanyImage,
-        company: CompanyCompany,
-        company_num: CompanyCompanyNum,
-        lacation: [CompanyLocation],
-        description:CompanyDescription,
-        website_link: CompanyWebsite,
-        whats_app_link: CompanyWhatsapp,
-        facebook_link: CompanyFacebook,
-        instagram_link: CompanyInstagram,
-        telegram_link: CompanyTelegram,
-        github_link: CompanyGithub,
-        twitter_link: CompanyTwitter,
-    })
+    const [user, setUser] = useState({image:"",});
 
 
-    const PostDataCompany = async () => {
+    const postUserCompany = async () => {
         try {
-          const PostRest = await POST.companyadd({
-            company_id: 1,
-            firstname: CompanyFirstName,
-            lastname: CompanyLastName,
-            email: CompanyEmail,
-            phone: CompanyNumber,
-            image: CompanyImage,
-            company_name: CompanyCompany,
-            company_phone: CompanyCompanyNum,
-            location: [CompanyLocation],
-            description:CompanyDescription,
-            web_link: CompanyWebsite,
-            whatsapp_link: CompanyWhatsapp,
-            facebook_link: CompanyFacebook,
-            instagram_link: CompanyInstagram,
-            telegram_link: CompanyTelegram,
-            github_link: CompanyGithub,
-            twitter_link: CompanyTwitter,
-        })   
-        console.log(PostRest);
+          const poth =await POST.companyUser({
+            firstName: CompanyFirstName,
+            lastName: CompanyLastName,
+            copmanyEmail: CompanyEmail,
+            phoneNumber: CompanyNumber,
+        })  
+        if(poth.status===200){
+            progressfirst()
+        } else{
+            alert(poth.statusText)
+        } 
+       } catch (error) {
+            alert(error)
+       }
+    };
+
+    const postCompany = async () => {
+
+        const formData = new FormData()
+        formData.append("Name", CompanyCompany)
+        formData.append("PhoneNumber", CompanyCompanyNum)
+        formData.append("File", CompanyImage)
+
+        try {
+          const post= await axios({
+            method:'post',
+            url: `${BaseUrl}api/Company/Create`,
+            data: formData,
+            headers:{
+                "Content-Type": "multipart/form-data",
+                "Authorization" : `Bearer ${token}`
+            }
+
+        })  
+        if(post.status===200){
+            progresssecond()
+        } else{
+            alert(post.statusText)
+        }
+       } catch (error) {
+           alert(error)
+       }
+    };
+
+    const postLocation = async () => {
+        try {
+          const poth = await POST.companyLoc({
+            locations: [{location:CompanyLocation}],
+            description: CompanyDescription,
+        }) 
+        if(poth.status===200){
+            progressthird()
+        } else{
+            alert(poth.statusText)
+        }  
+       } catch (error) {
+           alert(error)
+       }
+    };
+
+    const postContact = async () => {
+        try {
+         const poth = await POST.companyContact({
+            watsApp: CompanyWhatsapp,
+            facebook: CompanyFacebook,
+            telegram: CompanyTelegram,
+            gitHub: CompanyGithub,
+            twitter: CompanyTwitter,
+            instagram: CompanyInstagram,
+            webSite: CompanyWebsite
+        })  
+        if(poth.status===200){
+            alert('Success!')
+        } else{
+            alert(poth.statusText)
+        } 
        } catch (error) {
            console.log(error)
        }
     };
-
 
     return (
         <>
@@ -296,7 +279,7 @@ function CompleteCompany(props) {
                                     <label className="mt-4 label-style" htmlFor="">Phone number</label>
 
                                     <input onChange={(e)=>CompanyNumberHendler(e.target.value)} className="form-control inputs-all" type="number" placeholder="+xxx (xx) xxx- xx-xx"/>
-                                    <button className="btn btn-next-to1 mt-3" onClick={progressfirst}>Next</button>
+                                    <button className="btn btn-next-to1 mt-3" onClick={postUserCompany}>Next</button>
                                 </div>
                             </div>
                         </div>
@@ -316,16 +299,16 @@ function CompleteCompany(props) {
                         <div>
                             <label className="mt-4 label-style" htmlFor="">Company name</label>
 
-                            <input onChange={(e)=>CompanyCompanyHendler(e.target.value)} placeholder="Company name" className="form-control inputs-all1" type="text"/>
+                            <input onChange={(e)=>CompanyCompanyHendler(e.target.value)} placeholder="Company name" className="form-control inputs-all" type="text"/>
                         </div>
                         <div>
                             <label className="mt-4 label-style" htmlFor="">number</label>
 
-                            <input onChange={(e)=>CompanyCompanyNumHendler(e.target.value)} placeholder="number" className="form-control inputs-all1" type="text"/>
+                            <input onChange={(e)=>CompanyCompanyNumHendler(e.target.value)} placeholder="number" className="form-control inputs-all" type="text"/>
                         </div>
                         <div className="all-btn-d-flex">
                             <button className="btn btn-next-to-bac" onClick={progresssecondback}>Back</button>
-                            <button className="btn btn-next-to" onClick={progresssecond}>Next</button>
+                            <button className="btn btn-next-to" onClick={postCompany}>Next</button>
                         </div>
                     </div>
                     <div className="third-card card1" id="third-card">
@@ -337,7 +320,7 @@ function CompleteCompany(props) {
                         </p>
                         <div>
                             <label className="label-style mt-4" htmlFor="">Location</label>
-                            <input onChange={(e) => CompanyLocationHendler(e.target.value)} type="text" className="form-control inputs-all1"/>
+                            <input onChange={(e) => CompanyLocationHendler(e.target.value)} type="text" className="form-control inputs-all"/>
                         </div>
                         <div>
                             <label className="label-style mt-4" htmlFor="">Descriptions</label>
@@ -346,15 +329,15 @@ function CompleteCompany(props) {
                         </div>
                         <div className="all-btn-d-flex">
                             <button className="btn btn-next-to-bac" onClick={progressthirdback}>Back</button>
-                            <button className="btn btn-next-to" onClick={progressthird}>Next</button>
+                            <button className="btn btn-next-to" onClick={postLocation}>Next</button>
                         </div>
                     </div>
                     <div className="fourth-card card1" id="fourth-card">
 
-                        <VebsiteCompany />
+                        <VebsiteCompany/>
                         <div className="all-btn-d-flex">
                             <button className="btn btn-next-to-bac" onClick={progressfourthback}>Back</button>
-                            <button className="btn btn-next-to" onClick={()=>PostDataCompany()}>Next</button>
+                            <button className="btn btn-next-to" onClick={postContact}>Next</button>
                         </div>
 
                     </div>

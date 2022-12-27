@@ -40,7 +40,7 @@ const Personalization = props => {
             SetUpdateCount(updateCount + 1),
         beforeChange: (current, next) => (setSlideIndex(next))
     };
-    console.log(props.size);
+
     return (
         <div className={!props.size ? "cards-show" : "cards-hide"}>
             <div className={props.template

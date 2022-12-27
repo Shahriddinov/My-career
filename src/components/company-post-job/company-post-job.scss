@@ -333,6 +333,8 @@
   }
   .second-card1{
     height: 553px;
+    overflow: auto;
+
     .name-top-input{
       font-family: 'Montserrat';
       font-style: normal;
@@ -340,10 +342,18 @@
       font-size: 30px;
       line-height: 37px;
     }
+
    .company-textarea{
     height: 120px;
     font-size: 20px;
     font-weight: 500;
+   }
+   .company-website{
+    position: relative;
+    border: none;
+    padding: 5px;
+    outline: none;
+    width: 250px;
    }
    .company-choose-img{
     padding: 40px;
@@ -630,6 +640,16 @@
   }
 
 
+
+.second-card1::-webkit-scrollbar{
+  width: 12px;
+  background: white;
+}
+
+.second-card1::-webkit-scrollbar-thumb{
+  background: #1D71B8;
+  border-radius: 15px;
+}
 .third-card::-webkit-scrollbar{
   width: 12px;
   background: white;

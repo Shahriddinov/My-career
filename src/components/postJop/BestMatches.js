@@ -7,10 +7,7 @@ import {connect} from "react-redux";
 const BestMatches = (props) => {
 
     const history = useLocation();
-    // console.log(history);
-    console.log("props");
-    console.log(props);
-    console.log(props.skill);
+
 
     return (
         <Jops history={history.pathname}>

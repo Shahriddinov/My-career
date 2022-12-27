@@ -1,24 +1,48 @@
-
 import axios from "axios";
 
-const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI3IiwianRpIjoiMjZkMThhNTg3NDIyZmQyYTQzZjYyODNmMWM0NDUxZGVlZTdmNTdkNGVjMDhlZjA4YmUzN2MxMTIxODUyYzc4ZWIxYTk0MTFjZDg2MDdlMmEiLCJpYXQiOjE2NjYwMDIxNzcuNzU4ODQ1LCJuYmYiOjE2NjYwMDIxNzcuNzU4ODQ4LCJleHAiOjE2OTc1MzgxNzcuNzUyNjIxLCJzdWIiOiI0Iiwic2NvcGVzIjpbXX0.rhBC0vNvkdgC3gAuVaVWRCOXGfDLzeyZgPBrueLdfk6bBoX2gx_muC1-HfmILDHSlfw_TbUS1GgG9jtc6kBUurrx_h30Havw3p0Bq1GYpa7zJqaP8yWKeDm73d_-HpnAC7hG75s2jLKcUnFlm2R3UG6uh9w7rCLfS9_TykRM0Y8h8HmpSi6bvOlqSqdHJL1MFWsymOqJxxtJTTJLG5s0KxqwRgdbJXtfSQnjgd5l4I9ULagLat9yPnnEGQR6VgodOir1gAsU_Sq7NLpXaUZnGXQLdnp4hogvsmZezKbJb1gigHBtfdcZndlKqRFQGENWayo5eFxO0jzwdLZPfLU3jxiF1Dz7pnbuc50WgXyQW9pTRZ5oxuiyCGMLNOfd9svyN0ZFUXkBm3ySRqca3rAX9RITa4sJnAc-owF1al_w9r7dzVSH42KJQv6aH_l8DUQuqUt4fOHlhw2rTbzsS0CGHvPoCJH6NTVGWMqrhl4JHd6R4uw-tBZdrEs9-YhKtiJ7dCFiHVgTCQWQIhJqYFiUvglR6haElG96s4xG6-O2roWK1Y2zRLZJQeIh7fWqgQfpjIyp5Cnl-p0v50OpjuzG3-fsQWGcMXAcb0WgkCNrWLuGtuYK0IrVsVlKrHT2WnSEBkSt4jDmzl0hqyvCrz0JBq7LEKmecQ4t8FksfNvcyZs";
+export const BaseUrl = "https://golibjon.bsite.net/";
 
-const LOGIN_URL = "https://mycareer2.na4u.ru/api/login";
-const REGISTER_URL = "https://mycareer2.na4u.ru/api/register ";
-const COMPANY_ADD = "https://mycareer2.na4u.ru/api/company";
+// about Company URL
+const REGISTER_URL = `${BaseUrl}register`;
+const LOGIN_URL = `${BaseUrl}login`;
+const COMPANY_USER = `${BaseUrl}api/Company/User/Create`;
+const COMPANY = `${BaseUrl}api/Company/Create`;
+const COMPANY_LOC = `${BaseUrl}api/Company/Location/Create`;
+const COMPANY_CONTACT = `${BaseUrl}api/Company/Contact/Create`;
 
-const tok = localStorage.getItem("token")
+// about freelancer URL
+
+// const FRL_USER = `${BaseUrl}api/Freelancer`  BULAR CompleteForm ICHIDA AXIOSDAYOZILGAN
+// const FRL_ADDRESS = `${BaseUrl}api/Freelancer/Adress`  BULAR CompleteForm ICHIDA AXIOSDAYOZILGAN
+const FRL_POSITION= `${BaseUrl}api/Freelancer/Position` 
+const FRL_LANGUAGE= `${BaseUrl}api/FreelancerLanguage`
+const FRL_EXPERINCE= `${BaseUrl}api/FreelancerExperience`
+const FRL_EDUCATION= `${BaseUrl}api/FreelancerEducation`
+
+export const token = JSON.parse(localStorage.getItem("token"));
 const headers = {
-  headers: {
-    "Accept": "application/json;",
-    // Authorization: `Bearer ${tok}`,
-  },
-};
-
-const POST = {
-  login: (LoginParams) => axios.post(LOGIN_URL, LoginParams,headers),
-  register: (params) => axios.post(REGISTER_URL, params,headers),
-  companyadd: (CompanyParams) => axios.post(COMPANY_ADD, CompanyParams,headers),
+  headers : { 'Authorization' : `Bearer ${token}` }
 }
 
-export default POST 
+
+const POST = {
+
+  //   AS COMPANY 
+  login: (LoginParams) => axios.post(LOGIN_URL, LoginParams, headers),
+  register: (params) => axios.post(REGISTER_URL, params, headers),
+  companyUser: (CompanyUserParams) => axios.post(COMPANY_USER, CompanyUserParams, headers),
+  company: (CompanyParams) => axios.post(COMPANY, CompanyParams, headers),
+  companyLoc: (CompanyLocParams) => axios.post(COMPANY_LOC, CompanyLocParams, headers),
+  companyContact: (CompanyConParams) => axios.post(COMPANY_CONTACT, CompanyConParams, headers),
+
+
+  //   AS FREELANCER
+  // frInfo: (frInfoParams) => axios.post(FRL_USER, frInfoParams, headers), BULAR CompleteForm ICHIDA AXIOSDAYOZILGAN
+  // frAddress: (frAddressParams) => axios.post(FRL_ADDRESS, frAddressParams, headers), BULAR CompleteForm ICHIDA AXIOSDAYOZILGAN
+  frPosition: (frPositionParams) => axios.post(FRL_POSITION, frPositionParams, headers),
+  frLang: (frLangParams) => axios.post(FRL_LANGUAGE, frLangParams, headers),
+  frExperience: (frExpParams) => axios.post(FRL_EXPERINCE, frExpParams, headers),
+  frEducation: (frEduParams) => axios.post(FRL_EDUCATION, frEduParams, headers),
+}
+
+export default POST;

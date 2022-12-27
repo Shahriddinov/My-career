@@ -1,6 +1,3 @@
-
-
-
 import React, {useEffect, useState} from 'react';
 import useStore from '../../../StoreZustand/StoreZustand';
 import "./vebsite.scss"

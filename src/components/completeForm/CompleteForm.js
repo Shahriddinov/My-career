@@ -1,12 +1,9 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useRef} from 'react'
 import image from "./image/image.png"
 import "./ffff.scss"
 import ModalCom from "./completeModal/ModalCom";
 import ComEducat from "./completeEducation/ComEducat";
 import VebsiteCom from "./completeWeb/VebsiteCom";
-import CompRezume from "./RezueComple/CompRezume";
-import Personalization from "../Personalization";
-import FirstTemplateResume from "../resumeTemplates/FirstTemplateResume";
 import useStore from '../../StoreZustand/StoreZustand'
 import resumePrev from '../../img/resumePrev.svg'
 import resumeNext from '../../img/resumeNext.svg'
@@ -16,29 +13,21 @@ import phone from '../../img/phone.svg'
 import whiteletter from '../../img/white-letter.svg'
 import whitelocation from '../../img/white-location.svg'
 import whitephone from '../../img/white-phone.svg'
-import whatsap from '../../img/whatsap.svg'
-import facebook from '../../img/facebook.svg'
-import instagram from '../../img/instagram.svg'
-import whitewhatsup from '../../img/white-whatsup.svg'
-import whitefacebook from '../../img/white-facebook.svg'
-import whiteinstagram from '../../img/white-instagram.svg'
-import resumeround from '../../img/resume-round.svg'
-import resumeround2 from '../../img/resume-round2.svg'
-import resumeround3 from '../../img/resume-round3.svg'
-import resumeround4 from '../../img/resume-round4.svg'
-import resumelang from '../../img/resume-lang.svg'
 import resumedot from '../../img/resumedot.png'
-import resumewhitelang from '../../img/resume-white-lang.svg'
 import { Routes, Route, NavLink } from "react-router-dom";
 import RoutesPath from "../../routes/routes";
-import ComplateResume from '../../components/completeForm/ComplateResume';
 import { AiOutlineUser , AiFillCaretRight} from 'react-icons/ai';
 import { ImHome } from 'react-icons/im';
 import resumeLang from '../../img/resumeLang.png'
 import logo from '../../img/logo.svg'
-import GET from '../../API/GET';
-import POST from '../../API/POST';
+import GET, { baseUrl } from '../../API/GET';
+import POST, { BaseUrl, token } from '../../API/POST';
+import axios from 'axios';
 
+
+function CompleteForm({setUser, user, resumeActive, setResumeActive,inputList,setInputList}) {
+
+    
 function progressfirst(){
     var firstCard = document.getElementById("first-card");
     var secondCard = document.getElementById("second-card");
@@ -56,6 +45,7 @@ function progressfirst(){
     two.style.top = "68%";
     two.style.backgroundColor = "#FFFFFF";
     two.style.border = "7px solid #1D71B8"
+
 }
 function progresssecond(){
     var secondCard = document.getElementById("second-card");
@@ -74,6 +64,7 @@ function progresssecond(){
     three.style.top = "68%"
     three.style.backgroundColor = "#FFFFFF"
     three.style.border = "7px solid #1D71B8"
+
 }
 function progressthird(){
     var fourthCard = document.getElementById("fourth-card");
@@ -92,6 +83,7 @@ function progressthird(){
     four.style.top = "68%"
     four.style.backgroundColor = "#FFFFFF"
     four.style.border = "7px solid #1D71B8"
+
 }
 function progressfourth(){
     var fourthCard = document.getElementById("fourth-card");
@@ -110,6 +102,7 @@ function progressfourth(){
     five.style.top = "68%"
     five.style.backgroundColor = "#FFFFFF"
     five.style.border = "7px solid #1D71B8"
+
 }
 function progressfifth(){
     var sixthCard = document.getElementById("sixth-card");
@@ -296,28 +289,20 @@ function progresseighthback(){
     eight.style.border = "3px solid #FFFFFF"
 }
 
-
-function CompleteForm({setUser, user, resumeActive, setResumeActive,inputList,setInputList}) {
-    const {TagsHendler,tags,HobsHenedler,hobs,FreelancDataList,FreelancDataListJob, FreelancFirstNameHendler, FreelancFirstName, FreelancLastNameHendler, FreelancLastName, FreelancEmailHendler, FreelancEmail,FreelancPhoneHendler, FreelancPhone, FreelancLivingAddressHendler, FreelancLivingAddress,FreelancRegionHendler, FreelancRegion,FreelancStreetHendler, FreelancStreet,FreelancPositionsHendler, FreelancPositions,FreelancDateOfBirthHendler, FreelancDateOfBirth ,FreelancDescrobeHendler, FreelancDescrobe, FreelancWebsite} = useStore()
+    const {TagsHendler,tags,HobsHenedler,hobs,FreelancDataList,FreelancDataListJob, FreelancFirstNameHendler, FreelancFirstName, FreelancLastNameHendler, FreelancLastName, FreelancEmailHendler, FreelancEmail,FreelancPhoneHendler, FreelancPhone, FreelancLivingAddressHendler, FreelancLivingAddress,FreelancRegionHendler, FreelancRegion,FreelancStreetHendler, FreelancStreet,FreelancPositionsHendler, FreelancPositions,FreelancDateOfBirthHendler, FreelancDateOfBirth ,FreelancDescrobeHendler, FreelancDescrobe, FreelancWebsite, FrlExperienceCompName, FrlExperienceCompNameHandler, FrlExperienceCompJobHandler, FrlExperienceCompJob, FrlCurrentWorkHandler, FrlCurrentWork, FrlExpStartHandler, FrlExpStart, FrlExpEndHandler, FrlExpEnd, FrlExpDescrHandler,FrlExpDescr,
+    FrlEduSchoolName,FrlEduSchoolNameHandler,FrlEduDegree,FrlEduDegreeHandler,FrlEduStudyType,FrlEduStudyTypeHandler,FrlEduLocation,FrlEduLocationHandler,FrlEduCurrStudy,FrlEduCurrStudyHandler} = useStore()
 
     function handleClikMore() {
         setInputList([...inputList, {language:"", level:""}])
     }
-
-    const handleInputChange = (e, index) =>{
-        const {name,  value} = e.target;
-        const list = [...inputList];
-        list[index][name] = value;
-        setInputList(list)
-    };
 
     const handleRemove = (index) =>{
         const list=[...inputList];
         list.splice(index,1);
         setInputList(list)
     };
-
     const [icon, setIcon] = useState(false);
+ 
 
     function baseImage (event) {
         let files = event.target.files;
@@ -325,49 +310,46 @@ function CompleteForm({setUser, user, resumeActive, setResumeActive,inputList,se
         reader.readAsDataURL(files[0]);
         reader.onload = (e) => {
             setUser({
-                ...user,
-                image: e.target.result,
+                ...user, 
+               image: e.target.result
             });
         }
         setIcon(true)
     }
 
-    // const [tags, setTags] = useState([]);
-    // const [hobs, setHobs] = useState([]);
-
     function handleKeyDown(e) {
         if (e.key !== 'Enter')return;
         const value = e.target.value;
         if (!value.trim())return;
-        // setTags([...tags, value]);
         TagsHendler([...tags, value]);
         e.target.value = ""
+        dSkills.current.style.display = 'none'
     }
 
     function handleKeyHop(e) {
         if (e.key !== 'Enter')return;
         const value = e.target.value;
         if (!value.trim())return;
-        // setHobs([...hobs, value]);
         HobsHenedler([...hobs, value]);
         e.target.value = ""
     }
 
     function removeTag(index) {
-        // setTags(tags.filter((el, i) => i !== index))
+
         TagsHendler(tags.filter((el, i) => i !== index))
     }
     function removeHop(index) {
-        // setHobs(hobs.filter((el, i) => i !== index))
         HobsHenedler(hobs.filter((el, i) => i !== index))
     }
 
     const [resumes, setResumes] = useState([1,2,3,4,5,6])
+
     let [x ,setIks] = useState(0)
     let [resumecontrol ,setresumecontrol] = useState(0)
     let [countresume, setCountResume] = useState(0)
     let [btnPrev ,setBtnPrev] = useState(true)
     let [btnNext ,setBtnNext] = useState(false)
+
     const styles = { 
         transition: 'all 0.4s', 
         transform: `translateX(${x}px` 
@@ -433,13 +415,173 @@ function CompleteForm({setUser, user, resumeActive, setResumeActive,inputList,se
     }
 
     const [dataList1, setDataList1] = useState([]);
-    const [school, setSchool] = useState("");
-    const [degree, setDegree] = useState("");
-    const [isComplete, setIsComplete] = useState("");
-    const [studyType, setStudyType] = useState("");
-    const [lacation, setLacation] = useState("");
     const [start, setStart] = useState("");
     const [end, setEnd] = useState("");
+
+    
+    const [countries, setCountries] = useState([])
+    const [position, setPosition] = useState([])
+    const [langs, setLangs] = useState([])
+    const [datasRigions, setdatasRigions] = useState([]);
+    const [datasSkills, setDatasSkills] = useState([]);
+    const [frlLangLevel, setFrlLangLevel] = useState();
+    const [frlLang, setFrlLang] = useState();
+    const [frlLangs, setFrlLangs] = useState();
+
+    const dSkills = useRef()
+
+
+    const showSkills=()=>{
+        dSkills.current.style.display = 'block'
+    }
+
+    const addingRecSkills = item =>{
+
+        const its = datasSkills.filter((e)=> {if(e.id == item.id) return e.name} )
+        TagsHendler([...tags, its]); 
+
+        dSkills.current.style.display = 'none'
+    }
+
+    const getDatas = async ()=>{
+        await GET.Countries().then((res)=>{
+            setCountries(res.data.data);              
+        })
+
+        await GET.Positions().then((res)=>{
+            setPosition(res.data.data)
+        })
+
+        await GET.Langs().then((res)=>{
+            setLangs(res.data.data)
+        })
+
+        await GET.FrLng().then((res)=>{
+            setFrlLangs(res.data.data)
+        })
+    }
+
+    const postFrlImfo= async ()=>{
+
+        const formData = new FormData()
+
+        formData.append('FirstName', FreelancFirstName)
+        formData.append('LastName', FreelancLastName)
+        formData.append('Email', FreelancEmail)
+        formData.append('Phone', FreelancPhone)
+        formData.append('Image', user['image'])
+
+        try {
+           const post =  await axios({
+                method: 'post',
+                url: `${BaseUrl}api/Freelancer`,
+                data: formData,
+                headers:{
+                    "Content-Type" : "multipart/form-data",
+                    "Authorization" : `Bearer ${token}`
+                }
+            })
+            
+            if (post.status === 200) {
+                progressfirst()
+            }else{
+                alert(post.statusText)
+            }
+           
+        } catch (error) {
+            alert(error);
+        }
+    }
+
+    const postFrlAddress= async ()=>{
+
+        const formData = new FormData()
+
+        formData.append('CountryId', FreelancLivingAddress)
+        formData.append('RegionId', FreelancRegion)
+        formData.append('Home', FreelancStreet)
+
+        try {
+            const post = await axios({
+                method: 'post',
+                url: `${BaseUrl}api/Freelancer/Adress`,
+                data: formData,
+                headers:{
+                    "Content-Type" : "multipart/form-data",
+                    "Authorization" : `Bearer ${token}`
+                }
+            })
+            if (post.status === 200) {
+                progresssecond()
+            }else{
+                alert(post.statusText)
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const postPositions = async () =>{
+        try {
+           const poth= await POST.frPosition({
+                positionId : FreelancPositions,
+                freelancerHobbies : [1,2,3],
+                freelancerSkills : [1,2,3],
+                description : FreelancDescrobe
+            })
+
+            if(poth.status===200){
+                progressthird()
+            }else{
+                alert(poth.statusText)
+            }
+        } catch (error) {
+            alert(error);
+        }
+    }
+
+    const postFrlLangs= async ()=>{
+
+        // try {
+        //     await POST.Langs({
+        //         LanguageId: frlLang,
+        //         Level: frlLangLevel
+        //     })
+        // } catch (error) {
+        //     console.log(error);
+        // }
+
+        const formData = new FormData()
+
+        formData.append('LanguageId', frlLang)
+        formData.append('Level', frlLangLevel)
+
+        try {
+           const post= await axios({
+                method : 'post',
+                url: `${baseUrl}api/FreelancerLanguage`,
+                data: formData,
+                headers:{
+                    "Content-Type" : "multipart/form-data",
+                    "Authorization" : `Bearer ${token}`
+                }
+
+            })
+            if(post.status===200){
+                progressfourth()
+            }else(
+                alert(post.statusText)
+            )
+        } catch (error) {
+            alert(error);
+        }
+    }  
+
+
+
+    useEffect(()=>{
+        getDatas()
+    },[])
 
     return (
         <>
@@ -486,8 +628,8 @@ function CompleteForm({setUser, user, resumeActive, setResumeActive,inputList,se
                                 <div>
                                     <label className="mt-4 label-style" htmlFor="">Phone number</label>
 
-                                    <input onChange={(e)=>FreelancPhoneHendler(e.target.value)} className="form-control inputs-all" type="number" placeholder="+xxx (xx) xxx- xx-xx"/>
-                                    <button className="btn btn-next-to1 mt-3" onClick={progressfirst}>Next</button>
+                                    <input onChange={(e)=>FreelancPhoneHendler(e.target.value)} className="form-control inputs-all" type="text" placeholder="+xxx (xx) xxx- xx-xx"/>
+                                    <button className="btn btn-next-to1 mt-3" onClick={postFrlImfo}>Next</button>
                                 </div>
                             </div>
                         </div>
@@ -501,34 +643,44 @@ function CompleteForm({setUser, user, resumeActive, setResumeActive,inputList,se
                         </p>
                         <div className="all-r-l-input">
                             <div className="right-input">
-                                <label className="mt-4 label-style" htmlFor="">Living address</label>
- 
-                                <select onChange={(e)=>FreelancLivingAddressHendler(e.target.value)} className="form-select  form-control inputs-all" name="" id="">
-                                    <option value="Uzbekistan">Uzbekistan</option>
-                                    <option value="USA">USA</option>
-                                    <option value="Russia">Russia</option>
+                                <label className="mt-4 label-style">Living address</label>
+
+                                <select onChange={(e)=>{
+                                    FreelancLivingAddressHendler(e.target.value) 
+                                    let dataRigions = countries.filter((v)=> { if(v.id == e.target.value) return v.regions })
+                                    setdatasRigions(dataRigions)
+                                    }} className="form-select  form-control inputs-all">
+                                    <option>Country</option>
+                                    {countries.map((item)=>{
+                                        return(
+                                            <option key={item.id} value={item.id}>{item.name}</option>
+                                        )
+                                    })}
                                 </select>
                             </div>
                             <div className="left-input">
                                 <div>
-                                    <label className="mt-4 label-style" htmlFor="">Region</label>
+                                    <label className="mt-4 label-style">Region</label>
         
-                                     <select onChange={(e)=>FreelancRegionHendler(e.target.value)} className="form-select form-control inputs-all" name="" id="">
-                                        <option value="Toshken">Toshken</option>
-                                        <option value="Andijon">Andijon</option>
-                                        <option value="Fargona">Fargona</option>
+                                     <select onChange={(e)=> {FreelancRegionHendler(e.target.value)}} className="form-select form-control inputs-all">
+                                        <option>City</option>
+                                        {datasRigions?.[0]?.regions?.map((item)=>{
+                                            return(
+                                                <option key={item.id} value={item.id}>{item.name}</option>
+                                            )
+                                        })}
                                     </select>
                                 </div>
                             </div>
                         </div>
                         <div>
-                            <label className="mt-4 label-style" htmlFor="">Street, apartment</label>
+                            <label className="mt-4 label-style" >Street, apartment</label>
 
                             <input onChange={(e)=>FreelancStreetHendler(e.target.value)} placeholder="Street, apartment" className="form-control inputs-all1" type="text"/>
                         </div>
                         <div className="all-btn-d-flex">
                             <button className="btn btn-next-to-bac" onClick={progresssecondback}>Back</button>
-                            <button className="btn btn-next-to" onClick={progresssecond}>Next</button>
+                            <button className="btn btn-next-to" onClick={postFrlAddress}>Next</button>
                         </div>
                     </div>
                     <div className="third-card card1" id="third-card">
@@ -537,40 +689,53 @@ function CompleteForm({setUser, user, resumeActive, setResumeActive,inputList,se
                         </p>
                         <div className="all-r-l-input">
                             <div className="right-input">
-                                <label className="mt-4 label-style" htmlFor="">Select your Positions</label>
+                                <label className="mt-4 label-style" >Select your Positions</label>
 
-                                <select onChange={(e)=>FreelancPositionsHendler(e.target.value)} className="form-select form-control inputs-all" name="" id="">
-                                    <option value="Frontend">Frontend</option>
-                                    <option value="Backend">Backend</option>
-                                    <option value="Web designer">Web designer</option>
+                                <select onChange={(e)=>{FreelancPositionsHendler(e.target.value)
+                                let dataSkills = position.filter((v)=> { if(v.id == e.target.value) return v.skills })
+                                setDatasSkills(dataSkills)
+                                }} className="form-select form-control inputs-all">
+                                    {position.map((item)=>{
+                                        return(
+                                            <option key={item.id} value={item.id}>{item.name}</option>
+                                        )
+                                    })}
                                 </select>
                             </div>
                             <div className="left-input">
                                 <div>
-                                    <label className="mt-4 label-style" htmlFor="">Date of birth</label>
+                                    <label className="mt-4 label-style" >Date of birth</label>
 
                                     <input onChange={(e)=>FreelancDateOfBirthHendler(e.target.value)} type="date" className="form-control inputs-all"/>
                                 </div>
                             </div>
                         </div>
                         <div>
-                            <label className="label-style mt-4" htmlFor="">Write down your skills</label>
+                            <label className="label-style mt-4">Write down your skills</label>
                             <div>
                                 <div  className="tag-input-box form-control">
                                     {
-                                        tags && tags.map((tag, index)=>(
-                                            <div className="tag-item">
-                                                <span className="text">{tag}</span>
+                                        tags && tags.map((item, index)=>(
+                                            <div className="tag-item" key={index}>
+                                                <span className="text">{item}</span>
                                                 <span onClick={()=>removeTag(index)} className="close">x</span>
                                             </div>
                                         ))
                                     }
-                                    <input onKeyDown={handleKeyDown} className="tag-input" type="text" placeholder="Type something"/>
+                                    <input onKeyDown={handleKeyDown} onClick={showSkills} className="tag-input" type="text" placeholder="Type something"/>
+                                    <div className='showSkills' ref={dSkills}>{datasSkills?.[0]?.skills?.map((item)=>{
+                                        return(
+                                            <button key={item.id} className={'skillBtn'} 
+                                            onClick={()=>addingRecSkills(item.id)}>
+                                                {item.name} 
+                                            </button>
+                                        )
+                                    })}</div>
                                 </div>
                             </div>
                         </div>
                         <div>
-                            <label className="label-style mt-4" htmlFor="">Hobbies</label>
+                            <label className="label-style mt-4" >Hobbies</label>
                             <div>
                                 <div className="hob-input-box  form-control">
                                     {
@@ -588,11 +753,11 @@ function CompleteForm({setUser, user, resumeActive, setResumeActive,inputList,se
                         </div>
                         <div>
 
-                            <textarea onChange={(e)=>FreelancDescrobeHendler(e.target.value)} className="form-control mt-4 " placeholder="Describe yourself to buyers" name="" id="" cols="30" rows="6"></textarea>
+                            <textarea onChange={(e)=>FreelancDescrobeHendler(e.target.value)} className="form-control mt-4 " placeholder="Describe yourself to buyers" cols="30" rows="6"></textarea>
                         </div>
                         <div className="all-btn-d-flex">
                             <button className="btn btn-next-to-bac" onClick={progressthirdback}>Back</button>
-                            <button className="btn btn-next-to" onClick={progressthird}>Next</button>
+                            <button className="btn btn-next-to" onClick={postPositions}>Next</button>
                         </div>
                     </div>
                     <div className="fourth-card card1" id="fourth-card">
@@ -603,47 +768,66 @@ function CompleteForm({setUser, user, resumeActive, setResumeActive,inputList,se
                         </p>
                         <label className="mt-4 label-style" htmlFor="">Language</label>
                         {
-                            inputList.map((x, i)=> (
+                            inputList.map((x, i)=> {
+                                return(
                                 <div className="all-r-l-input mt-3">
                                     <div className="right-input">
 
-                                        <select onChange={e => handleInputChange(e, i)} className="form-select form-control inputs-all"
+                                        <select onChange={(e) => setFrlLang(e.target.value)} className="form-select form-control inputs-all"
                                                 name="language" >
-                                            <option value="English">English</option>
-                                            <option value="Russian">Russian</option>
-                                            <option value="Uzbek">Uzbek</option>
+                                                    {langs.map((item)=>{
+                                                        return(
+                                                            <option key={item.id} value={item.id}>{item.name}</option>
+                                                        )
+                                                    })}
                                         </select>
                                     </div>
                                     {
-                                        inputList.length!==1 &&
-                                        <button onClick={()=>handleRemove(i)} className="remove-btn">-</button>
+                                    inputList.length!==1 &&
+                                    <button onClick={()=>handleRemove(i)} className="remove-btn">-</button>
                                     }
+                                    
                                     <div className="left-input">
                                         <div>
-                                            <select onClick={e => handleInputChange(e, i)}
+                                            <select onClick={(e) => setFrlLangLevel(e.target.value)}
                                                     className="form-select form-control inputs-all " name="level">
-                                                <option value="">A-1 Beginner</option>
-                                                <option value="">A-2 Elementary</option>
-                                                <option value="">B-1 Intermediate</option>
+                                                <option value="A-1 Beginner">A-1 Beginner</option>
+                                                <option value="A-2 Elementary">A-2 Elementary</option>
+                                                <option value="B-1 Intermediate">B-1 Intermediate</option>
+                                                <option value="B-2 Upper-Intermediate">B-2 Upper-Intermediate</option>
+                                                <option value="C-1 Expert">C-1 Expert</option>
+                                                <option value="C-2 Mastery">C-2 Mastery</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
-                            ))}
+                            )})}
 
                         <button value="add" onClick={handleClikMore} className="bnt mt-4 btn-success1 inputs-all1">
                             +Add new
                         </button>
                         <div className="all-btn-d-flex">
                             <button className="btn btn-next-to-bac" onClick={progressfourthback}>Back</button>
-                            <button className="btn btn-next-to" onClick={progressfourth}>Next</button>
+                            <button className="btn btn-next-to" onClick={postFrlLangs}>Next</button>
                         </div>
 
                     </div>
                     <div className="fifth-card card1" id="fifth-card">
                         <div>
                             <div>
-                                <ModalCom />
+                                <ModalCom FrlExperienceCompNameHandler={FrlExperienceCompNameHandler}
+                                FrlExperienceCompName={FrlExperienceCompName}
+                                FrlExperienceCompJobHandler={FrlExperienceCompJobHandler}
+                                FrlExperienceCompJob={FrlExperienceCompJob}
+                                FrlCurrentWorkHandler={FrlCurrentWorkHandler}
+                                FrlCurrentWork={FrlCurrentWork}
+                                FrlExpStartHandler={FrlExpStartHandler}
+                                FrlExpStart={FrlExpStart}
+                                FrlExpEndHandler={FrlExpEndHandler}
+                                FrlExpEnd={FrlExpEnd}
+                                FrlExpDescrHandler={FrlExpDescrHandler}
+                                FrlExpDescr={FrlExpDescr}
+                                />
                             </div>
                         </div>
                         <div className="all-btn-d-flex">
@@ -652,7 +836,7 @@ function CompleteForm({setUser, user, resumeActive, setResumeActive,inputList,se
                         </div>
                     </div>
                     <div className="sixth-card card1" id="sixth-card">
-                        <ComEducat school={school} setSchool={setSchool} degree={degree} setDegree={setDegree} isComplete={isComplete} setIsComplete={setIsComplete} studyType={studyType} setStudyType={setStudyType} lacation={lacation} setLacation={setLacation} start={start} setStart={setStart} end={end} setEnd={setEnd} dataList1={dataList1} setDataList1={setDataList1} />
+                        <ComEducat FrlEduSchoolName={FrlEduSchoolName} FrlEduSchoolNameHandler={FrlEduSchoolNameHandler} FrlEduDegree={FrlEduDegree} FrlEduDegreeHandler={FrlEduDegreeHandler} FrlEduCurrStudy={FrlEduCurrStudy} FrlEduCurrStudyHandler={FrlEduCurrStudyHandler} FrlEduStudyType={FrlEduStudyType} FrlEduStudyTypeHandler={FrlEduStudyTypeHandler} FrlEduLocation={FrlEduLocation} FrlEduLocationHandler={FrlEduLocationHandler} start={start} setStart={setStart} end={end} setEnd={setEnd}/>
                         <div className="all-btn-d-flex">
                             <button className="btn btn-next-to-bac" onClick={progresssixthback}>Back</button>
                             <button className="btn btn-next-to" onClick={progresssixth}>Next</button>

@@ -23,6 +23,19 @@ const useStore = create((set) => ({
  hobs: [],
  inputList: [[{language:"", level:""}]],
 
+ FrlExperienceCompName: "",
+ FrlExperienceCompJob: "",
+ FrlCurrentWork: false,
+ FrlExpStart:"",
+ FrlExpEnd:"",
+ FrlExpDescr:"",
+
+ FrlEduSchoolName: "",
+ FrlEduDegree:"",
+ FrlEduStudyType:"",
+ FrlEduLocation:"",
+ FrlEduCurrStudy: false,
+
  Company:[],
  CompanyFirstName: "",
  CompanyLastName: "",
@@ -53,13 +66,17 @@ const useStore = create((set) => ({
  contractMfo: "",
  loginToken: "",
 
+ // FREELANCER
+
  FreelancFirstNameHendler: (FreelancFirstName) => set({ FreelancFirstName }),
  FreelancLastNameHendler: (FreelancLastName) => set({ FreelancLastName }),
  FreelancEmailHendler: (FreelancEmail) => set({ FreelancEmail }),
  FreelancPhoneHendler: (FreelancPhone) => set({ FreelancPhone }),
+
  FreelancLivingAddressHendler: (FreelancLivingAddress) => set({ FreelancLivingAddress }),
  FreelancRegionHendler: (FreelancRegion) => set({ FreelancRegion }),
  FreelancStreetHendler: (FreelancStreet) => set({ FreelancStreet }),
+ 
  FreelancPositionsHendler: (FreelancPositions) => set({ FreelancPositions }),
  FreelancDateOfBirthHendler: (FreelancDateOfBirth) => set({ FreelancDateOfBirth }),
  FreelancSkillsHendler: (FreelancSkills) => set({ FreelancSkills }),
@@ -67,6 +84,19 @@ const useStore = create((set) => ({
  FreelancWebsiteHendler: (FreelancWebsite) => set({ FreelancWebsite }),
  FreelancDataListHendler: (FreelancDataList) => set({ FreelancDataList }),
  FreelancDataListJobHendler: (FreelancDataListJob) => set({ FreelancDataListJob }),
+
+ FrlExperienceCompNameHandler: (FrlExperienceCompName) => set({FrlExperienceCompName}),
+ FrlExperienceCompJobHandler: (FrlExperienceCompJob) => set({FrlExperienceCompJob}),
+ FrlCurrentWorkHandler: (FrlCurrentWork) => set({FrlCurrentWork}),
+ FrlExpStartHandler: (FrlExpStart) => set({FrlExpStart}),
+ FrlExpEndHandler: (FrlExpEnd) => set({FrlExpEnd}),
+ FrlExpDescrHandler: (FrlExpDescr) => set({FrlExpDescr}),
+ 
+ FrlEduSchoolNameHandler: (FrlEduSchoolName) => set({FrlEduSchoolName}),
+ FrlEduDegreeHandler: (FrlEduDegree) => set({FrlEduDegree}),
+ FrlEduStudyTypeHandler: (FrlEduStudyType) => set({FrlEduStudyType}),
+ FrlEduLocationHandler: (FrlEduLocation) => set({FrlEduLocation}),
+ FrlEduCurrStudyHandler: (FrlEduCurrStudy) => set({FrlEduCurrStudy}),
 
  TagsHendler: (tags) => set({ tags }),
  HobsHenedler: (hobs) => set({ hobs }),
@@ -103,7 +133,6 @@ const useStore = create((set) => ({
  ContractTranzitHendler: (contractTranzit) => set({ contractTranzit }),
  ContractMfoHendler: (contractMfo) => set({ contractMfo }),
  loginTokenHendler: (loginToken) => set({ loginToken }),
-
 }))
 
-export default useStore
+export default useStore;

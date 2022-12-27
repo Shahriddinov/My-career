@@ -8,7 +8,7 @@ function ChatPage({ user , closeFunction }) {
     const [isSettingsClicked, setSettingsClicked] = useState(false);
     const [clickedSetting, setClickedSetting] = useState(null);
     const {contract,contractHendler} = useStore()
-    console.log(contract);
+
     const settingsList = [
       "Media",
       "Files",

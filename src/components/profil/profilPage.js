@@ -35,7 +35,7 @@ const allTicher=[
 const videoSrc = Car;
 
 const handleChange = (value) => {
-    console.log(`selected ${value}`);
+
 };
 
 function ProfilPage(props) {
@@ -73,7 +73,7 @@ function ProfilPage(props) {
                 image: e.target.result,
             }
             );
-            console.log(e.target.result)
+
         }
         setIcon(true)
     }
