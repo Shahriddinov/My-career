@@ -7,7 +7,7 @@
 </g>
 <defs>
 <filter id="filter0_d_1140_1435" x="220.08" y="0.834954" width="102.635" height="227.556" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feFlood floodOpacity="0" result="BackgroundImageFix"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
 <feOffset dx="-1.64474" dy="1.87097"/>
 <feGaussianBlur stdDeviation="2.90473"/>
@@ -17,7 +17,7 @@
 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1140_1435" result="shape"/>
 </filter>
 <filter id="filter1_d_1140_1435" x="0.0738313" y="2.03821" width="92.4035" height="239.542" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feFlood floodOpacity="0" result="BackgroundImageFix"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
 <feOffset dx="0.980926" dy="1.87097"/>
 <feGaussianBlur stdDeviation="2.03796"/>
