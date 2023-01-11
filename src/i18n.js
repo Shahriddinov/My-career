@@ -1,36 +1,31 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
-
-import transUzb from './Languages/uz.json'
-import transRus from './Languages/ru.json'
-import transEng from './Languages/en.json'
-
+import transUzb from "./Languages/uz.json";
+import transRus from "./Languages/ru.json";
+import transEng from "./Languages/en.json";
 
 const resources = {
   en: {
-    translation: transEng
+    translation: transEng,
   },
   uz: {
-    translation: transUzb
+    translation: transUzb,
   },
-  ru : {
-    translation: transRus
-  }
+  ru: {
+    translation: transRus,
+  },
 };
 
+i18n.use(initReactI18next).init({
+  resources,
+  lng: "en",
+  fallbackLng: "uz",
+  fallbackLng: "ru",
 
-i18n
-.use(initReactI18next) 
-  .init({
-    resources,
-    lng: "en",
-    fallbackLng: "uz",
-    fallbackLng: "ru",
+  interpolation: {
+    escapeValue: false,
+  },
+});
 
-    interpolation: {
-      escapeValue: false
-    }
- });
-  
-export default i18n
+export default i18n;
