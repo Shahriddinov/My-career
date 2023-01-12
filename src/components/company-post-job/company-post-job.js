@@ -170,7 +170,7 @@ const CompanyPostJob = () => {
   }
 
   const [jobName, setJobName] = useState("");
-  const [jobCategory, setJobCategory] = useState(1);
+  const [jobCategory, setJobCategory] = useState();
   const [jobId, setJobId] = useState();
   const [jobDescr, setJobDescr] = useState("");
   const [jobFile, setJobFile] = useState();
@@ -185,10 +185,9 @@ const CompanyPostJob = () => {
   const [jobMoney, setJobMoney] = useState();
   const [currency, setCurrency] = useState([]);
   const [currencyId, setCurrencyId] = useState(1);
-  const [jobTime, setJobTime] = useState();
   const [jobDay, setJobDay] = useState();
   const [jobDeadline, setJobDeadline] = useState([]);
-  const [jobDeadlineId, setJobDeadlineId] = useState(1);
+  const [jobDeadlineId, setJobDeadlineId] = useState(0);
   const [recSkills, setRecSkills] = useState([]);
   const [recLang, setRecLang] = useState([]);
   const [deadlineRate, setDeadlineRate] = useState(0);
@@ -316,6 +315,7 @@ const CompanyPostJob = () => {
     try {
       const infPos = await GET.InfPosition();
       setCategoryItems(infPos.data.data);
+      setJobCategory(infPos.data.data[0].id);
     } catch (err) {
       console.log(err);
     }
@@ -355,6 +355,7 @@ const CompanyPostJob = () => {
     try {
       const curren = await GET.InfCurrency();
       setCurrency(curren.data.result.data);
+      setCurrencyId(curren.data.result.data[0].id);
     } catch (err) {
       alert(err);
     }
@@ -434,8 +435,6 @@ const CompanyPostJob = () => {
       alert(err);
     }
   };
-
-  console.log(jobId, jobMoney, currencyId, deadlineRate, jobDay, jobDeadlineId);
 
   const postContrat = async () => {
     try {
