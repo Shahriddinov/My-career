@@ -24,6 +24,7 @@ const COMPANY_POST_TITLE = `${BaseUrl}api/Job/title`;
 const COMPANY_POST_DESC = `${BaseUrl}api/Job/description`;
 const COMPANY_POST_TALANT = `${BaseUrl}api/Job/talant`;
 const COMPANY_POST_CONTRACT = `${BaseUrl}api/Job/contract`;
+const COMPANY_POST_SAVE = `${BaseUrl}api/Job/save`;
 
 export const token = JSON.parse(localStorage.getItem("token"));
 const headersForm = {
@@ -71,6 +72,8 @@ const POST = {
     axios.post(COMPANY_POST_TALANT, companyPostTalant, headersJson),
   companyPostContract: (companyContract) =>
     axios.post(COMPANY_POST_CONTRACT, companyContract, headersJson),
+  companyPostSave: (postSave) =>
+    axios.post(COMPANY_POST_SAVE, postSave, headersJson),
 };
 
 export default POST;
