@@ -5,15 +5,6 @@ import axios from "axios";
 
 import logo from "../../img/logo.svg";
 import "./company-post-job.scss";
-import {
-  frontend,
-  backend,
-  webDeisger,
-  devops,
-  technicalWriting,
-  mobileDeveloper,
-  QADeveloper,
-} from "./mock";
 
 const CompanyPostJob = () => {
   function progressfirst() {
@@ -170,13 +161,15 @@ const CompanyPostJob = () => {
   }
 
   const [jobName, setJobName] = useState("");
-  const [jobCategory, setJobCategory] = useState();
+  const [jobCategory, setJobCategory] = useState([]);
+  const [jobCategoryId, setJobCategoryId] = useState();
   const [jobId, setJobId] = useState(0);
   const [jobDescr, setJobDescr] = useState("");
-  const [jobFile, setJobFile] = useState();
+  const [jobFile, setJobFile] = useState(null);
   const [website, setWebsite] = useState("");
 
   const [freelancerLvl, setFreelancerLvl] = useState();
+  const [freelancerLvlName, setFreelancerLvlName] = useState("");
   const [frlSkills, setFrlSkills] = useState([]);
   const [frlSkillIds, setFrlSkillIds] = useState([]);
   const [frlLang, setFrlLang] = useState([]);
@@ -254,14 +247,15 @@ const CompanyPostJob = () => {
 
   function handleFileChange(event) {
     let file = event.target.files[0];
-    let reader = new FileReader();
+    // let reader = new FileReader();
+    setJobFile(file);
 
     if (file !== undefined) {
-      reader.readAsDataURL(file);
+      // reader.readAsDataURL(file);
 
-      reader.onload = (e) => {
-        // console.log(e.target.result);
-      };
+      // reader.onload = (e) => {
+      //   setJobFile(e.target.result);
+      // };
 
       fileLbl.current.style.display = "none";
       fileInp.current.style.opacity = 1;
@@ -269,7 +263,8 @@ const CompanyPostJob = () => {
   }
 
   const juniorLvl = () => {
-    setFreelancerLvl(1);
+    setFreelancerLvl(0);
+    setFreelancerLvlName("Junior");
 
     junior.current.style.backgroundColor = "#1D71B8";
     junior.current.style.color = "#ffffff";
@@ -283,6 +278,7 @@ const CompanyPostJob = () => {
 
   const middleLvl = () => {
     setFreelancerLvl(2);
+    setFreelancerLvlName("Middle");
 
     junior.current.style.backgroundColor = "#ffffff";
     junior.current.style.color = "black";
@@ -295,7 +291,8 @@ const CompanyPostJob = () => {
   };
 
   const seniorLvl = () => {
-    setFreelancerLvl(3);
+    setFreelancerLvl(4);
+    setFreelancerLvlName("Senior");
 
     junior.current.style.backgroundColor = "#ffffff";
     junior.current.style.color = "black";
@@ -323,7 +320,8 @@ const CompanyPostJob = () => {
     try {
       const infPos = await GET.InfPosition();
       setCategoryItems(infPos.data.data);
-      setJobCategory(infPos.data.data[0].id);
+      setJobCategory(infPos.data.data[0]);
+      setJobCategoryId(infPos.data.data[0].id);
     } catch (err) {
       console.log(err);
     }
@@ -391,12 +389,12 @@ const CompanyPostJob = () => {
     deadline.push(item);
   }
 
-  const titleCategory = async () => {
+  const titleJob = async () => {
     try {
       const post = await POST.companyPostTitle({
         jobId: jobId,
         title: jobName,
-        positionId: jobCategory,
+        positionId: jobCategoryId,
       });
       if (post.status === 200) {
         setJobId(post.data.jobId);
@@ -427,9 +425,6 @@ const CompanyPostJob = () => {
     }
   };
 
-  console.log("Skill ids: ", frlSkillIds);
-  console.log("Lang ids: ", frlLangIds);
-
   const postTalant = async () => {
     try {
       const post = await POST.companyPostTalant({
@@ -449,15 +444,14 @@ const CompanyPostJob = () => {
   };
 
   const postContrat = async () => {
-    const token = JSON.parse(localStorage.getItem("token"));
     const getPostInformations = async () => {
       try {
-        const get = await axios.get(`http://localhost:5000/api/Job/${jobId}`, {
+        const get = await axios.get(`${BaseUrl}api/Job/${jobId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        setPostInformations(get.data.job.company.name);
+        setPostInformations(get.data.job);
       } catch (err) {
         alert(err);
       }
@@ -482,8 +476,23 @@ const CompanyPostJob = () => {
       alert(err);
       console.log(err.response);
     }
+  };
 
-    console.log(postInformations);
+  const jobSave = async () => {
+    const formData = new FormData();
+    formData.append("jobId", jobId);
+
+    try {
+      const post = await POST.saveCompanyJob(formData);
+
+      if (post.status === 200) {
+        alert("This job added successfully!");
+      } else {
+        alert(post.statusText);
+      }
+    } catch (err) {
+      alert(err);
+    }
   };
 
   return (
@@ -515,7 +524,7 @@ const CompanyPostJob = () => {
                   <select
                     className="form-control inputs-all"
                     onChange={(e) => {
-                      setJobCategory(parseInt(e.target.value));
+                      setJobCategoryId(parseInt(e.target.value));
                     }}
                   >
                     {categoryItems?.map((item) => (
@@ -525,10 +534,7 @@ const CompanyPostJob = () => {
                     ))}
                   </select>
 
-                  <button
-                    className="btn btn-next-to1 mt-3"
-                    onClick={titleCategory}
-                  >
+                  <button className="btn btn-next-to1 mt-3" onClick={titleJob}>
                     Next
                   </button>
                 </div>
@@ -573,7 +579,6 @@ const CompanyPostJob = () => {
                 className="job-file-input form-control"
                 id="post-img"
                 ref={fileInp}
-                value={jobFile}
                 onChange={handleFileChange}
               />
             </div>
@@ -652,17 +657,19 @@ const CompanyPostJob = () => {
                   />
                 </div>
                 <ul className="addRecSkills" ref={recSkillStyle}>
-                  {recSkills?.data?.map((item) => {
-                    return (
-                      <li
-                        key={item?.id}
-                        onClick={() => addingRecSkills(item?.id)}
-                      >
-                        <span>{item?.name}</span>
-                        <i>+</i>
-                      </li>
-                    );
-                  })}
+                  {recSkills?.data
+                    ?.filter((skill) => skill.positionId === jobCategoryId)
+                    .map((item) => {
+                      return (
+                        <li
+                          key={item?.id}
+                          onClick={() => addingRecSkills(item?.id)}
+                        >
+                          <span>{item?.name}</span>
+                          <i>+</i>
+                        </li>
+                      );
+                    })}
                 </ul>
               </div>
             </div>
@@ -804,80 +811,88 @@ const CompanyPostJob = () => {
 
           <div className="fifth-card card1" id="fifth-card">
             <p className="name-top-input">Review and post</p>
-            <p className="name-top-input">Title</p>
+            <p className="name-top-input-sub">Title</p>
             <p className="label-style">Name your job posting</p>
-            <p className="complete-your">{jobName}</p>
+            <p className="complete-your">{postInformations?.name}</p>
 
             <p className="label-style">Category</p>
-            <p className="complete-your">{jobCategory}</p>
-
+            <p className="complete-your">{jobCategory.name}</p>
             <hr />
 
-            <p className="name-top-input">Describe the job</p>
-            <p className="label-style">{jobDescr}</p>
-            <a href="https://{website}/">{website}</a>
+            <p className="name-top-input-sub">Describe the job</p>
+            <p className="label-style">Name your job describtion</p>
+            <p className="complete-your">{postInformations?.description}</p>
+            {/* <a href="https://{website}/">{website}</a> */}
 
             <div>
               <label className="label-style">Additional project files</label>
-              <input
-                type={"file"}
-                value={jobFile}
-                className="form-control mt-2"
-              />
+              <p className="complete-your">
+                {!jobFile ? "File not added" : jobFile?.name}
+              </p>
             </div>
 
             <hr />
 
             <div>
-              <div className="name-top-input">About the talant</div>
+              <div className="name-top-input-sub">About the talant</div>
               <p className="label-style">Required level</p>
-              <p className="complete-your">{freelancerLvl}</p>
+              <p className="complete-your">{freelancerLvlName}</p>
             </div>
 
-            <div style={{ paddingTop: "10px" }}>
+            <div>
               <p className="label-style">Skills needed</p>
               <ul className="post-job-skills">
-                {frlSkills?.data?.map((item) => {
+                {frlSkills?.map((item) => {
                   return (
-                    <li key={item?.id}>
-                      <span>{item?.name}</span>
+                    <li key={item[0]?.id}>
+                      <span>{item[0]?.name}</span>
                     </li>
                   );
                 })}
               </ul>
             </div>
 
-            <div style={{ paddingTop: "10px" }}>
+            <div style={{ paddingTop: "20px" }}>
               <p className="label-style">
                 The language a freelancer should know
               </p>
               <ul className="post-job-skills">
-                {/* {frlLang.map((item, index) => {
+                {frlLang?.map((item) => {
                   return (
-                    <li key={index}>
-                      <span>{item}</span>
+                    <li key={item[0].id}>
+                      <span>{item[0].name}</span>
                     </li>
                   );
-                })} */}
+                })}
               </ul>
             </div>
 
             <hr />
 
             <div>
-              <div className="name-top-input">Terms</div>
+              <div className="name-top-input-sub">Terms</div>
               <ul className="ul-css">
                 <li style={{ marginRight: "15px" }}>
                   <p className="label-style">Price</p>
                   <span className="complete-your">
-                    {/* {jobMoney} {currency} */}
+                    {postInformations?.price +
+                      " " +
+                      postInformations?.currency?.code}
                   </span>
                 </li>
 
                 <li style={{ marginRight: "15px" }}>
                   <p className="label-style">Deadline</p>
                   <span className="complete-your">
-                    {/* {jobDay} {jobDeadline} */}
+                    {postInformations?.deadLine +
+                      " " +
+                      jobDeadline[
+                        deadline.filter(
+                          (item) =>
+                            parseInt(item) ===
+                            parseInt(postInformations?.deadlineRate)
+                        )[0]
+                      ]}
                   </span>
                 </li>
               </ul>
@@ -890,7 +905,9 @@ const CompanyPostJob = () => {
               >
                 Edit
               </button>
-              <button className="btn btn-next-to">Save</button>
+              <button className="btn btn-next-to" onClick={jobSave}>
+                Save
+              </button>
             </div>
           </div>
         </div>
