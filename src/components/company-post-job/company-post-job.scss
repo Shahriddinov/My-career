@@ -254,6 +254,7 @@
     font-size: 20px;
     line-height: 24px;
     color: #323232; 
+    margin-bottom: 10px;
   }
   .post-job-option-cl{
     text-transform: capitalize;
@@ -328,20 +329,21 @@
     font-size: 30px;
     line-height: 37px;
   }
+
+  .name-top-input-sub {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
   .second-card{
     height: 433px;
   }
   .second-card1{
     height: 553px;
     overflow: auto;
-
-    .name-top-input{
-      font-family: 'Montserrat';
-      font-style: normal;
-      font-weight: 700;
-      font-size: 30px;
-      line-height: 37px;
-    }
 
    .company-textarea{
     height: 120px;
@@ -401,7 +403,8 @@
     font-weight: 500;
     font-size: 20px;
     line-height: 22px;
-    color: #808080;;
+    color: #808080;
+    margin-bottom: 20px;
   }
   
   .company-choosing-freelancer-cl{

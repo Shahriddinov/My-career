@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 import TalentModalPage from "../talent-modal-page/talent-modal-page";
 import TalentModalSidebar from "../talent-modal-sidebar/talent-modal-sidebar";
@@ -9,15 +9,12 @@ import dropDown from "../../img/drop-down.svg";
 import userPic from "../../img/user-picture.png";
 import UserSelector from "../user-selector/user-selector";
 
-
 const FreelancerProfile = () => {
-
   const navigate = useNavigate();
 
   return (
-    <div className='talent-modal__page-view'>
-
-        <div className="navbar-home">
+    <div className="talent-modal__page-view">
+      <div className="navbar-home">
         <div className="logos-wrapper">
           <img src={logoBlue} alt="white logo" width="360" height="94" />
         </div>
@@ -94,8 +91,7 @@ const FreelancerProfile = () => {
         <TalentModalSidebar isLinkNeed={false} />
       </div>
     </div>
+  );
+};
 
-  )
-}
-
-export default FreelancerProfile
+export default FreelancerProfile;
