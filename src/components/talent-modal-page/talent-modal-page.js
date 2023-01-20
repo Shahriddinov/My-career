@@ -4,6 +4,7 @@ import ma2 from '../../img/mobileApp2.png';
 import "./talent-modal-page.scss";
 import userPic from "../../img/user-picture.png";
 import starIcon from "../../img/star-icon.svg";
+import editPortf from "../../img/editOnProfile.svg";
 import TalentModalCard from '../talent-modal-cards/talent-modal-card'
 import { useState } from "react";
 
@@ -16,6 +17,7 @@ function TalentModalPage() {
       const eventValue = evt.target.dataset.id;
       setClicked(eventValue);
   }
+
 
   return (
     <div className='talent-modal__page'>
@@ -76,7 +78,7 @@ function TalentModalPage() {
 
 
       <div className='talent-modal__portfolio'>
-        <div className='talent-modal-main-title'>portfolio (14)</div>
+        <div className='talent-modal-main-title'>portfolio (14) </div>
         <div className='talent-modal__portfolio--box'>
             <div className='talent-modal__portfolio--box-card'>
                   <div className='portfolio--box-card-img'>

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const BaseUrl = "http://localhost:5000/";
+export const BaseUrl = "http://localhost:7979/";
 
 // about Company URL
 const REGISTER_URL = `${BaseUrl}register`;
@@ -30,13 +30,13 @@ export const token = JSON.parse(localStorage.getItem("token"));
 const headersForm = {
   headers: {
     "Content-Type": "multipart/form-data",
-    Authorization: `Bearer ${token}`,
+    'Authorization': `Bearer ${token}`,
   },
 };
 
 const headersJson = {
   headers: {
-    Authorization: `Bearer ${token}`,
+    'Authorization': `Bearer ${token}`,
   },
 };
 
@@ -74,6 +74,9 @@ const POST = {
     axios.post(COMPANY_POST_CONTRACT, companyContract, headersJson),
   companyPostSave: (postSave) =>
     axios.post(COMPANY_POST_SAVE, postSave, headersJson),
+
+    // POST PROJECT
+
 };
 
 export default POST;

@@ -4,8 +4,11 @@ import useStore from "../../StoreZustand/StoreZustand";
 import Contract from "../modals/contract/Contract";
 import Chat from "../modals/chat/chat";
 import "./user-selector.scss";
+import { useNavigate } from "react-router-dom";
+
 
 function UserSelector({ userPicture, props }) {
+  const navigate = useNavigate()
   const options = [
     { id: "0", label: "Profile", value: "profile" },
     { id: "1", label: "Notifications", value: "notifications" },
@@ -25,6 +28,8 @@ function UserSelector({ userPicture, props }) {
     setUserSelectOpen(!isUserSelectOpen);
     if(evtValue == "chats") {
       setChatStatus(true);
+    }else if(evtValue == "profile"){
+      navigate('/myProfile')
     }
   }
   const {contract,contractHendler} = useStore()
