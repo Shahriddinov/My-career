@@ -1,13 +1,22 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import RoutesPath from "../routes/routes";
 import { connect, useDispatch } from "react-redux";
+import {
+  HubConnectionBuilder,
+  HttpTransportType,
+  LogLevel,
+} from "@microsoft/signalr";
+import POST from "../API/POST";
 import {
   addSize,
   displayCircle,
   homeCircleVisible,
   showResume,
 } from "../actions/careerAction";
+
+import { BaseUrl, token } from "../API/POST";
 
 import { BiSearch } from "react-icons/bi";
 import { MdClose, MdVerified } from "react-icons/md";
@@ -19,6 +28,26 @@ import UserImg from "../img/user-umid-aka.png";
 import UserImg2 from "../img/user-picture.png";
 import UserImg3 from "../img/5.png";
 import UserImg4 from "../img/6.png";
+
+let access_token = "";
+
+export function setAccessToken(value) {
+  access_token = value;
+}
+
+export const connection = new HubConnectionBuilder()
+  .withUrl("http://localhost:5000/chat", {
+    accessTokenFactory: async () => {
+      let access_token_local = JSON.parse(localStorage.getItem("token"));
+      return access_token ? access_token : access_token_local;
+    },
+  })
+  .build();
+
+let startHub = localStorage.getItem("start");
+if (startHub === "ok") {
+  connection.start();
+}
 
 const ChatForCompany = (props) => {
   const navigate = useNavigate();
@@ -43,6 +72,57 @@ const ChatForCompany = (props) => {
   let isOnline = true;
   let isVerified = true;
 
+  const [receiveMessages, setReceiveMessages] = useState({ message: [] });
+  const [sendMessages, setSendMessages] = useState([]);
+  const [friends, setFriends] = useState([]);
+
+  connection.on("RecieveMessage", (message) => {
+    console.log("Received Message: ", message, connection.connectionId);
+    setReceiveMessages({ message: [...receiveMessages.message, message] });
+  });
+
+  const searchUsers = () => {
+    let searchInput = document.querySelector(".searchInput")?.value;
+    let jsonResult = "";
+    connection.stream("SearchUsers", searchInput).subscribe({
+      next: (item) => {
+        jsonResult += item;
+      },
+      complete: () => {
+        setFriends(JSON.parse(jsonResult));
+      },
+      error: (err) => console.log(err),
+    });
+  };
+
+  const sendMessage = () => {
+    let text = document.querySelector(".send-message")?.value;
+    let filePaths = ["hello"];
+
+    if (text) {
+      let message = [
+        {
+          message: {
+            fromId: friends[0].Id,
+            toId: friends[1].Id,
+            text: text,
+            hasLink: false,
+            hasMedia: false,
+            hasFile: false,
+            chatId: 1,
+          },
+          filePaths: filePaths,
+        },
+      ];
+      setSendMessages([...sendMessages, message]);
+      console.log("Send messsages: ", sendMessages);
+      connection.send("WriteMessage", sendMessages);
+    } else {
+      console.log("Empty message");
+    }
+    document.querySelector(".send-message").value = "";
+  };
+
   return (
     <div className="chat-for-company" id="">
       <div
@@ -58,404 +138,52 @@ const ChatForCompany = (props) => {
 
       <div className="friends-field">
         <div className="search-field">
-          <div className="search-icon">
+          <div className="search-icon" onClick={searchUsers}>
             <BiSearch />
           </div>
-          <input type="text" placeholder="Search..." />
+          <input type="text" className="searchInput" placeholder="Search..." />
         </div>
         <div className="friends-list">
-          <div className="one-friend">
-            <div className="profil-img">
-              <img src={UserImg} />
-              {isOnline ? <div className="isOnline"></div> : null}
-            </div>
-            <div className="user-information">
-              <div className="user-name">
-                <h3>Umid Abdusattarov</h3>
-                {isVerified ? (
-                  <div className="verified-icon">
-                    <MdVerified />
+          {
+            (console.log("Friends: ", friends),
+            friends?.map((friend, item) => {
+              return (
+                <div className="one-friend" key={item}>
+                  <div className="profil-img">
+                    <img src={UserImg} />
+                    {isOnline ? <div className="isOnline"></div> : null}
                   </div>
-                ) : null}
-                <div className="last-time">22:30</div>
-              </div>
-              <div className="last-message">
-                <p>
-                  The company offers services to improve the efficiency of other
-                  companies. And projects getting ready as possible as fast.
-                </p>
-                {((isRead, haveNewMessage) => {
-                  if (!isRead) {
-                    return <RiCheckDoubleFill />;
-                  } else if (haveNewMessage) {
-                    return <div className="isRead"></div>;
-                  } else {
-                    return <RiCheckFill />;
-                  }
-                })(isRead, haveNewMessage)}
-              </div>
-            </div>
-          </div>
-          <div className="one-friend">
-            <div className="profil-img">
-              <img src={UserImg2} />
-              {!isOnline ? <div className="isOnline"></div> : null}
-            </div>
-            <div className="user-information">
-              <div className="user-name">
-                <h3>Rayhona Olimova</h3>
-                {!isVerified ? (
-                  <div className="verified-icon">
-                    <MdVerified />
+                  <div className="user-information">
+                    <div className="user-name">
+                      <h3>Umid Abdusattarov</h3>
+                      {isVerified ? (
+                        <div className="verified-icon">
+                          <MdVerified />
+                        </div>
+                      ) : null}
+                      <div className="last-time">22:30</div>
+                    </div>
+                    <div className="last-message">
+                      <p>
+                        The company offers services to improve the efficiency of
+                        other companies. And projects getting ready as possible
+                        as fast.
+                      </p>
+                      {((isRead, haveNewMessage) => {
+                        if (!isRead) {
+                          return <RiCheckDoubleFill />;
+                        } else if (haveNewMessage) {
+                          return <div className="isRead"></div>;
+                        } else {
+                          return <RiCheckFill />;
+                        }
+                      })(isRead, haveNewMessage)}
+                    </div>
                   </div>
-                ) : null}
-                <div className="last-time">22:30</div>
-              </div>
-              <div className="last-message">
-                <p>
-                  The company offers services to improve the efficiency of other
-                  companies. And projects getting ready as possible as fast.
-                </p>
-                {isRead ? <RiCheckDoubleFill /> : <RiCheckFill />}
-              </div>
-            </div>
-          </div>
-          <div className="one-friend">
-            <div className="profil-img">
-              <img src={UserImg3} />
-              {isOnline ? <div className="isOnline"></div> : null}
-            </div>
-            <div className="user-information">
-              <div className="user-name">
-                <h3>Nodira Qodirova</h3>
-                {isVerified ? (
-                  <div className="verified-icon">
-                    <MdVerified />
-                  </div>
-                ) : null}
-                <div className="last-time">22:30</div>
-              </div>
-              <div className="last-message">
-                <p>
-                  The company offers services to improve the efficiency of other
-                  companies. And projects getting ready as possible as fast.
-                </p>
-                {isRead ? <RiCheckDoubleFill /> : <RiCheckFill />}
-              </div>
-            </div>
-          </div>
-          <div className="one-friend">
-            <div className="profil-img">
-              <img src={UserImg4} />
-              {!isOnline ? <div className="isOnline"></div> : null}
-            </div>
-            <div className="user-information">
-              <div className="user-name">
-                <h3>Xadicha Qurbonova</h3>
-                {!isVerified ? (
-                  <div className="verified-icon">
-                    <MdVerified />
-                  </div>
-                ) : null}
-                <div className="last-time">22:30</div>
-              </div>
-              <div className="last-message">
-                <p>
-                  The company offers services to improve the efficiency of other
-                  companies. And projects getting ready as possible as fast.
-                </p>
-                {!isRead ? <RiCheckDoubleFill /> : <RiCheckFill />}
-              </div>
-            </div>
-          </div>
-          <div className="one-friend">
-            <div className="profil-img">
-              <img src={UserImg} />
-              {isOnline ? <div className="isOnline"></div> : null}
-            </div>
-            <div className="user-information">
-              <div className="user-name">
-                <h3>Umid Abdusattarov</h3>
-                {isVerified ? (
-                  <div className="verified-icon">
-                    <MdVerified />
-                  </div>
-                ) : null}
-                <div className="last-time">22:30</div>
-              </div>
-              <div className="last-message">
-                <p>
-                  The company offers services to improve the efficiency of other
-                  companies. And projects getting ready as possible as fast.
-                </p>
-                {!isRead ? <RiCheckDoubleFill /> : <RiCheckFill />}
-              </div>
-            </div>
-          </div>
-          <div className="one-friend">
-            <div className="profil-img">
-              <img src={UserImg2} />
-              {!isOnline ? <div className="isOnline"></div> : null}
-            </div>
-            <div className="user-information">
-              <div className="user-name">
-                <h3>Rayhona Olimova</h3>
-                {!isVerified ? (
-                  <div className="verified-icon">
-                    <MdVerified />
-                  </div>
-                ) : null}
-                <div className="last-time">22:30</div>
-              </div>
-              <div className="last-message">
-                <p>
-                  The company offers services to improve the efficiency of other
-                  companies. And projects getting ready as possible as fast.
-                </p>
-                {isRead ? <RiCheckDoubleFill /> : <RiCheckFill />}
-              </div>
-            </div>
-          </div>
-          <div className="one-friend">
-            <div className="profil-img">
-              <img src={UserImg3} />
-              {isOnline ? <div className="isOnline"></div> : null}
-            </div>
-            <div className="user-information">
-              <div className="user-name">
-                <h3>Nodira Qodirova</h3>
-                {isVerified ? (
-                  <div className="verified-icon">
-                    <MdVerified />
-                  </div>
-                ) : null}
-                <div className="last-time">22:30</div>
-              </div>
-              <div className="last-message">
-                <p>
-                  The company offers services to improve the efficiency of other
-                  companies. And projects getting ready as possible as fast.
-                </p>
-                {isRead ? <RiCheckDoubleFill /> : <RiCheckFill />}
-              </div>
-            </div>
-          </div>
-          <div className="one-friend">
-            <div className="profil-img">
-              <img src={UserImg4} />
-              {!isOnline ? <div className="isOnline"></div> : null}
-            </div>
-            <div className="user-information">
-              <div className="user-name">
-                <h3>Xadicha Qurbonova</h3>
-                {!isVerified ? (
-                  <div className="verified-icon">
-                    <MdVerified />
-                  </div>
-                ) : null}
-                <div className="last-time">22:30</div>
-              </div>
-              <div className="last-message">
-                <p>
-                  The company offers services to improve the efficiency of other
-                  companies. And projects getting ready as possible as fast.
-                </p>
-                {!isRead ? <RiCheckDoubleFill /> : <RiCheckFill />}
-              </div>
-            </div>
-          </div>
-          <div className="one-friend">
-            <div className="profil-img">
-              <img src={UserImg} />
-              {isOnline ? <div className="isOnline"></div> : null}
-            </div>
-            <div className="user-information">
-              <div className="user-name">
-                <h3>Umid Abdusattarov</h3>
-                {isVerified ? (
-                  <div className="verified-icon">
-                    <MdVerified />
-                  </div>
-                ) : null}
-                <div className="last-time">22:30</div>
-              </div>
-              <div className="last-message">
-                <p>
-                  The company offers services to improve the efficiency of other
-                  companies. And projects getting ready as possible as fast.
-                </p>
-                {!isRead ? <RiCheckDoubleFill /> : <RiCheckFill />}
-              </div>
-            </div>
-          </div>
-          <div className="one-friend">
-            <div className="profil-img">
-              <img src={UserImg2} />
-              {!isOnline ? <div className="isOnline"></div> : null}
-            </div>
-            <div className="user-information">
-              <div className="user-name">
-                <h3>Rayhona Olimova</h3>
-                {!isVerified ? (
-                  <div className="verified-icon">
-                    <MdVerified />
-                  </div>
-                ) : null}
-                <div className="last-time">22:30</div>
-              </div>
-              <div className="last-message">
-                <p>
-                  The company offers services to improve the efficiency of other
-                  companies. And projects getting ready as possible as fast.
-                </p>
-                {isRead ? <RiCheckDoubleFill /> : <RiCheckFill />}
-              </div>
-            </div>
-          </div>
-          <div className="one-friend">
-            <div className="profil-img">
-              <img src={UserImg3} />
-              {isOnline ? <div className="isOnline"></div> : null}
-            </div>
-            <div className="user-information">
-              <div className="user-name">
-                <h3>Nodira Qodirova</h3>
-                {isVerified ? (
-                  <div className="verified-icon">
-                    <MdVerified />
-                  </div>
-                ) : null}
-                <div className="last-time">22:30</div>
-              </div>
-              <div className="last-message">
-                <p>
-                  The company offers services to improve the efficiency of other
-                  companies. And projects getting ready as possible as fast.
-                </p>
-                {isRead ? <RiCheckDoubleFill /> : <RiCheckFill />}
-              </div>
-            </div>
-          </div>
-          <div className="one-friend">
-            <div className="profil-img">
-              <img src={UserImg4} />
-              {!isOnline ? <div className="isOnline"></div> : null}
-            </div>
-            <div className="user-information">
-              <div className="user-name">
-                <h3>Xadicha Qurbonova</h3>
-                {!isVerified ? (
-                  <div className="verified-icon">
-                    <MdVerified />
-                  </div>
-                ) : null}
-                <div className="last-time">22:30</div>
-              </div>
-              <div className="last-message">
-                <p>
-                  The company offers services to improve the efficiency of other
-                  companies. And projects getting ready as possible as fast.
-                </p>
-                {!isRead ? <RiCheckDoubleFill /> : <RiCheckFill />}
-              </div>
-            </div>
-          </div>
-          <div className="one-friend">
-            <div className="profil-img">
-              <img src={UserImg} />
-              {isOnline ? <div className="isOnline"></div> : null}
-            </div>
-            <div className="user-information">
-              <div className="user-name">
-                <h3>Umid Abdusattarov</h3>
-                {isVerified ? (
-                  <div className="verified-icon">
-                    <MdVerified />
-                  </div>
-                ) : null}
-                <div className="last-time">22:30</div>
-              </div>
-              <div className="last-message">
-                <p>
-                  The company offers services to improve the efficiency of other
-                  companies. And projects getting ready as possible as fast.
-                </p>
-                {!isRead ? <RiCheckDoubleFill /> : <RiCheckFill />}
-              </div>
-            </div>
-          </div>
-          <div className="one-friend">
-            <div className="profil-img">
-              <img src={UserImg2} />
-              {!isOnline ? <div className="isOnline"></div> : null}
-            </div>
-            <div className="user-information">
-              <div className="user-name">
-                <h3>Rayhona Olimova</h3>
-                {!isVerified ? (
-                  <div className="verified-icon">
-                    <MdVerified />
-                  </div>
-                ) : null}
-                <div className="last-time">22:30</div>
-              </div>
-              <div className="last-message">
-                <p>
-                  The company offers services to improve the efficiency of other
-                  companies. And projects getting ready as possible as fast.
-                </p>
-                {isRead ? <RiCheckDoubleFill /> : <RiCheckFill />}
-              </div>
-            </div>
-          </div>
-          <div className="one-friend">
-            <div className="profil-img">
-              <img src={UserImg3} />
-              {isOnline ? <div className="isOnline"></div> : null}
-            </div>
-            <div className="user-information">
-              <div className="user-name">
-                <h3>Nodira Qodirova</h3>
-                {isVerified ? (
-                  <div className="verified-icon">
-                    <MdVerified />
-                  </div>
-                ) : null}
-                <div className="last-time">22:30</div>
-              </div>
-              <div className="last-message">
-                <p>
-                  The company offers services to improve the efficiency of other
-                  companies. And projects getting ready as possible as fast.
-                </p>
-                {isRead ? <RiCheckDoubleFill /> : <RiCheckFill />}
-              </div>
-            </div>
-          </div>
-          <div className="one-friend">
-            <div className="profil-img">
-              <img src={UserImg4} />
-              {!isOnline ? <div className="isOnline"></div> : null}
-            </div>
-            <div className="user-information">
-              <div className="user-name">
-                <h3>Xadicha Qurbonova</h3>
-                {!isVerified ? (
-                  <div className="verified-icon">
-                    <MdVerified />
-                  </div>
-                ) : null}
-                <div className="last-time">22:30</div>
-              </div>
-              <div className="last-message">
-                <p>
-                  The company offers services to improve the efficiency of other
-                  companies. And projects getting ready as possible as fast.
-                </p>
-                {!isRead ? <RiCheckDoubleFill /> : <RiCheckFill />}
-              </div>
-            </div>
-          </div>
+                </div>
+              );
+            }))
+          }
         </div>
       </div>
       <div className="body-chats">
@@ -486,17 +214,35 @@ const ChatForCompany = (props) => {
         </div>
         <div className="chat-box-left">
           <div className="chat-box">
-            <div className="company-message-box"></div>
+            <div className="company-message-box">
+              {
+                (console.log("Send messages: ", sendMessages),
+                sendMessages?.message?.map((message, index) => (
+                  <div className="send-chat-message" key={index}>
+                    <div className="chat-message-text">{message.text}</div>
+                  </div>
+                )))
+              }
+              {/* {receiveMessages?.map((message, index) => (
+                <div className="receive-chat-message" key={index}>
+                  <div className="chat-message-text">{message.text}</div>
+                </div>
+              ))} */}
+            </div>
           </div>
           <div className="send-message-box">
             <div className="send-file-icon">
               <ImAttachment />
             </div>
             <div className="type-message">
-              <input type="text" placeholder="Type message..." />
+              <input
+                type="text"
+                className="send-message"
+                placeholder="Type message..."
+              />
             </div>
             <div className="send-btn">
-              <button>Send</button>
+              <button onClick={sendMessage}>Send</button>
             </div>
           </div>
         </div>

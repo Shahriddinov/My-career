@@ -247,16 +247,9 @@ const CompanyPostJob = () => {
 
   function handleFileChange(event) {
     let file = event.target.files[0];
-    // let reader = new FileReader();
     setJobFile(file);
 
     if (file !== undefined) {
-      // reader.readAsDataURL(file);
-
-      // reader.onload = (e) => {
-      //   setJobFile(e.target.result);
-      // };
-
       fileLbl.current.style.display = "none";
       fileInp.current.style.opacity = 1;
     }
@@ -424,6 +417,9 @@ const CompanyPostJob = () => {
       alert(err);
     }
   };
+
+  console.log("Skill ids: ", frlSkillIds);
+  console.log("Lang ids: ", frlLangIds);
 
   const postTalant = async () => {
     try {

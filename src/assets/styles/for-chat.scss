@@ -515,15 +515,33 @@
         width: 100%;
         height: 100%;
         overflow-y: auto;
-        padding: 20px 20px 40px 40px;
+        padding: 20px;
         
         .company-message-box{
-          position: absolute;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          align-items: flex-end;
+          height: 94%;
           width: 100%;
-          height: auto;
-          border-radius: 26px;
-          img {
-            width: 100%;
+          // border: 1px solid red;
+          
+          .send-chat-message {
+            width: 70%;
+            background: #1D71B8;
+            border-radius: 20px 20px 0px 20px;
+            color: #fff;
+            padding: 10px 10px 30px 10px;
+            margin-top: 15px;
+          }
+
+          .receive-chat-message {
+            width: 70%;
+            background: #1D71B8;
+            border-radius: 20px 20px 20px 0;
+            color: #fff;
+            padding: 10px 10px 30px 10px;
+            margin-top: 15px;
           }
         }
 
