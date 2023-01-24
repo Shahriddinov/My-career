@@ -170,8 +170,8 @@ const CompanyPostJob = () => {
   }
 
   const [jobName, setJobName] = useState("");
-  const [jobCategory, setJobCategory] = useState(1);
-  const [jobId, setJobId] = useState();
+  const [jobCategory, setJobCategory] = useState();
+  const [jobId, setJobId] = useState(0);
   const [jobDescr, setJobDescr] = useState("");
   const [jobFile, setJobFile] = useState();
   const [website, setWebsite] = useState("");
@@ -185,10 +185,9 @@ const CompanyPostJob = () => {
   const [jobMoney, setJobMoney] = useState();
   const [currency, setCurrency] = useState([]);
   const [currencyId, setCurrencyId] = useState(1);
-  const [jobTime, setJobTime] = useState();
   const [jobDay, setJobDay] = useState();
   const [jobDeadline, setJobDeadline] = useState([]);
-  const [jobDeadlineId, setJobDeadlineId] = useState(1);
+  const [jobDeadlineId, setJobDeadlineId] = useState(0);
   const [recSkills, setRecSkills] = useState([]);
   const [recLang, setRecLang] = useState([]);
   const [deadlineRate, setDeadlineRate] = useState(0);
@@ -196,6 +195,8 @@ const CompanyPostJob = () => {
   const [byProject, setByProject] = useState(false);
 
   const [categoryItems, setCategoryItems] = useState(null);
+
+  const [postInformations, setPostInformations] = useState([]);
 
   const junior = useRef();
   const middle = useRef();
@@ -252,13 +253,19 @@ const CompanyPostJob = () => {
   };
 
   function handleFileChange(event) {
-    let files = event.target.files;
+    let file = event.target.files[0];
     let reader = new FileReader();
 
-    reader.readAsDataURL(files[0]);
-    reader.onload = (e) => {
-      setJobFile(e.target.result);
-    };
+    if (file !== undefined) {
+      reader.readAsDataURL(file);
+
+      reader.onload = (e) => {
+        // console.log(e.target.result);
+      };
+
+      fileLbl.current.style.display = "none";
+      fileInp.current.style.opacity = 1;
+    }
   }
 
   const juniorLvl = () => {
@@ -316,6 +323,7 @@ const CompanyPostJob = () => {
     try {
       const infPos = await GET.InfPosition();
       setCategoryItems(infPos.data.data);
+      setJobCategory(infPos.data.data[0].id);
     } catch (err) {
       console.log(err);
     }
@@ -355,6 +363,7 @@ const CompanyPostJob = () => {
     try {
       const curren = await GET.InfCurrency();
       setCurrency(curren.data.result.data);
+      setCurrencyId(curren.data.result.data[0].id);
     } catch (err) {
       alert(err);
     }
@@ -385,10 +394,12 @@ const CompanyPostJob = () => {
   const titleCategory = async () => {
     try {
       const post = await POST.companyPostTitle({
+        jobId: jobId,
         title: jobName,
         positionId: jobCategory,
       });
       if (post.status === 200) {
+        setJobId(post.data.jobId);
         progressfirst();
       } else {
         alert(post.statusText);
@@ -400,14 +411,13 @@ const CompanyPostJob = () => {
 
   const describeJob = async () => {
     const formData = new FormData();
-    formData.append("jobId", jobCategory);
+    formData.append("jobId", jobId);
     formData.append("description", jobDescr);
     formData.append("file", jobFile);
 
     try {
       const post = await POST.companyPostDesc(formData);
       if (post.status === 200) {
-        setJobId(post.data.jobId);
         progresssecond();
       } else {
         alert(post.statusText);
@@ -417,10 +427,13 @@ const CompanyPostJob = () => {
     }
   };
 
+  console.log("Skill ids: ", frlSkillIds);
+  console.log("Lang ids: ", frlLangIds);
+
   const postTalant = async () => {
     try {
       const post = await POST.companyPostTalant({
-        jobId: jobCategory,
+        jobId: jobId,
         requiredCandidateLevel: freelancerLvl,
         requiredSkillIds: frlSkillIds,
         requiredLanguageIds: frlLangIds,
@@ -435,9 +448,21 @@ const CompanyPostJob = () => {
     }
   };
 
-  console.log(jobId, jobMoney, currencyId, deadlineRate, jobDay, jobDeadlineId);
-
   const postContrat = async () => {
+    const token = JSON.parse(localStorage.getItem("token"));
+    const getPostInformations = async () => {
+      try {
+        const get = await axios.get(`http://localhost:5000/api/Job/${jobId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setPostInformations(get.data.job.company.name);
+      } catch (err) {
+        alert(err);
+      }
+    };
+
     try {
       const post = await POST.companyPostContract({
         jobId: jobId,
@@ -448,6 +473,7 @@ const CompanyPostJob = () => {
         deadlineRate: jobDeadlineId,
       });
       if (post.status === 200) {
+        getPostInformations();
         progressfourth();
       } else {
         alert(post.statusText);
@@ -456,6 +482,8 @@ const CompanyPostJob = () => {
       alert(err);
       console.log(err.response);
     }
+
+    console.log(postInformations);
   };
 
   return (
@@ -469,7 +497,7 @@ const CompanyPostJob = () => {
             <div className="all-r-l-input">
               <div className="company-inputs">
                 <div>
-                  <label className="mt-4 label-style" htmlFor="">
+                  <label className="mt-4 mb-3 label-style" htmlFor="">
                     Name your job posting
                   </label>
                   <input
@@ -481,7 +509,7 @@ const CompanyPostJob = () => {
                 </div>
 
                 <div>
-                  <label className="mt-4 label-style" htmlFor="">
+                  <label className="mt-4 mb-3 label-style" htmlFor="">
                     Category
                   </label>
                   <select
@@ -512,7 +540,7 @@ const CompanyPostJob = () => {
             <p className="name-top-input">Describe the job</p>
 
             <div>
-              <label className="mt-4 label-style" htmlFor="">
+              <label className="mt-4 mb-3 label-style" htmlFor="">
                 Describe the job
               </label>
               <textarea
@@ -520,7 +548,7 @@ const CompanyPostJob = () => {
                 className="form-control company-textarea"
                 onChange={(e) => setJobDescr(e.target.value)}
               />
-              <label>http//</label>
+              <label>http://</label>
               <input
                 type={"text"}
                 onChange={(e) => setWebsite(e.target.value)}
@@ -529,12 +557,12 @@ const CompanyPostJob = () => {
               />
             </div>
             <div>
-              <label className="mt-4 label-style">
+              <label className="mt-4 mb-3 label-style">
                 Upload the picture if necessary
               </label>
 
               <label
-                className="mt-4 company-choose-img form-control"
+                className="company-choose-img form-control"
                 htmlFor="post-img"
                 ref={fileLbl}
               >
@@ -546,6 +574,7 @@ const CompanyPostJob = () => {
                 id="post-img"
                 ref={fileInp}
                 value={jobFile}
+                onChange={handleFileChange}
               />
             </div>
             <div className="all-btn-d-flex">

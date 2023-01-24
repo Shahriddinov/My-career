@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const BaseUrl = "http://localhost:5000/";
+export const BaseUrl = "http://localhost:7979/";
 
 // about Company URL
 const REGISTER_URL = `${BaseUrl}register`;
@@ -24,18 +24,19 @@ const COMPANY_POST_TITLE = `${BaseUrl}api/Job/title`;
 const COMPANY_POST_DESC = `${BaseUrl}api/Job/description`;
 const COMPANY_POST_TALANT = `${BaseUrl}api/Job/talant`;
 const COMPANY_POST_CONTRACT = `${BaseUrl}api/Job/contract`;
+const COMPANY_POST_SAVE = `${BaseUrl}api/Job/save`;
 
 export const token = JSON.parse(localStorage.getItem("token"));
 const headersForm = {
   headers: {
     "Content-Type": "multipart/form-data",
-    Authorization: `Bearer ${token}`,
+    'Authorization': `Bearer ${token}`,
   },
 };
 
 const headersJson = {
   headers: {
-    Authorization: `Bearer ${token}`,
+    'Authorization': `Bearer ${token}`,
   },
 };
 
@@ -71,6 +72,11 @@ const POST = {
     axios.post(COMPANY_POST_TALANT, companyPostTalant, headersJson),
   companyPostContract: (companyContract) =>
     axios.post(COMPANY_POST_CONTRACT, companyContract, headersJson),
+  companyPostSave: (postSave) =>
+    axios.post(COMPANY_POST_SAVE, postSave, headersJson),
+
+    // POST PROJECT
+
 };
 
 export default POST;

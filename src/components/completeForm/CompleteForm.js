@@ -542,15 +542,6 @@ function progresseighthback(){
 
     const postFrlLangs= async ()=>{
 
-        // try {
-        //     await POST.Langs({
-        //         LanguageId: frlLang,
-        //         Level: frlLangLevel
-        //     })
-        // } catch (error) {
-        //     console.log(error);
-        // }
-
         const formData = new FormData()
 
         formData.append('LanguageId', frlLang)
@@ -894,7 +885,7 @@ function progresseighthback(){
                                             <p className='resume-card-1__info-text'>Languages</p>
                                             {
                                                 inputList.map((item,i) => {
-                                                    return <p className='resume-card-1__info-subtext' key={i+1}>{item.language}</p>
+                                                    return <p className='resume-card-1__info-subtext' key={i}>{item.language}</p>
                                                 }) 
                                             }
                                         </div>
