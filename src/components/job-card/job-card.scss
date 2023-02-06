@@ -1,3 +1,8 @@
+.job-ul {
+    padding: 0 !important;
+    width: 48vw;
+}
+
 .job-card {
     margin-bottom: 10px;
     padding: 20px 20px 20px 30px;
@@ -15,7 +20,7 @@
     display: flex;
     align-items: center;
     border-bottom: 1px solid #CDCDCD;
-}w
+}
 
 .job-card__title {
     margin: 0;

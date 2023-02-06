@@ -95,3 +95,17 @@
   width: 750px!important;
   height: 663px;
 }
+
+.current-div {
+  height: 50px;
+  display: flex;
+  align-items: center;
+
+  input[type="checkbox"] {
+    min-height: 0 !important;
+    margin-top: 0 !important;
+    margin-left: 0 !important;
+    padding: 0;
+    margin-right: 10px;
+  }
+}

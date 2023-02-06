@@ -1,5 +1,79 @@
 $mainColor: #1D71B8;
 
+.navbarHom {
+  width: 100vw;
+  height: 300px;
+  position: absolute;
+  display: flex;
+  justify-content: flex-start;
+  
+  .logoBg {
+    width: 37%;
+    height: 485px;
+    background-image: url("../../img/EllipseNav.svg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    img{
+      width: 51%;
+      margin: 90px 0 0 256px;
+      height: auto;
+    }
+  }
+  .logoBgWhite{
+    position: relative;
+    width: 37%;
+    height: 485px;
+    background-image: url("../../img/EllipseNavWhit.svg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    img{
+      width: 51%;
+      margin: 90px 0 0 256px;
+      height: auto;
+
+    }
+  }
+  .homeNavbar{
+    width: 58%;
+    position: relative;
+    margin-top: 4.2%;
+
+    .nav{
+      height: 50px;
+      margin-left: 20px;
+      position: relative;
+      border-bottom: 5px solid white;
+      border-radius: 2.5px;
+      display: flex;
+      justify-content: space-between;
+      width: 55%;
+      .nav-link{
+        cursor: pointer;
+        font-family: 'Montserrat',sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 23px;
+        line-height: 28px;
+        display: flex;
+        justify-content: center;
+        color: $mainColor;
+        transition: 0.2s linear;
+
+        &:hover {
+          transition: 0.2s linear;
+          border-bottom: 5px solid $mainColor;
+        }
+      }
+      .active{
+        border-bottom: 5px solid $mainColor;
+      }
+    }
+    .boxBtn{
+      margin-left: 50px;
+    }
+  }
+}
+
 .nav{
     position: relative;
     .line{

@@ -1,0 +1,255 @@
+.talent-modal__page-view--wrapper {
+    width: 73vw;
+    position: relative;
+    top: 200px;
+}
+
+.talent-modal__job {
+    width: 320px;
+    margin-left: 20px;
+}
+
+.talent-modal__user-subtitle-span {
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.talent-modal__sidebar {
+    width: 30vw;
+
+    & > .special-box {
+        border: none;
+    }
+}
+
+.talent-modal__sidebar-box-title {
+    display: flex;
+
+    & > div {
+        margin-left: 10px;
+
+        img {
+            width: 35px;
+        }
+    }
+}
+
+.edit-available {
+    h2 {
+        font-weight: 600;
+    }
+
+    span {
+        margin-bottom: 20px;
+        font-size: 1.1rem;
+    }
+
+    p {
+        margin-top: 20px;
+        margin-bottom: 0;
+        font-weight: 600;
+        font-size: 1.2rem;
+    }
+
+    & > div {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+
+        input {
+            transform: scale(1.5);
+            padding: 0;
+            margin: 0;
+            margin-right: 10px;
+            min-height: 20px;
+        }
+
+        label {
+            font-weight: 600;
+            padding: 0;
+            margin: 0;
+        }
+    }
+}
+
+.contacts-part {
+    height: auto;
+
+    & > div {
+        margin-top: 15px;
+
+        & > svg {
+            font-size: 1.6rem;
+        }
+
+        &:nth-child(2) svg {
+            color: #40B3E0;
+        }
+
+        &:nth-child(3) svg {
+            color: rgb(212, 31, 31);
+        }
+
+        &:nth-child(4) svg {
+            color: #004F9D;
+        }
+
+        &:nth-child(5) svg {
+            color: #55ACEE;
+        }
+
+        &:nth-child(6) svg {
+            color: #39AE41;
+        }
+
+        // &:nth-child(7) svg {
+        //     color: #39AE41;
+        // }
+
+        & > a {
+            font-size: 1.3rem;
+            margin-left: 10px;
+            color: #000000;
+        }
+    }
+}
+
+.address-part {
+    svg {
+        margin-top: -8px;
+        font-size: 1.8rem;
+        color: #1D71B8;
+    }
+
+    span {
+        color: #000000;
+        font-size: 1.3rem;
+    }
+}
+
+.resume-btn {
+    text-align: left;
+    
+    button {
+        background: #1D71B8;
+        border-radius: 8px;
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 1.5rem;
+    }
+}
+
+.inputs-all1 {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.right-input {
+    margin-right: 20px;
+}
+
+.remove-btn {
+    width: 58px;
+    height: 54px;
+    margin-top: 0;
+}
+
+.group69{
+    padding: 10px;
+    background-color: white;
+    font-size: 22px;
+    font-weight: 500;
+    z-index: 999;
+    margin-top: -65px;
+    margin-left: 390px;
+    position: absolute;
+    border-radius: 20px;
+    display: none;
+    border: 1px solid grey;
+
+    .editDiv{
+        display: flex;
+        align-items: center;
+        
+        &:hover{
+            color: rgba(29, 113, 184, 1);
+            cursor: pointer;
+        }
+        img{
+            margin-right: 5px;
+        }
+    }
+}
+
+.addProjDiv{
+    margin-top: 15px;
+
+    .dropPics{
+        width: 100%;
+        height: 100px;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        border: dotted;
+        border-color: #1D71B8;
+    }
+    .addPortTitle{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 37px;
+    letter-spacing: 0em;
+    text-align: left;
+    
+    }
+
+    .addPortDesc{
+        height: 110px;
+        padding: 8px;
+        font-size: 20px;
+    }
+
+    .miniTitle{
+        font-family: 'Montserrat';
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 22px;
+        letter-spacing: 0em;
+        text-align: left;
+
+    }
+
+    .mappedImages{
+        display: flex;
+        justify-content: start;
+        flex-wrap: wrap;
+
+        .spanClass{
+            display: block;
+
+            .delImg{
+                margin-left: 90px;
+                cursor: pointer;
+            }
+    
+            img{
+                margin-top: -15px;
+                margin-right: 8px;
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+    }
+}
+.addProjectModal{
+    width: 700px;
+    padding: 50px 25px;
+}
+
+#proPics{
+    display: none;
+}
+

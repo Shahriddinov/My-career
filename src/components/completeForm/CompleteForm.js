@@ -575,15 +575,6 @@ function CompleteForm({
   };
 
   const postFrlLangs = async () => {
-    // try {
-    //     await POST.Langs({
-    //         LanguageId: frlLang,
-    //         Level: frlLangLevel
-    //     })
-    // } catch (error) {
-    //     console.log(error);
-    // }
-
     const formData = new FormData();
 
     formData.append("LanguageId", frlLang);
@@ -1113,10 +1104,7 @@ function CompleteForm({
                         <p className="resume-card-1__info-text">Languages</p>
                         {inputList.map((item, i) => {
                           return (
-                            <p
-                              className="resume-card-1__info-subtext"
-                              key={i + 1}
-                            >
+                            <p className="resume-card-1__info-subtext" key={i}>
                               {item.language}
                             </p>
                           );
@@ -2326,7 +2314,9 @@ function CompleteForm({
                 </div>
               </div>
             </div>
+
             <div></div>
+
             <div className="resume-card__bottom">
               <div className="resume-controll">
                 <button disabled={btnPrev} onClick={ResumeCaruselPrev}>

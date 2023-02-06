@@ -48,6 +48,9 @@ function LoginCard(props) {
         password: props.authPasswordInitialValue,
       }).then((loginResponse) => {
         console.log("Login response: ", loginResponse);
+        if (loginResponse?.status === 200) {
+          navigate(RoutesPath.signUpPage);
+        }
         localStorage.setItem("token", JSON.stringify(loginResponse.data.token));
         setAccessToken(loginResponse.data.token);
         connection.start().then(() => {
@@ -55,13 +58,8 @@ function LoginCard(props) {
           console.log("Connection: ", connection);
         });
       });
-      if (PostRest?.data?.succeded == false) {
-      } else {
-        navigate(RoutesPath.signUpPage);
-      }
     } catch (error) {
-      console.log(error);
-      alert(error);
+      alert("Email or password is incorrect!");
     }
   };
 

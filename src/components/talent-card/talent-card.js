@@ -14,7 +14,7 @@ function TalentCard() {
     setModalOpened(value);
   }
   return (
-    <>
+    <ul className="talant-card">
       <li
         className="talent-card"
         onClick={() => setModalOpened(!isModalOpened)}
@@ -126,7 +126,7 @@ function TalentCard() {
           closeModal={closeModal}
         />
       )}
-    </>
+    </ul>
   );
 }
 

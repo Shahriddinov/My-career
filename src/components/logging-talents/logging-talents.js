@@ -6,15 +6,9 @@ function LoggingTalents(props) {
   return (
     <div>
       <div className="post-jop-wrapper" id="overflow-y-scroll">
-        <div className={"navbarHom"}>
-          <div className="logoBg">
-            <img src="./images/Napa_logo_white.svg" alt="" />
-          </div>
-          <div className="homeNavbar">
-            <Navbar />
-          </div>
+        <div className="navbarHom">
+          <Navbar />
         </div>
-
         <TalentView />
       </div>
       <div className="pattern99">

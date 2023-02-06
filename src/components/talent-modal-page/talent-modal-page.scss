@@ -169,6 +169,7 @@
   }
 
   .talent-modal__portfolio{
+
     width: 100%;
     padding: 20px 0;
     border-bottom: 1px solid gray;
@@ -288,4 +289,16 @@
     left: 0;
     background-color: #1d71b8;
     border-radius: 5px;
+  }
+
+  .talent-modal__portfolio--box::-webkit-scrollbar{
+    margin-left: 5px;
+    width: 12px;
+    background: white;
+  }
+  
+  .talent-modal__portfolio--box::-webkit-scrollbar-thumb{
+    background: #1D71B8;
+    margin-left: 5px;
+    border-radius: 15px;
   }

@@ -1,23 +1,14 @@
-import React, { useState } from 'react';
-import RoutesPath from "../../routes/routes";
-import { Link, useNavigate } from "react-router-dom";
-import { Button } from "react-bootstrap";
-import JobsView from '../jobs-view/jobs-view';
-import LoggingJobs from '../logging-jobs/logging-jobs';
-import LoggedJobs from '../logged-jobs/logged-jobs';
+import React, { useState } from "react";
+import { token } from "../../API/POST";
+import LoggedJobs from "../logged-jobs/logged-jobs";
+import LoggingJobs from "../logging-jobs/logging-jobs";
 
-function PostJop(props) {
-  const [ isLogged, setLogged ] = useState(true);
-
-    if(isLogged === false) {
-        return(
-            <LoggingJobs />
-        )
-    } else {
-        return(
-            <LoggedJobs />
-        )
-    }
-}
+const PostJop = () => {
+  if (token) {
+    return <LoggedJobs />;
+  } else {
+    return <LoggingJobs />;
+  }
+};
 
 export default PostJop;

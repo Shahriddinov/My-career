@@ -9,12 +9,12 @@ import "./job-card.scss";
 function JobCard() {
   const [isModalOpened, setModalOpened] = useState(false);
 
-    function closeModal(value) {
-        setModalOpened(value)
-    }
+  function closeModal(value) {
+    setModalOpened(value);
+  }
 
   return (
-    <>
+    <ul className="job-ul">
       <li className="job-card" onClick={() => setModalOpened(!isModalOpened)}>
         <div className="job-card__head">
           <h2 className="job-card__title">Business Card Design</h2>
@@ -58,7 +58,7 @@ function JobCard() {
             <img className="job-card__user-pic" src={userPic} />
             <div className="job-card__company-info">
               <span className="job-card__company-name">Napa Automotive</span>
-              <p className="job-card__company-title">
+              <div className="job-card__company-title">
                 <img
                   className="job-card__company-star"
                   src={starIcon}
@@ -67,7 +67,7 @@ function JobCard() {
                   alt="star icon"
                 />
                 <p className="job-card__company-subtitle">Verified</p>
-              </p>
+              </div>
             </div>
           </div>
           <ul className="job-card__footer-list">
@@ -91,8 +91,14 @@ function JobCard() {
           <p className="job-card__time">Posted 1 day ago</p>
         </div>
       </li>
-      {isModalOpened && <JobModal className={isModalOpened ? "job-modal" : "closed"} isModalOpened={isModalOpened} closeModal={closeModal} />}
-    </>
+      {isModalOpened && (
+        <JobModal
+          className={isModalOpened ? "job-modal" : "closed"}
+          isModalOpened={isModalOpened}
+          closeModal={closeModal}
+        />
+      )}
+    </ul>
   );
 }
 
