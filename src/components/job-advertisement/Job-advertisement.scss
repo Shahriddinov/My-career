@@ -3,6 +3,8 @@
   justify-content: space-between;
   width: 1410px;
   margin: 0 auto;
+  position: relative;
+  top: 250px;
 }
 
 body {
@@ -208,4 +210,8 @@ body {
 
 .client-card__text--active {
   display: none;
+}
+
+.user__employee-count {
+  font-size: 1.3rem;
 }

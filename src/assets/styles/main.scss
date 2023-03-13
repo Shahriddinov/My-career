@@ -128,7 +128,6 @@ a {
   color: #FFFFFF;
   padding: 10px 20px;
   background: $mainColor;
-  //border-color: none;
 
   &:focus {
     box-shadow: none !important;
@@ -1020,7 +1019,7 @@ input {
           height: 57px;
           font-size: 30px;
           line-height: 37px;
-          margin: 50px 0 0 30% ;
+          margin: 50px 0 0 0;
         }
       }
 
@@ -1103,80 +1102,6 @@ input {
   }
 }
 
-.navbarHom {
-  position: fixed;
-  z-index:10;
-  display: flex;
-  justify-content: space-between;
-  width: 100vw;
-  height: 300px;
-  .logoBg {
-    width: 37%;
-    height: 485px;
-    background-image: url("../../img/EllipseNav.svg");
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    img{
-      width: 51%;
-      margin: 90px 0 0 256px;
-      height: auto;
-
-    }
-  }
-  .logoBgWhite{
-    width: 37%;
-    height: 485px;
-    background-image: url("../../img/EllipseNavWhit.svg");
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    img{
-      width: 51%;
-      margin: 90px 0 0 256px;
-      height: auto;
-
-    }
-  }
-  .homeNavbar{
-    width: 63%;
-    position: relative;
-    margin-top: 4.2%;
-    padding-right: 10%;
-    .nav{
-      height: 50px;
-      margin-left: 20px;
-      position: relative;
-      border-bottom: 5px solid white;
-      border-radius: 2.5px;
-      display: flex;
-      justify-content: space-between;
-      width: 60%;
-      .nav-link{
-        cursor: pointer;
-        font-family: 'Montserrat',sans-serif;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 23px;
-        line-height: 28px;
-        display: flex;
-        justify-content: center;
-        color: $mainColor;
-        transition: 0.2s linear;
-
-        &:hover {
-          transition: 0.2s linear;
-          border-bottom: 5px solid $mainColor;
-        }
-      }
-      .active{
-        border-bottom: 5px solid $mainColor;
-      }
-    }
-    .boxBtn{
-      margin-left: 50px;
-    }
-  }
-}
-
 .circle-show1 {
   width: 44vw;
   height: 44vw;
@@ -1186,8 +1111,6 @@ input {
   left: -7%;
   top: -38%;
   z-index: 0;
-  //display: flex;
-  //align-items: center;
   transform: scale(1.2);
   transition: 0.7s linear;
   cursor: pointer;

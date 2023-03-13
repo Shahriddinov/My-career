@@ -17,6 +17,11 @@ $mainColor: #1D71B8;
 
     .left{
       padding-top: 7%;
+
+      a:hover > button {
+        transform: scale(1.05);
+      }
+
       button{
         width: 570px;
         height: 100px;
@@ -31,6 +36,8 @@ $mainColor: #1D71B8;
         font-size: 30px;
         line-height: 37px;
         color: #323232;
+        transition: 0.2s;
+
         img{
           width: 40px;
           height: auto;

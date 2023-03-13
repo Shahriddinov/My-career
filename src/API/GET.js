@@ -3,6 +3,8 @@ import { BaseUrl } from "./POST";
 
 export const baseUrl = "http://localhost:5000/";
 
+const GET_FREELANCER_DATA = `${baseUrl}api/Freelancer`;
+
 const GET_COUNTRY = `${baseUrl}api/GetInformation/Countries`;
 const GET_POSITION = `${baseUrl}api/GetInformation/Positions`;
 const GET_LANGUAGE = `${baseUrl}api/GetInformation/Languages`;
@@ -31,6 +33,7 @@ const GET = {
   Exp: () => axios.get(GET_EXPERIENCE, headers),
   Edu: () => axios.get(GET_EDUCATION, headers),
 
+  FreelancerData: () => axios.get(GET_FREELANCER_DATA),
   FrLng: () => axios.get(GET_FRL_LANG, headers),
 
   InfPosition: () => axios.get(GET_INFORMATION_POSITION, headers),

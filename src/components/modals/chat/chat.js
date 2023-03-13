@@ -113,15 +113,16 @@ function Chat(props) {
       isSeem: false,
       isOnline: false,
     },
-  ]
+  ];
 
   function closeFunction() {
     closeModal(!isModalOpened);
   }
+
   useEffect(() => {
     AOS.init();
   });
-  
+
   return (
     <div
       className="chat"
@@ -133,9 +134,8 @@ function Chat(props) {
         className="chat__close-btn"
         closeFunction={closeFunction}
       />
-      <ChatSidebar users={users}/>
-      <ChatPage user={users[0]} 
-      closeFunction={closeFunction}/>
+      <ChatSidebar users={users} />
+      <ChatPage user={users[0]} closeFunction={closeFunction} />
     </div>
   );
 }

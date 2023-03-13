@@ -5,6 +5,7 @@ import RoutesPath from "../routes/routes";
 import { setAuthEmailValue, setAuthPasswordValue } from "../actions/authAction";
 import { connect, useDispatch } from "react-redux";
 import POST from "../API/POST";
+import { connection, setAccessToken } from "./chat-for-company";
 import useStore from "../StoreZustand/StoreZustand";
 import "../../src/components/Alll.scss";
 
@@ -45,16 +46,20 @@ function LoginCard(props) {
       const PostRest = await POST.login({
         email: props.authEmailInitialValue,
         password: props.authPasswordInitialValue,
+      }).then((loginResponse) => {
+        console.log("Login response: ", loginResponse);
+        if (loginResponse?.status === 200) {
+          navigate(RoutesPath.signUpPage);
+        }
+        localStorage.setItem("token", JSON.stringify(loginResponse.data.token));
+        setAccessToken(loginResponse.data.token);
+        connection.start().then(() => {
+          localStorage.setItem("start", "ok");
+          console.log("Connection: ", connection);
+        });
       });
-      if (PostRest.data.succeded == false) {
-        console.log(false);
-      } else {
-        navigate(RoutesPath.signUpPage);
-      }
-      localStorage.setItem("token", JSON.stringify(PostRest.data.token));
     } catch (error) {
-      console.log(error);
-      alert(error);
+      alert("Email or password is incorrect!");
     }
   };
 

@@ -61,10 +61,14 @@
   .user__talent-history {
     width: fit-content;
     margin: 0 auto;
-    padding: 0 56px;
+    // padding: 0 56px;
     display: flex;
     padding-bottom: 30px;
     border-bottom: 1px solid #cdcdcd;
+  }
+
+  .user__talent-history--wrapper {
+    width: 180px;
   }
   
   .user__talent-payment--number {

@@ -1,19 +1,14 @@
-import React, { useState } from 'react';
-import LoggedTalents from '../logged-talents/logged-talents';
-import LoggingTalents from '../logging-talents/logging-talents';
+import React, { useState } from "react";
+import LoggedTalents from "../logged-talents/logged-talents";
+import LoggingTalents from "../logging-talents/logging-talents";
+import { token } from "../../API/POST";
 
-function Talants() {
-    const [ isLogged, setLogged ] = useState(true);
+const Talants = () => {
+  if (token) {
+    return <LoggedTalents />;
+  } else {
+    return <LoggingTalents />;
+  }
+};
 
-    if(isLogged === false) {
-        return(
-            <LoggingTalents />
-        )
-    } else {
-        return(
-            <LoggedTalents />
-        )
-    }
-}
-
-export default  Talants;
+export default Talants;

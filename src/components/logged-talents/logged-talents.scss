@@ -2,82 +2,6 @@ $mainColor: #1d71b8;
 
 // Custom Styles
 
-.navbar-home {
-  display: flex;
-  justify-content: space-between;
-  width: 1410px;
-  height: 300px;
-  margin: 0 auto;
-  padding: 70px 0;
-
-  .logos-wrapper {
-    margin-top: 20px;
-    &::before {
-      content: "";
-      width: 705px;
-      height: 488px;
-      display: block;
-      background-image: url("../images/Ellipse-light.svg");
-      background-repeat: no-repeat;
-      background-size: 100% 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: -1 ;
-    }
-    img{
-      position: absolute;
-      z-index: 1;
-    }
-  }
-
-  .homeNavbar {
-    width: 63%;
-    padding: 8px 0;
-    & .navbar-wrapper {
-      width: 896px !important;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .nav {
-      margin: 0;
-      padding: 0;
-      height: 50px;
-      margin-left: 20px;
-      position: relative;
-      border-bottom: 5px solid white;
-      border-radius: 2.5px;
-      display: flex;
-      justify-content: space-between;
-      width: 60%;
-
-      .nav-link {
-        cursor: pointer;
-        font-family: "Montserrat", sans-serif;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 23px;
-        line-height: 28px;
-        display: flex;
-        justify-content: center;
-        color: $mainColor;
-        transition: 0.2s linear;
-
-        &:hover {
-          transition: 0.2s linear;
-          border-bottom: 5px solid $mainColor;
-        }
-      }
-
-      .active {
-        border-bottom: 5px solid $mainColor;
-      }
-    }
-  }
-}
-
 .logged-talents__user-informations {
   margin-left: 30px;
   display: flex;
@@ -127,15 +51,25 @@ $mainColor: #1d71b8;
 }
 
 .logged-talents__container {
+  width: 73vw;
+  position: relative;
+  top: 250px;
   display: flex;
   justify-content: space-between;
-  width: 1410px;
   margin: 0 auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   .input-group {
     width: 100%;
     margin: 0;
     position: static;
+
+    .form-control0 {
+      background: #fff !important;
+    }
   }
 }
 
@@ -145,7 +79,7 @@ $mainColor: #1d71b8;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
+  position: fixed;
   top: 330px;
   right: 0;
   transition: 0.7s linear;
